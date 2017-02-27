@@ -10,9 +10,11 @@ import UIKit
 
 class SearchViewController: UIViewController
 {
-    // TODO add functions to hide/show keyboard
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
+    
+    private var keyboardHeight:CGFloat = 0.0
     
     private var history = [CD_SearchTerm]()
     
@@ -31,6 +33,9 @@ class SearchViewController: UIViewController
         tableView.delegate = self
         tableView.tableFooterView = UIView(frame: CGRectZero)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchViewController.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchViewController.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
+        
         if let fetchedHistory = CoreDataController.sharedInstance.fetchSearchHistory()
         {
             history.appendContentsOf(fetchedHistory)
@@ -42,6 +47,28 @@ class SearchViewController: UIViewController
     {
         super.viewWillAppear(animated)
         tableView.reloadData()
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification)
+    {
+        if let userInfo = notification.userInfo
+        {
+            if let value = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue
+            {
+                let keyboardRec = value.CGRectValue()
+                keyboardHeight = keyboardRec.height
+                tableViewBottomConstraint.constant += keyboardHeight
+            }
+        }
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification)
+    {
+        if keyboardHeight != 0.0
+        {
+            tableViewBottomConstraint.constant -= keyboardHeight
+            keyboardHeight = 0.0
+        }
     }
     
     private func formatSearchTerm(searchTerm: String) -> String

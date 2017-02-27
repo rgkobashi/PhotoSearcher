@@ -63,6 +63,7 @@
                     <connections>
                         <outlet property="searchBar" destination="huA-W7-czc" id="RQ2-DY-Vyb"/>
                         <outlet property="tableView" destination="hvC-M5-3hW" id="ZCQ-CH-J9Z"/>
+                        <outlet property="tableViewBottomConstraint" destination="1XT-A9-yio" id="Lfq-Gp-sp0"/>
                         <segue destination="NQX-HI-Pl3" kind="show" identifier="showSearchResults" id="m52-0N-nPl"/>
                     </connections>
                 </viewController>
