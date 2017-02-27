@@ -10,6 +10,7 @@ import UIKit
 
 class SearchViewController: UIViewController
 {
+    // TODO add functions to hide/show keyboard
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
