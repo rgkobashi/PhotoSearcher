@@ -15,11 +15,15 @@ class PhotoViewController: UIViewController
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var swipeGestureRecognizer: UISwipeGestureRecognizer!
     
+    @IBOutlet weak var wrapperView: UIView!
+    @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var camptionTextView: UITextView!
+    @IBOutlet weak var commentsLabel: UILabel!
+    
     var post: Post!
     
-    //likes, caption, date
-    // probably dimensions
-    //comments
+    private var hidden = false
     
     //TODO swipe change to the next image
     
@@ -37,6 +41,11 @@ class PhotoViewController: UIViewController
         scrollView.zoomScale = 1
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
+        
+        likesLabel.text = "\(post.likesCount) likes"
+        dateLabel.text = NSDate(timeIntervalSince1970: NSTimeInterval(NSNumber(integer: post.date))).stringUTC()
+        camptionTextView.text = post.caption
+        commentsLabel.text = "\(post.commentsCount) comments"
         
         Components.downloadImageFrom(post.displaySrc, suceedHandler: { [unowned self] (result) in
             self.addImageToScrollView(result as! UIImage)
@@ -80,7 +89,22 @@ class PhotoViewController: UIViewController
     
     private func hideShowElements()
     {
-        
+        if hidden
+        {
+            hidden = false
+            UIView.animateWithDuration(0.3, animations: { [unowned self] in
+                self.closeButton.alpha = 1
+                self.wrapperView.alpha = 1
+            })
+        }
+        else
+        {
+            hidden = true
+            UIView.animateWithDuration(0.3, animations: { [unowned self] in
+                self.closeButton.alpha = 0
+                self.wrapperView.alpha = 0
+            })
+        }
     }
     
     private func addImageToScrollView(image: UIImage)
