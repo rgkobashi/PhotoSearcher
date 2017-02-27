@@ -17,20 +17,15 @@ class InstagramPhoto: Photo
 
 class InstagramUtility
 {
-    class func parseResponse(response: AnyObject) -> (name: String, count: Int, top: [InstagramPhoto], mostRecent: [InstagramPhoto])
+    class func parseResponse(response: AnyObject) -> (total: Int, top: [InstagramPhoto], mostRecent: [InstagramPhoto])
     {
-        var resName = ""
-        var resCount = 0
+        var resTotal = 0
         var resTop = [InstagramPhoto]()
         var resMostRecent = [InstagramPhoto]()
         if let response = response as? [String : AnyObject]
         {
             if let tag = response["tag"] as? [String : AnyObject]
             {
-                if let name = tag["name"] as? String
-                {
-                    resName = name
-                }
                 if let topPosts = tag["top_posts"] as? [String : AnyObject]
                 {
                     if let nodes = topPosts["nodes"] as? [AnyObject]
@@ -42,7 +37,7 @@ class InstagramUtility
                 {
                     if let count = media["count"] as? Int
                     {
-                        resCount = count
+                        resTotal = count
                     }
                     if let nodes = media["nodes"] as? [AnyObject]
                     {
@@ -51,7 +46,7 @@ class InstagramUtility
                 }
             }
         }
-        return (resName, resCount, resTop, resMostRecent)
+        return (resTotal, resTop, resMostRecent)
     }
     
     private class func parseNodesSection(nodes: [AnyObject]) -> [InstagramPhoto]
@@ -78,7 +73,7 @@ class InstagramUtility
             if let displaySrc = node["display_src"] as? String
             {
                 instagramPhoto.originalUrl = displaySrc
-                instagramPhoto.thumbnailUrl = createThumbnailUrl(displaySrc)
+                instagramPhoto.thumbnailUrl = createThumbnailUrl(instagramPhoto)
             }
             if let comments = node["comments"] as? [String : AnyObject]
             {
@@ -92,9 +87,9 @@ class InstagramUtility
         return instagramPhotos
     }
     
-    private class func createThumbnailUrl(displaySrc: String) -> String
+    private class func createThumbnailUrl(instagramPhoto: InstagramPhoto) -> String
     {
-        var words = displaySrc.componentsSeparatedByString("/")
+        var words = instagramPhoto.originalUrl.componentsSeparatedByString("/")
         words[4] = "s" + kSmallImageSize
         return words.joinWithSeparator("/")
     }

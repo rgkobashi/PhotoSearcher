@@ -56,8 +56,8 @@ class SearchResultsViewController: UIViewController
             if let response = response
             {
                 let result = InstagramUtility.parseResponse(response)
-                self.searchTermLabel.text = "#\(result.name)"
-                self.updatePostsCountLabel(result.count)
+                self.searchTermLabel.text = "#\(self.searchTerm)"
+                self.updatePostsCountLabel(result.total)
                 self.top.removeAll()
                 self.top.appendContentsOf(result.top)
                 self.mostRecent.removeAll()
