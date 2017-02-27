@@ -50,12 +50,12 @@ class PhotoViewController: UIViewController
         camptionTextView.text = post.caption
         commentsLabel.text = "\(post.commentsCount) comments"
         
-        Components.downloadImageFrom(post.displaySrc, suceedHandler: { [unowned self] (result) in
-            self.activityIndicatorView.stopAnimating()
-            self.image = result as? UIImage
-            self.updateScrollView()
-        }, failedHandler: { (error) in
-            self.activityIndicatorView.stopAnimating()
+        Components.downloadImageFrom(post.displaySrc, suceedHandler: { [weak self] (result) in
+            self?.activityIndicatorView.stopAnimating()
+            self?.image = result as? UIImage
+            self?.updateScrollView()
+        }, failedHandler: { [weak self] (error) in
+            self?.activityIndicatorView.stopAnimating()
             print("error = \(error)")
             // TODO handler error
         })

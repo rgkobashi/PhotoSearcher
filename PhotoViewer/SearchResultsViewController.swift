@@ -96,6 +96,18 @@ class SearchResultsViewController: UIViewController
         postsCountLabel.attributedText = boldAttributed
     }
     
+    private func downloadImageURL(imageURL: String, forCell cell: SearchResultsCollectionViewCell?)
+    {
+        Components.downloadImageFrom(imageURL, suceedHandler: { (result) in
+            cell?.activityIndicatorView.stopAnimating()
+            cell?.imageView.image = result as? UIImage
+        }, failedHandler: { (error) in
+            cell?.activityIndicatorView.stopAnimating()
+            print("error = \(error)")
+            // TODO handler error
+        })
+    }
+    
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
@@ -132,28 +144,14 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("searchResultCell", forIndexPath: indexPath) as! SearchResultsCollectionViewCell
-        
+        weak var weakCell = cell
         if indexPath.section == 0
         {
-            Components.downloadImageFrom(topPosts[indexPath.row].smallImageSrc, suceedHandler: { (result) in
-                cell.activityIndicatorView.stopAnimating()
-                cell.imageView.image = result as? UIImage
-            }, failedHandler: { (error) in
-                cell.activityIndicatorView.stopAnimating()
-                print("error = \(error)")
-                // TODO handler error
-            })
+            downloadImageURL(topPosts[indexPath.row].smallImageSrc, forCell: weakCell)
         }
         else
         {
-            Components.downloadImageFrom(mostRecent[indexPath.row].smallImageSrc, suceedHandler: { (result) in
-                cell.activityIndicatorView.stopAnimating()
-                cell.imageView.image = result as? UIImage
-            }, failedHandler: { (error) in
-                cell.activityIndicatorView.stopAnimating()
-                print("error = \(error)")
-                // TODO handler error
-            })
+            downloadImageURL(mostRecent[indexPath.row].smallImageSrc, forCell: weakCell)
         }
         return cell
     }
