@@ -56,4 +56,14 @@ class Components
             }
         }
     }
+    
+    class func displayAlertWithTitle(title: String?, message: String?, buttonTitle: String, buttonHandler: VoidCompletionHandler?)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let action = UIAlertAction(title: buttonTitle, style: .Default) { (alertAction) in
+            buttonHandler?()
+        }
+        alert.addAction(action)
+        UIApplication.sharedApplication().windows.first?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+    }
 }
