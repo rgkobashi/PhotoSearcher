@@ -146,7 +146,7 @@ class PostUtility
     private class func createSmallImageSrc(displaySrc: String) -> String
     {
         var words = displaySrc.componentsSeparatedByString("/")
-        words[4] = "s80x80"
+        words[4] = "s" + kSmallImageSize
         return words.joinWithSeparator("/")
     }
 }
