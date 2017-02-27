@@ -21,6 +21,15 @@ class SearchViewController: UIViewController
         tableView.delegate = self
         tableView.tableFooterView = UIView(frame: CGRectZero)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "showSearchResults"
+        {
+            let searchResultsVC = segue.destinationViewController as! SearchResultsViewController
+            searchResultsVC.searchTerm = sender as! String
+        }
+    }
 }
 
 extension SearchViewController: UITableViewDelegate
@@ -43,5 +52,10 @@ extension SearchViewController: UISearchBarDelegate
     func searchBarCancelButtonClicked(searchBar: UISearchBar)
     {
         searchBar.endEditing(true)
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar)
+    {
+        performSegueWithIdentifier("showSearchResults", sender: searchBar.text)
     }
 }

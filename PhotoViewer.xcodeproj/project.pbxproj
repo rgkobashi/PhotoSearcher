@@ -13,6 +13,7 @@
 		E2DE98891E644049008B4D78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2DE98871E644049008B4D78 /* LaunchScreen.storyboard */; };
 		E2DE98911E6443F3008B4D78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2DE98901E6443F3008B4D78 /* Main.storyboard */; };
 		E2DE98931E6443FE008B4D78 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98921E6443FE008B4D78 /* SearchViewController.swift */; };
+		E2DE98981E644875008B4D78 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98971E644875008B4D78 /* SearchResultsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E2DE988A1E644049008B4D78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2DE98901E6443F3008B4D78 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E2DE98921E6443FE008B4D78 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		E2DE98971E644875008B4D78 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				E2DE98871E644049008B4D78 /* LaunchScreen.storyboard */,
 				E2DE98901E6443F3008B4D78 /* Main.storyboard */,
 				E2DE98921E6443FE008B4D78 /* SearchViewController.swift */,
+				E2DE98971E644875008B4D78 /* SearchResultsViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2DE98931E6443FE008B4D78 /* SearchViewController.swift in Sources */,
+				E2DE98981E644875008B4D78 /* SearchResultsViewController.swift in Sources */,
 				E2DE98841E644049008B4D78 /* PhotoViewer.xcdatamodeld in Sources */,
 				E2DE987C1E644049008B4D78 /* AppDelegate.swift in Sources */,
 			);
