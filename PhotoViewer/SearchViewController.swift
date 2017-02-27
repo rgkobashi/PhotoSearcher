@@ -126,6 +126,8 @@ extension SearchViewController: UISearchBarDelegate
         {
             if let searchTerm = CoreDataController.sharedInstance.saveSearchTerm(formatSearchTerm(text), timeStamp: NSDate().timeIntervalSince1970) // TODO move here el termino en minusculas
             {
+                searchBar.text = ""
+                searchBar.endEditing(true)
                 history.insert(searchTerm, atIndex: 0)
                 performSegueWithIdentifier("showSearchResults", sender: searchTerm)
             }
