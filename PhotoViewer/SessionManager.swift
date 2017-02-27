@@ -170,8 +170,6 @@ class SessionManager
                 request.HTTPBody = createFormBody(service.requestParams)
             case .XML:
                 break
-            case .IMAGE:
-                request.HTTPBody = createJSONBody(service.requestParams)
             case .NONE:
                 break
             }
