@@ -186,11 +186,76 @@
                         <outlet property="collectionView" destination="eRb-jn-O4w" id="mfq-Xf-OU2"/>
                         <outlet property="postsCountLabel" destination="0je-pN-GDM" id="hTo-p6-cZa"/>
                         <outlet property="searchTermLabel" destination="muV-aI-lhd" id="e3M-eL-fVa"/>
+                        <segue destination="USb-Hz-zFZ" kind="presentation" identifier="showPhoto" id="QtG-NW-cJo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YP6-3N-29l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2135" y="319"/>
+        </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="ctf-zs-A1A">
+            <objects>
+                <viewController id="USb-Hz-zFZ" customClass="PhotoViewController" customModule="PhotoViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wif-uL-5hv"/>
+                        <viewControllerLayoutGuide type="bottom" id="dod-z4-iv1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A4q-bp-WGf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yN7-un-QvE">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="nR9-eK-JOa" appends="YES" id="M4J-d4-Lzm"/>
+                                    <outletCollection property="gestureRecognizers" destination="JzD-Sp-L9d" appends="YES" id="glD-cN-35O"/>
+                                </connections>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nx3-J6-HuV">
+                                <rect key="frame" x="564" y="0.0" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="6wh-Bz-ydR"/>
+                                    <constraint firstAttribute="height" constant="36" id="eBD-d8-Zvu"/>
+                                </constraints>
+                                <state key="normal" image="Close"/>
+                                <connections>
+                                    <action selector="actions:" destination="USb-Hz-zFZ" eventType="touchUpInside" id="64M-LC-Ovm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Nx3-J6-HuV" firstAttribute="top" secondItem="A4q-bp-WGf" secondAttribute="top" id="BmJ-bg-0DG"/>
+                            <constraint firstItem="dod-z4-iv1" firstAttribute="top" secondItem="yN7-un-QvE" secondAttribute="bottom" id="Fir-jI-0dQ"/>
+                            <constraint firstItem="yN7-un-QvE" firstAttribute="leading" secondItem="A4q-bp-WGf" secondAttribute="leading" id="Mvc-am-uOk"/>
+                            <constraint firstItem="yN7-un-QvE" firstAttribute="top" secondItem="A4q-bp-WGf" secondAttribute="top" id="PXo-je-fKM"/>
+                            <constraint firstAttribute="trailing" secondItem="Nx3-J6-HuV" secondAttribute="trailing" id="oPc-2W-d4K"/>
+                            <constraint firstAttribute="trailing" secondItem="yN7-un-QvE" secondAttribute="trailing" id="ztP-c5-bub"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="Nx3-J6-HuV" id="9ky-SE-uuT"/>
+                        <outlet property="scrollView" destination="yN7-un-QvE" id="2PJ-8K-Zfz"/>
+                        <outlet property="swipeGestureRecognizer" destination="nR9-eK-JOa" id="oTt-x0-P9m"/>
+                        <outlet property="tapGestureRecognizer" destination="JzD-Sp-L9d" id="Mce-UP-1sN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UEK-sm-sMp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="down" id="nR9-eK-JOa">
+                    <connections>
+                        <action selector="actions:" destination="USb-Hz-zFZ" id="x0Z-wJ-f5M"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <tapGestureRecognizer id="JzD-Sp-L9d">
+                    <connections>
+                        <action selector="actions:" destination="USb-Hz-zFZ" id="L9B-6B-So0"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2135" y="1052"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Fex-yy-ReH">
@@ -214,5 +279,6 @@
     </scenes>
     <resources>
         <image name="ArrowBack" width="24" height="24"/>
+        <image name="Close" width="24" height="24"/>
     </resources>
 </document>
