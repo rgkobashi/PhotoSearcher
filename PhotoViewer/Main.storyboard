@@ -152,14 +152,24 @@
                                                         <constraint firstAttribute="width" constant="80" id="soD-fi-x9z"/>
                                                     </constraints>
                                                 </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="a5A-lk-Haa">
+                                                    <rect key="frame" x="40" y="40" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="Xui-ew-BMS"/>
+                                                        <constraint firstAttribute="width" constant="20" id="irC-Jw-XNT"/>
+                                                    </constraints>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="tgP-7x-Mcw" firstAttribute="centerX" secondItem="F2J-Sa-dkH" secondAttribute="centerX" id="8QI-JQ-H4o"/>
                                             <constraint firstItem="tgP-7x-Mcw" firstAttribute="centerY" secondItem="F2J-Sa-dkH" secondAttribute="centerY" id="DFA-3g-JIH"/>
+                                            <constraint firstItem="a5A-lk-Haa" firstAttribute="centerX" secondItem="F2J-Sa-dkH" secondAttribute="centerX" id="P8C-GE-keP"/>
+                                            <constraint firstItem="a5A-lk-Haa" firstAttribute="centerY" secondItem="F2J-Sa-dkH" secondAttribute="centerY" id="yNV-pO-9Cv"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="activityIndicatorView" destination="a5A-lk-Haa" id="laZ-8b-0L9"/>
                                             <outlet property="imageView" destination="tgP-7x-Mcw" id="nDL-dC-Pvw"/>
                                         </connections>
                                     </collectionViewCell>

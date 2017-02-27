@@ -10,7 +10,6 @@ import UIKit
 
 class SearchResultsViewController: UIViewController
 {
-    // TODO add spinner on images cell
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var searchTermLabel: UILabel!
     @IBOutlet weak var postsCountLabel: UILabel!
@@ -137,8 +136,10 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
         if indexPath.section == 0
         {
             Components.downloadImageFrom(topPosts[indexPath.row].smallImageSrc, suceedHandler: { (result) in
+                cell.activityIndicatorView.stopAnimating()
                 cell.imageView.image = result as? UIImage
             }, failedHandler: { (error) in
+                cell.activityIndicatorView.stopAnimating()
                 print("error = \(error)")
                 // TODO handler error
             })
@@ -146,8 +147,10 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
         else
         {
             Components.downloadImageFrom(mostRecent[indexPath.row].smallImageSrc, suceedHandler: { (result) in
+                cell.activityIndicatorView.stopAnimating()
                 cell.imageView.image = result as? UIImage
             }, failedHandler: { (error) in
+                cell.activityIndicatorView.stopAnimating()
                 print("error = \(error)")
                 // TODO handler error
             })
