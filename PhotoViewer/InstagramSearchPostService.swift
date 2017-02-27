@@ -1,5 +1,5 @@
 //
-//  InstagramTagService.swift
+//  InstagramSearchPostService.swift
 //  PhotoViewer
 //
 //  Created by Rogelio Martinez Kobashi on 2/27/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class InstagramTagService: Service
+class InstagramSearchPostService: Service
 {
     init(tag: String)
     {

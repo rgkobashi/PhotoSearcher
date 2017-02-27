@@ -1,5 +1,5 @@
 //
-//  TagUtility.swift
+//  PostUtility.swift
 //  PhotoViewer
 //
 //  Created by Rogelio Martinez Kobashi on 2/27/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Tag
+class Post
 {
     var videoViews: Int?
     var likesCount: Int!
@@ -26,15 +26,15 @@ class Tag
     var commentsDisabled: Bool?
 }
 
-class TagUtility
+class PostUtility
 {
     // TODO add pagination? check page_info field
-    class func parseInstagramTagResponse(response: AnyObject) -> (name: String, count: Int, topPosts: [Tag], mostRecent: [Tag])
+    class func parseInstagramPostResponse(response: AnyObject) -> (name: String, count: Int, topPosts: [Post], mostRecent: [Post])
     {
         var resName = ""
         var resCount = 0
-        var resTopPosts = [Tag]()
-        var resMostRecent = [Tag]()
+        var resTopPosts = [Post]()
+        var resMostRecent = [Post]()
         if let response = response as? [String : AnyObject]
         {
             if let tag = response["tag"] as? [String : AnyObject]
@@ -66,78 +66,78 @@ class TagUtility
         return (resName, resCount, resTopPosts, resMostRecent)
     }
     
-    private class func parseNodesSection(nodes: [AnyObject]) -> [Tag]
+    private class func parseNodesSection(nodes: [AnyObject]) -> [Post]
     {
-        var tags = [Tag]()
+        var posts = [Post]()
         for node in nodes
         {
-            let tag = Tag()
+            let post = Post()
             if let videoViews = node["video_views"] as? Int
             {
-                tag.videoViews = videoViews
+                post.videoViews = videoViews
             }
             if let likes = node["likes"] as? [String : AnyObject]
             {
                 if let count = likes["count"] as? Int
                 {
-                    tag.likesCount = count
+                    post.likesCount = count
                 }
             }
             if let caption = node["caption"] as? String
             {
-                tag.caption = caption
+                post.caption = caption
             }
             if let date = node["date"] as? Int
             {
-                tag.date = date
+                post.date = date
             }
             if let owner = node["owner"] as? [String : AnyObject]
             {
                 if let id = owner["id"] as? String
                 {
-                    tag.ownerId = id
+                    post.ownerId = id
                 }
             }
             if let displaySrc = node["display_src"] as? String
             {
-                tag.displaySrc = displaySrc
+                post.displaySrc = displaySrc
             }
             if let dimensions = node["dimensions"] as? [String : AnyObject]
             {
                 if let height = dimensions["height"] as? Int
                 {
-                    tag.height = height
+                    post.height = height
                 }
                 if let width = dimensions["width"] as? Int
                 {
-                    tag.width = width
+                    post.width = width
                 }
             }
             if let code = node["code"] as? String
             {
-                tag.code = code
+                post.code = code
             }
             if let isVideo = node["is_video"] as? Bool
             {
-                tag.isVideo = isVideo
+                post.isVideo = isVideo
             }
             if let thumbnailSrc = node["thumbnail_src"] as? String
             {
-                tag.thumbnailSrc = thumbnailSrc
+                post.thumbnailSrc = thumbnailSrc
             }
             if let id = node["id"] as? String
             {
-                tag.id = id
+                post.id = id
             }
             if let comments = node["comments"] as? [String : AnyObject]
             {
                 if let count = comments["count"] as? Int
                 {
-                    tag.commentsCount = count
+                    post.commentsCount = count
                 }
             }
-            tags.append(tag)
+            posts.append(post)
         }
-        return tags
+        return posts
     }
 }
