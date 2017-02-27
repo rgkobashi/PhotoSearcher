@@ -49,7 +49,7 @@ class SearchResultsViewController: UIViewController
     
     private func callInstagramTagService()
     {
-        let service = InstagramSearchPostService(tag: searchTerm)
+        let service = InstagramService(tag: searchTerm)
         Loader.show()
         SessionManager.sharedInstance.start(service, suceedHandler: { [unowned self] (response) in
             Loader.dismiss()

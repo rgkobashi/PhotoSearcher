@@ -1,5 +1,5 @@
 //
-//  InstagramSearchPostService.swift
+//  InstagramService.swift
 //  PhotoViewer
 //
 //  Created by Rogelio Martinez Kobashi on 2/27/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class InstagramSearchPostService: Service
+class InstagramService: Service
 {
     var requestType = REQUEST_TYPE.GET
     var contentType = CONTENT_TYPE.NONE
@@ -20,6 +20,6 @@ class InstagramSearchPostService: Service
     
     init(tag: String)
     {
-        requestURL = kURLInstagramTag + "/\(tag)/?__a=1"
+        requestURL = kURLInstagram + "/" + tag + "/?__a=1"
     }
 }
