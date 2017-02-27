@@ -20,6 +20,7 @@
 		E2DE98A21E645211008B4D78 /* InstagramTagService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98A11E645211008B4D78 /* InstagramTagService.swift */; };
 		E2DE98A41E64523F008B4D78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98A31E64523F008B4D78 /* Constants.swift */; };
 		E2DE98A61E645422008B4D78 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98A51E645422008B4D78 /* Loader.swift */; };
+		E2DE98A81E645573008B4D78 /* TagUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98A71E645573008B4D78 /* TagUtility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		E2DE98A11E645211008B4D78 /* InstagramTagService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramTagService.swift; sourceTree = "<group>"; };
 		E2DE98A31E64523F008B4D78 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E2DE98A51E645422008B4D78 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
+		E2DE98A71E645573008B4D78 /* TagUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagUtility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			children = (
 				E2DE987B1E644049008B4D78 /* AppDelegate.swift */,
 				E2DE989F1E6451CC008B4D78 /* API */,
+				E2DE98A91E64557D008B4D78 /* Utilities */,
 				E2DE98A01E6451DC008B4D78 /* Common */,
 				E2DE98941E6444DD008B4D78 /* UI */,
 				E2DE98951E6444E4008B4D78 /* CoreData */,
@@ -126,6 +129,14 @@
 				E2DE98A51E645422008B4D78 /* Loader.swift */,
 			);
 			name = Common;
+			sourceTree = "<group>";
+		};
+		E2DE98A91E64557D008B4D78 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E2DE98A71E645573008B4D78 /* TagUtility.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +215,7 @@
 				E2DE98931E6443FE008B4D78 /* SearchViewController.swift in Sources */,
 				E2DE989C1E644FB7008B4D78 /* Components.swift in Sources */,
 				E2DE98A61E645422008B4D78 /* Loader.swift in Sources */,
+				E2DE98A81E645573008B4D78 /* TagUtility.swift in Sources */,
 				E2DE98981E644875008B4D78 /* SearchResultsViewController.swift in Sources */,
 				E2DE98841E644049008B4D78 /* PhotoViewer.xcdatamodeld in Sources */,
 				E2DE989A1E644F20008B4D78 /* SessionManager.swift in Sources */,
