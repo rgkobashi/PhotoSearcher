@@ -10,20 +10,10 @@ import Foundation
 
 class InstagramPhoto
 {
-    var videoViews: Int?
     var likesCount: Int!
-    var caption: String!
     var date: Int!
-    var ownerId: String!
-    var height: Int!
-    var width: Int!
-    var code: String!
-    var isVideo: Bool!
-    var id: String!
     var commentsCount: Int!
-    var commentsDisabled: Bool?
-    var thumbnailUrl: String!
-    var originalUrl: String!
+    var caption: String!
 }
 
 class InstagramUtility
@@ -71,10 +61,6 @@ class InstagramUtility
         for node in nodes
         {
             let instagramPhoto = InstagramPhoto()
-            if let videoViews = node["video_views"] as? Int
-            {
-                instagramPhoto.videoViews = videoViews
-            }
             if let likes = node["likes"] as? [String : AnyObject]
             {
                 if let count = likes["count"] as? Int
@@ -90,40 +76,10 @@ class InstagramUtility
             {
                 instagramPhoto.date = date
             }
-            if let owner = node["owner"] as? [String : AnyObject]
-            {
-                if let id = owner["id"] as? String
-                {
-                    instagramPhoto.ownerId = id
-                }
-            }
             if let displaySrc = node["display_src"] as? String
             {
                 instagramPhoto.originalUrl = displaySrc
                 instagramPhoto.thumbnailUrl = createThumbnailUrl(displaySrc)
-            }
-            if let dimensions = node["dimensions"] as? [String : AnyObject]
-            {
-                if let height = dimensions["height"] as? Int
-                {
-                    instagramPhoto.height = height
-                }
-                if let width = dimensions["width"] as? Int
-                {
-                    instagramPhoto.width = width
-                }
-            }
-            if let code = node["code"] as? String
-            {
-                instagramPhoto.code = code
-            }
-            if let isVideo = node["is_video"] as? Bool
-            {
-                instagramPhoto.isVideo = isVideo
-            }
-            if let id = node["id"] as? String
-            {
-                instagramPhoto.id = id
             }
             if let comments = node["comments"] as? [String : AnyObject]
             {
