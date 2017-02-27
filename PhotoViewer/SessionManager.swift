@@ -11,7 +11,6 @@ import UIKit
 
 class SessionManager
 {
-    // TODO print logs
     static var sharedInstance = SessionManager()
     
     private var session: NSURLSession!
