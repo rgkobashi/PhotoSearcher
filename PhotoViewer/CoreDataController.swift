@@ -11,33 +11,28 @@ import CoreData
 
 class CoreDataController
 {
+    // TODO consider rename SearchTerm and CD_SearchTerm and its properties
+    
     static var sharedInstance = CoreDataController()
     
-    func fetchSearchHistory() -> [String]
+    func fetchSearchHistory() -> [CD_SearchTerm]?
     {
-        var history = [String]()
         let fetchRequest = NSFetchRequest()
         let entity = NSEntityDescription.entityForName("CD_SearchTerm", inManagedObjectContext: appDelegate.managedObjectContext)
         fetchRequest.entity = entity
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timeStamp", ascending: false)]
         do {
-            let result = try appDelegate.managedObjectContext.executeFetchRequest(fetchRequest)
-            if let searchTerms = result as? [CD_SearchTerm]
-            {
-                for searchTerm in searchTerms
-                {
-                    history.append(searchTerm.term!)
-                }
-            }
+            let results = try appDelegate.managedObjectContext.executeFetchRequest(fetchRequest)
+            return results as? [CD_SearchTerm]
         } catch {
             let fetchError = error as NSError
             print("error = \(fetchError)")
             // TODO handler error
         }
-        return history
+        return nil
     }
     
-    func saveSearchTerm(term: String, timeStamp: NSTimeInterval)
+    func saveSearchTerm(term: String, timeStamp: NSTimeInterval) -> CD_SearchTerm?
     {
         if let entity = NSEntityDescription.entityForName("CD_SearchTerm", inManagedObjectContext: appDelegate.managedObjectContext)
         {
@@ -46,12 +41,25 @@ class CoreDataController
             searchTerm.timeStamp = timeStamp
             do {
                 try searchTerm.managedObjectContext?.save()
+                return searchTerm
             } catch {
                 let saveError = error as NSError
                 print("error = \(saveError)")
                 // TODO handler error
             }
         }
+        return nil
     }
     
+    func deleteSearchTerm(searchTerm: CD_SearchTerm)
+    {
+        appDelegate.managedObjectContext.deleteObject(searchTerm)
+        do {
+            try appDelegate.managedObjectContext.save()
+        } catch {
+            let saveError = error as NSError
+            print("error = \(saveError)")
+            // TODO handler error
+        }
+    }
 }
