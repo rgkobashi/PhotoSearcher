@@ -25,6 +25,7 @@ class SearchViewController: UIViewController
     {
         super.viewDidLoad()
         navigationController?.navigationBarHidden = true
+        automaticallyAdjustsScrollViewInsets = false
         searchBar.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
