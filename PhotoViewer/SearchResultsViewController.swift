@@ -10,6 +10,7 @@ import UIKit
 
 class SearchResultsViewController: UIViewController
 {
+    // TODO add spinner on images cell
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var searchTermLabel: UILabel!
     @IBOutlet weak var postsCountLabel: UILabel!
