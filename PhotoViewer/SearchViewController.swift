@@ -59,6 +59,14 @@ class SearchViewController: UIViewController
     
     // MARK: - Navigation
     
+    private func showSearchResults(searchTerm: CD_SearchTerm)
+    {
+        searchBar.text = ""
+        searchBar.endEditing(true)
+        history.insert(searchTerm, atIndex: 0)
+        performSegueWithIdentifier("showSearchResults", sender: searchTerm)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if segue.identifier == "showSearchResults"
@@ -97,8 +105,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate
         
         if let newSearchTerm = CoreDataController.sharedInstance.saveSearchTerm(formatSearchTerm(stringSearchTerm), timeStamp: NSDate().timeIntervalSince1970) // TODO move here el termino en minusculas
         {
-            history.insert(newSearchTerm, atIndex: 0)
-            performSegueWithIdentifier("showSearchResults", sender: newSearchTerm)
+            showSearchResults(newSearchTerm)
         }
     }
 }
@@ -126,10 +133,7 @@ extension SearchViewController: UISearchBarDelegate
         {
             if let searchTerm = CoreDataController.sharedInstance.saveSearchTerm(formatSearchTerm(text), timeStamp: NSDate().timeIntervalSince1970) // TODO move here el termino en minusculas
             {
-                searchBar.text = ""
-                searchBar.endEditing(true)
-                history.insert(searchTerm, atIndex: 0)
-                performSegueWithIdentifier("showSearchResults", sender: searchTerm)
+                showSearchResults(searchTerm)
             }
             // TODO do something for el else
         }
