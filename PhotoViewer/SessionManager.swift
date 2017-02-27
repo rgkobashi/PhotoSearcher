@@ -42,12 +42,18 @@ class SessionManager
     func start(service: Service, suceedHandler: SuceedCompletionHandler, failedHandler: ErrorCompletionHandler)
     {
         let request = createRequestForService(service)
+        var serviceTracker: ServiceTracker?
+        #if !PROD
+            serviceTracker = ServiceTracker(service: service, request: request)
+        #endif
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
             dispatch_async(dispatch_get_main_queue(), {
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                serviceTracker?.callFinished()
                 if let error = error
                 {
+                    serviceTracker?.finishWithError(error)
                     failedHandler(error)
                 }
                 else
@@ -56,6 +62,7 @@ class SessionManager
                     {
                         if httpResponse.statusCode == 204
                         {
+                            serviceTracker?.finishWithResponse(httpResponse)
                             suceedHandler(nil)
                         }
                         else if let responseData = data
@@ -81,22 +88,26 @@ class SessionManager
                                             if let error = responseBody["error"]
                                             {
                                                 let error = NSError(domain: kErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: error])
+                                                serviceTracker?.finishWithError(error, response: httpResponse, body: responseBody)
                                                 failedHandler(error)
                                             }
                                             else
                                             {
+                                                serviceTracker?.finishWithResponse(httpResponse, body: responseBody)
                                                 suceedHandler(responseBody)
                                             }
                                         }
                                         else
                                         {
                                             let error = self.parseErrorResponse(responseBody, errorCode: httpResponse.statusCode)
+                                            serviceTracker?.finishWithError(error, response: httpResponse, body: responseBody)
                                             failedHandler(error)
                                         }
                                     }
                                     else
                                     {
                                         let error = NSError(domain: kErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey:  "Invalid content type"])
+                                        serviceTracker?.finishWithError(error, response: httpResponse, body: responseBody)
                                         failedHandler(error)
                                     }
                                 }
@@ -106,28 +117,33 @@ class SessionManager
                                     {
                                         if httpResponse.statusCode == 200
                                         {
+                                            serviceTracker?.finishWithResponse(httpResponse, body: responseBody)
                                             suceedHandler(responseBody)
                                         }
                                         else
                                         {
                                             let error = self.parseErrorResponse(responseBody, errorCode: httpResponse.statusCode)
+                                            serviceTracker?.finishWithError(error, response: httpResponse, body: responseBody)
                                             failedHandler(error)
                                         }
                                     }
                                     else
                                     {
                                         let error = NSError(domain: kErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid content type"])
+                                        serviceTracker?.finishWithError(error, response: httpResponse, body: responseBody)
                                         failedHandler(error)
                                     }
                                 }
                                 else
                                 {
                                     let error = NSError(domain: kErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "Could not parse response"])
+                                    serviceTracker?.finishWithError(error)
                                     failedHandler(error)
                                 }
                             }
                             catch let error as NSError
                             {
+                                serviceTracker?.finishWithError(error)
                                 failedHandler(error)
                             }
                             
@@ -136,6 +152,7 @@ class SessionManager
                     else
                     {
                         let error = NSError(domain: kErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "No data returned from the server"])
+                        serviceTracker?.finishWithError(error)
                         failedHandler(error)
                     }
                 }
