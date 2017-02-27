@@ -7,3 +7,4 @@
 //
 
 let kURLInstagramTag = "https://www.instagram.com/explore/tags"
+let kErrorDomain = "com.photoviewer.errordomain"

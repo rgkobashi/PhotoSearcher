@@ -13,7 +13,6 @@ class SessionManager
 {
     // TODO print logs
     static var sharedInstance = SessionManager()
-    static var errorDomain = "com.photoviewer.errordomain"
     
     private var session: NSURLSession!
     
