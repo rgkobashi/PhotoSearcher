@@ -38,8 +38,13 @@ class SearchResultsViewController: UIViewController
     {
         if sender ==  backButton
         {
-            navigationController?.popViewControllerAnimated(true)
+            back()
         }
+    }
+    
+    private func back()
+    {
+        navigationController?.popViewControllerAnimated(true)
     }
     
     private func callInstagramTagService()
@@ -59,10 +64,12 @@ class SearchResultsViewController: UIViewController
                 self.mostRecent.appendContentsOf(result.mostRecent)
                 self.collectionView.reloadData()
             }
-        }) { (error) in
+        }) { [weak self] (error) in
             Loader.dismiss()
             print("error = \(error)")
-            // TODO handler the errors
+            Components.displayAlertWithTitle("Error", message: "Error searching for photos, please try again.", buttonTitle: "Accept", buttonHandler: {
+                self?.back()
+            })
         }
     }
     
