@@ -88,14 +88,11 @@ class SearchViewController: UIViewController
     
     private func showSearchResultsForSearchTerm(searchTerm: String)
     {
-        if let searchHistoryItem = CoreDataController.sharedInstance.saveSearchHistoryItem(searchTerm, timeStamp: NSDate().timeIntervalSince1970)
-        {
-            searchBar.text = ""
-            searchBar.endEditing(true)
-            searchHistory.insert(searchHistoryItem, atIndex: 0)
-            performSegueWithIdentifier("showSearchResults", sender: searchHistoryItem.searchTerm)
-        }
-        // TODO do something for el else
+        let searchHistoryItem = CoreDataController.sharedInstance.saveSearchHistoryItem(searchTerm, timeStamp: NSDate().timeIntervalSince1970)
+        searchBar.text = ""
+        searchBar.endEditing(true)
+        searchHistory.insert(searchHistoryItem, atIndex: 0)
+        performSegueWithIdentifier("showSearchResults", sender: searchHistoryItem.searchTerm)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)

@@ -30,23 +30,20 @@ class CoreDataController
         return nil
     }
     
-    func saveSearchHistoryItem(searchTerm: String, timeStamp: NSTimeInterval) -> CD_SearchHistoryItem?
+    func saveSearchHistoryItem(searchTerm: String, timeStamp: NSTimeInterval) -> CD_SearchHistoryItem
     {
-        if let entity = NSEntityDescription.entityForName("CD_SearchHistoryItem", inManagedObjectContext: appDelegate.managedObjectContext)
-        {
-            let searchHistoryItem = CD_SearchHistoryItem(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
-            searchHistoryItem.searchTerm = searchTerm
-            searchHistoryItem.timeStamp = timeStamp
-            do {
-                try searchHistoryItem.managedObjectContext?.save()
-                return searchHistoryItem
-            } catch {
-                let saveError = error as NSError
-                print("error = \(saveError)")
-                // TODO handler error
-            }
+        let entity = NSEntityDescription.entityForName("CD_SearchHistoryItem", inManagedObjectContext: appDelegate.managedObjectContext)!
+        let searchHistoryItem = CD_SearchHistoryItem(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
+        searchHistoryItem.searchTerm = searchTerm
+        searchHistoryItem.timeStamp = timeStamp
+        do {
+            try searchHistoryItem.managedObjectContext?.save()
+        } catch {
+            let saveError = error as NSError
+            print("error = \(saveError)")
+            // TODO handler error
         }
-        return nil
+        return searchHistoryItem
     }
     
     func deleteSearchHistoryItem(searchHistoryItem: CD_SearchHistoryItem)

@@ -10,12 +10,16 @@ import Foundation
 
 class InstagramSearchPostService: Service
 {
+    var requestType = REQUEST_TYPE.GET
+    var contentType = CONTENT_TYPE.NONE
+    var acceptType = ACCEPT_TYPE.JSON
+    var timeOut: NSTimeInterval = 30
+    var requestURL = ""
+    var requestParams: [String: AnyObject]?
+    var additionalHeaders: [String: String]?
+    
     init(tag: String)
     {
-        super.init()
-        requestType = .GET
-        contentType = .NONE
-        acceptType = .JSON
         requestURL = kURLInstagramTag + "/\(tag)/?__a=1"
     }
 }

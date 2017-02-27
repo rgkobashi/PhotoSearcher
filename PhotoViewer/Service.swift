@@ -8,8 +8,6 @@
 
 import Foundation
 
-// TODO change this for POP
-
 enum REQUEST_TYPE: String
 {
     case GET = "GET"
@@ -37,13 +35,13 @@ enum ACCEPT_TYPE: String
     case NONE = ""
 }
 
-class Service
+protocol Service
 {
-    var requestType: REQUEST_TYPE = .GET
-    var contentType: CONTENT_TYPE = .JSON
-    var acceptType: ACCEPT_TYPE = .JSON
-    var timeOut: NSTimeInterval = 30
-    var requestURL = ""
-    var requestParams = [String: AnyObject]()
-    var additionalHeaders = [String: String]()
+    var requestType: REQUEST_TYPE { get set }
+    var contentType: CONTENT_TYPE { get set }
+    var acceptType: ACCEPT_TYPE { get set }
+    var timeOut: NSTimeInterval { get set }
+    var requestURL: String { get set }
+    var requestParams: [String: AnyObject]? { get set }
+    var additionalHeaders: [String: String]? { get set }
 }

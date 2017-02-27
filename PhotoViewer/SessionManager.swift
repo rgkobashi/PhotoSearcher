@@ -155,18 +155,21 @@ class SessionManager
         request.setValue(service.acceptType.rawValue, forHTTPHeaderField: "Accept")
         request.timeoutInterval = service.timeOut
         
-        for (key, value) in service.additionalHeaders
+        if let additionalHeaders = service.additionalHeaders
         {
-            request.setValue(value, forHTTPHeaderField: key)
+            for (key, value) in additionalHeaders
+            {
+                request.setValue(value, forHTTPHeaderField: key)
+            }
         }
         
-        if service.requestParams.count > 0
+        if let requestParams = service.requestParams where requestParams.count > 0
         {
             switch service.contentType {
             case .JSON:
-                request.HTTPBody = createJSONBody(service.requestParams)
+                request.HTTPBody = createJSONBody(requestParams)
             case .FORM:
-                request.HTTPBody = createFormBody(service.requestParams)
+                request.HTTPBody = createFormBody(requestParams)
             case .XML:
                 break
             case .NONE:
