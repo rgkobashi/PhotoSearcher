@@ -30,6 +30,7 @@ class SearchResultsViewController: UIViewController
         searchTermLabel.text = ""
         postsCountLabel.text = ""
         collectionView.dataSource = self
+        collectionView.delegate = self
         callInstagramTagService()
     }
     
@@ -94,9 +95,18 @@ class SearchResultsViewController: UIViewController
         boldAttributed.appendAttributedString(normalAttributed)
         postsCountLabel.attributedText = boldAttributed
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "showPhoto"
+        {
+            let photoVC = segue.destinationViewController as! PhotoViewController
+            photoVC.post = sender as! Post
+        }
+    }
 }
 
-extension SearchResultsViewController: UICollectionViewDataSource
+extension SearchResultsViewController: UICollectionViewDataSource, UICollectionViewDelegate
 {
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
     {
@@ -157,5 +167,19 @@ extension SearchResultsViewController: UICollectionViewDataSource
             label.text = "Most recent"
         }
         return collectionReusableView
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    {
+        if indexPath.section == 0
+        {
+            let post = topPosts[indexPath.row]
+            performSegueWithIdentifier("showPhoto", sender: post)
+        }
+        else
+        {
+            let post = mostRecent[indexPath.row]
+            performSegueWithIdentifier("showPhoto", sender: post)
+        }
     }
 }
