@@ -45,7 +45,7 @@ class PhotoViewController: UIViewController
         
         likesLabel.text = "\(instagramPhoto.likesCount) likes"
         dateLabel.text = NSDate(timeIntervalSince1970: NSTimeInterval(NSNumber(integer: instagramPhoto.date))).stringUTC()
-        camptionTextView.text = instagramPhoto.caption
+        camptionTextView.text = instagramPhoto.text
         commentsLabel.text = "\(instagramPhoto.commentsCount) comments"
         
         Components.downloadImageFrom(instagramPhoto.originalUrl, suceedHandler: { [weak self] (result) in

@@ -8,12 +8,11 @@
 
 import Foundation
 
-class InstagramPhoto
+class InstagramPhoto: Photo
 {
     var likesCount: Int!
     var date: Int!
     var commentsCount: Int!
-    var caption: String!
 }
 
 class InstagramUtility
@@ -70,7 +69,7 @@ class InstagramUtility
             }
             if let caption = node["caption"] as? String
             {
-                instagramPhoto.caption = caption
+                instagramPhoto.text = caption
             }
             if let date = node["date"] as? Int
             {
