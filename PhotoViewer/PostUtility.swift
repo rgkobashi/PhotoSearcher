@@ -27,9 +27,11 @@ class Post
     var smallImageSrc: String!
 }
 
+// TODO rename Post for InstagramPost
+
 class PostUtility
 {
-    class func parseInstagramPostResponse(response: AnyObject) -> (name: String, count: Int, topPosts: [Post], mostRecent: [Post])
+    class func parseInstagramResponse(response: AnyObject) -> (name: String, count: Int, topPosts: [Post], mostRecent: [Post])
     {
         var resName = ""
         var resCount = 0

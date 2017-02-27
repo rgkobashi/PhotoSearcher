@@ -31,7 +31,7 @@ class SearchResultsViewController: UIViewController
         postsCountLabel.text = ""
         collectionView.dataSource = self
         collectionView.delegate = self
-        callInstagramTagService()
+        callInstagramService()
     }
     
     @IBAction func buttonTapped(sender: UIButton)
@@ -47,7 +47,7 @@ class SearchResultsViewController: UIViewController
         navigationController?.popViewControllerAnimated(true)
     }
     
-    private func callInstagramTagService()
+    private func callInstagramService()
     {
         let service = InstagramService(tag: searchTerm)
         Loader.show()
@@ -55,7 +55,7 @@ class SearchResultsViewController: UIViewController
             Loader.dismiss()
             if let response = response
             {
-                let result = PostUtility.parseInstagramPostResponse(response)
+                let result = PostUtility.parseInstagramResponse(response)
                 self.searchTermLabel.text = "#\(result.name)"
                 self.updatePostsCountLabel(result.count)
                 self.topPosts.removeAll()
