@@ -13,6 +13,8 @@ class SearchViewController: UIViewController
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    private var history = [String]()
+    
     deinit
     {
         print("deinit SearchViewController")
@@ -23,8 +25,18 @@ class SearchViewController: UIViewController
         super.viewDidLoad()
         navigationController?.navigationBarHidden = true
         searchBar.delegate = self
+        tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView(frame: CGRectZero)
+        
+        history.appendContentsOf(CoreDataController.sharedInstance.fetchSearchHistory())
+        tableView.reloadData()
+    }
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     private func formatSearchTerm(searchTerm: String) -> String
@@ -52,9 +64,23 @@ class SearchViewController: UIViewController
     }
 }
 
-extension SearchViewController: UITableViewDelegate
+extension SearchViewController: UITableViewDataSource, UITableViewDelegate
 {
+    // MARK: - UITableViewDataSource
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return history.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCellWithIdentifier("historyCell", forIndexPath: indexPath)
+        cell.textLabel?.text = history[indexPath.row]
+        return cell
+    }
+    
+    // MARK: - UITableViewDelegate
 }
 
 extension SearchViewController: UISearchBarDelegate
@@ -78,7 +104,10 @@ extension SearchViewController: UISearchBarDelegate
     {
         if let text = searchBar.text where text != ""
         {
-            performSegueWithIdentifier("showSearchResults", sender: formatSearchTerm(text))
+            let textFormatted = formatSearchTerm(text)
+            CoreDataController.sharedInstance.saveSearchTerm(textFormatted, timeStamp: NSDate().timeIntervalSince1970)
+            history.insert(textFormatted, atIndex: 0)
+            performSegueWithIdentifier("showSearchResults", sender: textFormatted)
         }
     }
 }
