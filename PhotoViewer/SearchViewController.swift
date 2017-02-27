@@ -35,6 +35,19 @@ class SearchViewController: UIViewController
             searchResultsVC.searchTerm = sender as! String
         }
     }
+    
+    private func formatSearchTerm(searchTerm: String) -> String
+    {
+        let words = searchTerm.componentsSeparatedByString(" ")
+        if let encoded = words.first!.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
+        {
+            return encoded
+        }
+        else
+        {
+            return words.first!
+        }
+    }
 }
 
 extension SearchViewController: UITableViewDelegate
@@ -61,6 +74,9 @@ extension SearchViewController: UISearchBarDelegate
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar)
     {
-        performSegueWithIdentifier("showSearchResults", sender: searchBar.text)
+        if let text = searchBar.text where text != ""
+        {
+            performSegueWithIdentifier("showSearchResults", sender: formatSearchTerm(text))
+        }
     }
 }
