@@ -28,8 +28,6 @@ class PhotoViewController: UIViewController
     private var hidden = false
     private var image: UIImage?
     
-    //TODO swipe change to the next image
-    
     deinit
     {
         print("deinit PhotoViewController")

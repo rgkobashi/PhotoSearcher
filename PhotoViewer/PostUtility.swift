@@ -29,7 +29,6 @@ class Post
 
 class PostUtility
 {
-    // TODO add pagination? check page_info field
     class func parseInstagramPostResponse(response: AnyObject) -> (name: String, count: Int, topPosts: [Post], mostRecent: [Post])
     {
         var resName = ""
