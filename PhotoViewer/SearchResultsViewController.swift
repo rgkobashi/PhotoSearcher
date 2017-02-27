@@ -16,8 +16,8 @@ class SearchResultsViewController: UIViewController
     @IBOutlet weak var collectionView: UICollectionView!
     
     var searchTerm: String!
-    private var topPosts = [Post]()
-    private var mostRecent = [Post]()
+    private var top = [InstagramPhoto]()
+    private var mostRecent = [InstagramPhoto]()
     
     deinit
     {
@@ -55,11 +55,11 @@ class SearchResultsViewController: UIViewController
             Loader.dismiss()
             if let response = response
             {
-                let result = PostUtility.parseInstagramResponse(response)
+                let result = InstagramUtility.parseResponse(response)
                 self.searchTermLabel.text = "#\(result.name)"
                 self.updatePostsCountLabel(result.count)
-                self.topPosts.removeAll()
-                self.topPosts.appendContentsOf(result.topPosts)
+                self.top.removeAll()
+                self.top.appendContentsOf(result.top)
                 self.mostRecent.removeAll()
                 self.mostRecent.appendContentsOf(result.mostRecent)
                 self.collectionView.reloadData()
@@ -122,7 +122,7 @@ class SearchResultsViewController: UIViewController
         if segue.identifier == "showPhoto"
         {
             let photoVC = segue.destinationViewController as! PhotoViewController
-            photoVC.post = sender as! Post
+            photoVC.instagramPhoto = sender as! InstagramPhoto
         }
     }
 }
@@ -140,7 +140,7 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
     {
         if section == 0
         {
-            return topPosts.count
+            return top.count
         }
         else
         {
@@ -154,11 +154,11 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
         weak var weakCell = cell
         if indexPath.section == 0
         {
-            downloadImageURL(topPosts[indexPath.row].smallImageSrc, forCell: weakCell)
+            downloadImageURL(top[indexPath.row].thumbnailUrl, forCell: weakCell)
         }
         else
         {
-            downloadImageURL(mostRecent[indexPath.row].smallImageSrc, forCell: weakCell)
+            downloadImageURL(mostRecent[indexPath.row].thumbnailUrl, forCell: weakCell)
         }
         return cell
     }
@@ -188,7 +188,7 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
     {
         if indexPath.section == 0
         {
-            let post = topPosts[indexPath.row]
+            let post = top[indexPath.row]
             performSegueWithIdentifier("showPhoto", sender: post)
         }
         else

@@ -12,6 +12,8 @@
 		E2D4BC371E64C26A003DEC8E /* CD_SearchHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC351E64C26A003DEC8E /* CD_SearchHistoryItem.swift */; };
 		E2D4BC391E64CCFC003DEC8E /* ServiceTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC381E64CCFC003DEC8E /* ServiceTracker.swift */; };
 		E2D4BC3B1E64E6F4003DEC8E /* FlickrService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC3A1E64E6F4003DEC8E /* FlickrService.swift */; };
+		E2D4BC3F1E64E9FF003DEC8E /* FlickrUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC3E1E64E9FF003DEC8E /* FlickrUtility.swift */; };
+		E2D4BC411E64EB96003DEC8E /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC401E64EB96003DEC8E /* Picture.swift */; };
 		E2DE987C1E644049008B4D78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE987B1E644049008B4D78 /* AppDelegate.swift */; };
 		E2DE98841E644049008B4D78 /* PhotoViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98821E644049008B4D78 /* PhotoViewer.xcdatamodeld */; };
 		E2DE98861E644049008B4D78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2DE98851E644049008B4D78 /* Assets.xcassets */; };
@@ -25,7 +27,7 @@
 		E2DE98A21E645211008B4D78 /* InstagramService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98A11E645211008B4D78 /* InstagramService.swift */; };
 		E2DE98A41E64523F008B4D78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98A31E64523F008B4D78 /* Constants.swift */; };
 		E2DE98A61E645422008B4D78 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98A51E645422008B4D78 /* Loader.swift */; };
-		E2DE98A81E645573008B4D78 /* PostUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98A71E645573008B4D78 /* PostUtility.swift */; };
+		E2DE98A81E645573008B4D78 /* InstagramPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98A71E645573008B4D78 /* InstagramPhoto.swift */; };
 		E2DE98AB1E6481E9008B4D78 /* SearchResultsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98AA1E6481E9008B4D78 /* SearchResultsCollectionViewCell.swift */; };
 		E2DE98AE1E6484F9008B4D78 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98AD1E6484F9008B4D78 /* PhotoViewController.swift */; };
 		E2DE98B01E649B60008B4D78 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98AF1E649B60008B4D78 /* NSDate.swift */; };
@@ -37,6 +39,8 @@
 		E2D4BC351E64C26A003DEC8E /* CD_SearchHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CD_SearchHistoryItem.swift; sourceTree = "<group>"; };
 		E2D4BC381E64CCFC003DEC8E /* ServiceTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTracker.swift; sourceTree = "<group>"; };
 		E2D4BC3A1E64E6F4003DEC8E /* FlickrService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrService.swift; sourceTree = "<group>"; };
+		E2D4BC3E1E64E9FF003DEC8E /* FlickrUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrUtility.swift; sourceTree = "<group>"; };
+		E2D4BC401E64EB96003DEC8E /* Picture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		E2DE98781E644049008B4D78 /* PhotoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DE987B1E644049008B4D78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2DE98831E644049008B4D78 /* PhotoViewer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotoViewer.xcdatamodel; sourceTree = "<group>"; };
@@ -52,7 +56,7 @@
 		E2DE98A11E645211008B4D78 /* InstagramService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramService.swift; sourceTree = "<group>"; };
 		E2DE98A31E64523F008B4D78 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E2DE98A51E645422008B4D78 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
-		E2DE98A71E645573008B4D78 /* PostUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostUtility.swift; sourceTree = "<group>"; };
+		E2DE98A71E645573008B4D78 /* InstagramPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramPhoto.swift; sourceTree = "<group>"; };
 		E2DE98AA1E6481E9008B4D78 /* SearchResultsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsCollectionViewCell.swift; sourceTree = "<group>"; };
 		E2DE98AD1E6484F9008B4D78 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		E2DE98AF1E649B60008B4D78 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
@@ -174,7 +178,9 @@
 		E2DE98A91E64557D008B4D78 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				E2DE98A71E645573008B4D78 /* PostUtility.swift */,
+				E2D4BC401E64EB96003DEC8E /* Picture.swift */,
+				E2DE98A71E645573008B4D78 /* InstagramPhoto.swift */,
+				E2D4BC3E1E64E9FF003DEC8E /* FlickrUtility.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -267,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2D4BC371E64C26A003DEC8E /* CD_SearchHistoryItem.swift in Sources */,
+				E2D4BC3F1E64E9FF003DEC8E /* FlickrUtility.swift in Sources */,
 				E2DE98A21E645211008B4D78 /* InstagramService.swift in Sources */,
 				E2DE989E1E645005008B4D78 /* Service.swift in Sources */,
 				E2DE98931E6443FE008B4D78 /* SearchViewController.swift in Sources */,
@@ -275,10 +282,11 @@
 				E2DE98B01E649B60008B4D78 /* NSDate.swift in Sources */,
 				E2DE98A61E645422008B4D78 /* Loader.swift in Sources */,
 				E2D4BC391E64CCFC003DEC8E /* ServiceTracker.swift in Sources */,
-				E2DE98A81E645573008B4D78 /* PostUtility.swift in Sources */,
+				E2DE98A81E645573008B4D78 /* InstagramPhoto.swift in Sources */,
 				E2DE98981E644875008B4D78 /* SearchResultsViewController.swift in Sources */,
 				E2DE98AB1E6481E9008B4D78 /* SearchResultsCollectionViewCell.swift in Sources */,
 				E2DE98841E644049008B4D78 /* PhotoViewer.xcdatamodeld in Sources */,
+				E2D4BC411E64EB96003DEC8E /* Picture.swift in Sources */,
 				E2D4BC361E64C26A003DEC8E /* CD_SearchHistoryItem+CoreDataProperties.swift in Sources */,
 				E2DE989A1E644F20008B4D78 /* SessionManager.swift in Sources */,
 				E2DE987C1E644049008B4D78 /* AppDelegate.swift in Sources */,

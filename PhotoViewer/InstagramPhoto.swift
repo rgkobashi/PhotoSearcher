@@ -1,5 +1,5 @@
 //
-//  PostUtility.swift
+//  InstagramPhoto.swift
 //  PhotoViewer
 //
 //  Created by Rogelio Martinez Kobashi on 2/27/17.
@@ -8,35 +8,32 @@
 
 import Foundation
 
-class Post
+class InstagramPhoto
 {
     var videoViews: Int?
     var likesCount: Int!
     var caption: String!
     var date: Int!
     var ownerId: String!
-    var displaySrc: String!
     var height: Int!
     var width: Int!
     var code: String!
     var isVideo: Bool!
-    var thumbnailSrc: String!
     var id: String!
     var commentsCount: Int!
     var commentsDisabled: Bool?
-    var smallImageSrc: String!
+    var thumbnailUrl: String!
+    var originalUrl: String!
 }
 
-// TODO rename Post for InstagramPost
-
-class PostUtility
+class InstagramUtility
 {
-    class func parseInstagramResponse(response: AnyObject) -> (name: String, count: Int, topPosts: [Post], mostRecent: [Post])
+    class func parseResponse(response: AnyObject) -> (name: String, count: Int, top: [InstagramPhoto], mostRecent: [InstagramPhoto])
     {
         var resName = ""
         var resCount = 0
-        var resTopPosts = [Post]()
-        var resMostRecent = [Post]()
+        var resTop = [InstagramPhoto]()
+        var resMostRecent = [InstagramPhoto]()
         if let response = response as? [String : AnyObject]
         {
             if let tag = response["tag"] as? [String : AnyObject]
@@ -49,7 +46,7 @@ class PostUtility
                 {
                     if let nodes = topPosts["nodes"] as? [AnyObject]
                     {
-                        resTopPosts.appendContentsOf(parseNodesSection(nodes))
+                        resTop.appendContentsOf(parseNodesSection(nodes))
                     }
                 }
                 if let media = tag["media"] as? [String : AnyObject]
@@ -65,86 +62,82 @@ class PostUtility
                 }
             }
         }
-        return (resName, resCount, resTopPosts, resMostRecent)
+        return (resName, resCount, resTop, resMostRecent)
     }
     
-    private class func parseNodesSection(nodes: [AnyObject]) -> [Post]
+    private class func parseNodesSection(nodes: [AnyObject]) -> [InstagramPhoto]
     {
-        var posts = [Post]()
+        var instagramPhotos = [InstagramPhoto]()
         for node in nodes
         {
-            let post = Post()
+            let instagramPhoto = InstagramPhoto()
             if let videoViews = node["video_views"] as? Int
             {
-                post.videoViews = videoViews
+                instagramPhoto.videoViews = videoViews
             }
             if let likes = node["likes"] as? [String : AnyObject]
             {
                 if let count = likes["count"] as? Int
                 {
-                    post.likesCount = count
+                    instagramPhoto.likesCount = count
                 }
             }
             if let caption = node["caption"] as? String
             {
-                post.caption = caption
+                instagramPhoto.caption = caption
             }
             if let date = node["date"] as? Int
             {
-                post.date = date
+                instagramPhoto.date = date
             }
             if let owner = node["owner"] as? [String : AnyObject]
             {
                 if let id = owner["id"] as? String
                 {
-                    post.ownerId = id
+                    instagramPhoto.ownerId = id
                 }
             }
             if let displaySrc = node["display_src"] as? String
             {
-                post.displaySrc = displaySrc
-                post.smallImageSrc = createSmallImageSrc(displaySrc)
+                instagramPhoto.originalUrl = displaySrc
+                instagramPhoto.thumbnailUrl = createThumbnailUrl(displaySrc)
             }
             if let dimensions = node["dimensions"] as? [String : AnyObject]
             {
                 if let height = dimensions["height"] as? Int
                 {
-                    post.height = height
+                    instagramPhoto.height = height
                 }
                 if let width = dimensions["width"] as? Int
                 {
-                    post.width = width
+                    instagramPhoto.width = width
                 }
             }
             if let code = node["code"] as? String
             {
-                post.code = code
+                instagramPhoto.code = code
             }
             if let isVideo = node["is_video"] as? Bool
             {
-                post.isVideo = isVideo
-            }
-            if let thumbnailSrc = node["thumbnail_src"] as? String
-            {
-                post.thumbnailSrc = thumbnailSrc
+                instagramPhoto.isVideo = isVideo
             }
             if let id = node["id"] as? String
             {
-                post.id = id
+                instagramPhoto.id = id
             }
             if let comments = node["comments"] as? [String : AnyObject]
             {
                 if let count = comments["count"] as? Int
                 {
-                    post.commentsCount = count
+                    instagramPhoto.commentsCount = count
                 }
             }
-            posts.append(post)
+            instagramPhotos.append(instagramPhoto)
         }
-        return posts
+        return instagramPhotos
     }
     
-    private class func createSmallImageSrc(displaySrc: String) -> String
+    private class func createThumbnailUrl(displaySrc: String) -> String
     {
         var words = displaySrc.componentsSeparatedByString("/")
         words[4] = "s" + kSmallImageSize
