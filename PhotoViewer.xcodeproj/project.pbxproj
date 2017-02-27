@@ -17,7 +17,7 @@
 		E2DE989A1E644F20008B4D78 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98991E644F20008B4D78 /* SessionManager.swift */; };
 		E2DE989C1E644FB7008B4D78 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE989B1E644FB7008B4D78 /* Components.swift */; };
 		E2DE989E1E645005008B4D78 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE989D1E645005008B4D78 /* Service.swift */; };
-		E2DE98A21E645211008B4D78 /* InstagramService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98A11E645211008B4D78 /* InstagramService.swift */; };
+		E2DE98A21E645211008B4D78 /* InstagramTagService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98A11E645211008B4D78 /* InstagramTagService.swift */; };
 		E2DE98A41E64523F008B4D78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98A31E64523F008B4D78 /* Constants.swift */; };
 		E2DE98A61E645422008B4D78 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98A51E645422008B4D78 /* Loader.swift */; };
 /* End PBXBuildFile section */
@@ -35,7 +35,7 @@
 		E2DE98991E644F20008B4D78 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		E2DE989B1E644FB7008B4D78 /* Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		E2DE989D1E645005008B4D78 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		E2DE98A11E645211008B4D78 /* InstagramService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramService.swift; sourceTree = "<group>"; };
+		E2DE98A11E645211008B4D78 /* InstagramTagService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramTagService.swift; sourceTree = "<group>"; };
 		E2DE98A31E64523F008B4D78 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E2DE98A51E645422008B4D78 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,7 +113,7 @@
 			children = (
 				E2DE98991E644F20008B4D78 /* SessionManager.swift */,
 				E2DE989D1E645005008B4D78 /* Service.swift */,
-				E2DE98A11E645211008B4D78 /* InstagramService.swift */,
+				E2DE98A11E645211008B4D78 /* InstagramTagService.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -199,7 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2DE98A21E645211008B4D78 /* InstagramService.swift in Sources */,
+				E2DE98A21E645211008B4D78 /* InstagramTagService.swift in Sources */,
 				E2DE989E1E645005008B4D78 /* Service.swift in Sources */,
 				E2DE98931E6443FE008B4D78 /* SearchViewController.swift in Sources */,
 				E2DE989C1E644FB7008B4D78 /* Components.swift in Sources */,

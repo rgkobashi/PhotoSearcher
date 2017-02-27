@@ -1,5 +1,5 @@
 //
-//  InstagramService.swift
+//  InstagramTagService.swift
 //  PhotoViewer
 //
 //  Created by Rogelio Martinez Kobashi on 2/27/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class InstagramService: Service
+class InstagramTagService: Service
 {
     init(tag: String)
     {
@@ -16,6 +16,6 @@ class InstagramService: Service
         requestType = .GET
         contentType = .NONE
         acceptType = .JSON
-        requestURL = kURLInstagram + "/\(tag)/?__a=1"
+        requestURL = kURLInstagramTag + "/\(tag)/?__a=1"
     }
 }

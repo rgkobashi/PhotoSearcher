@@ -26,6 +26,7 @@ class SearchResultsViewController: UIViewController
         super.viewDidLoad()
         titleLabel.text = ""
         subtitleLabel.text = ""
+        callInstagramTagService()
     }
     
     @IBAction func buttonTapped(sender: UIButton)
@@ -33,6 +34,20 @@ class SearchResultsViewController: UIViewController
         if sender ==  backButton
         {
             navigationController?.popViewControllerAnimated(true)
+        }
+    }
+    
+    private func callInstagramTagService()
+    {
+        let service = InstagramTagService(tag: searchTerm)
+        Loader.show()
+        SessionManager.sharedInstance.start(service, suceedHandler: { (response) in
+            Loader.dismiss()
+            print("response = \(response)")
+        }) { (error) in
+            Loader.dismiss()
+            print("error = \(error)")
+            // TODO handler the errors
         }
     }
 }

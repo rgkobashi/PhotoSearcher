@@ -6,4 +6,4 @@
 //  Copyright © 2017 Rogelio Martinez Kobashi. All rights reserved.
 //
 
-let kURLInstagram = "https://www.instagram.com/explore/tags"
+let kURLInstagramTag = "https://www.instagram.com/explore/tags"
