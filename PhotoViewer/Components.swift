@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-typealias TMVoidCompletionHandler = () -> ()
-typealias TMSuceedCompletionHandler = (AnyObject?) -> ()
-typealias TMErrorCompletionHandler = (NSError) -> ()
+typealias VoidCompletionHandler = () -> ()
+typealias SuceedCompletionHandler = (AnyObject?) -> ()
+typealias ErrorCompletionHandler = (NSError) -> ()
 
 class Components
 {
-    class func downloadImageFrom(urlString: String, suceedHandler: TMSuceedCompletionHandler, failedHandler: TMErrorCompletionHandler)
+    class func downloadImageFrom(urlString: String, suceedHandler: SuceedCompletionHandler, failedHandler: ErrorCompletionHandler)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) { () -> Void in
             let url = NSURL(string: urlString)

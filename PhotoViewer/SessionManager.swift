@@ -39,7 +39,7 @@ class SessionManager
         createSession()
     }
     
-    func start(service: Service, suceedHandler: TMSuceedCompletionHandler, failedHandler: TMErrorCompletionHandler)
+    func start(service: Service, suceedHandler: SuceedCompletionHandler, failedHandler: ErrorCompletionHandler)
     {
         let request = createRequestForService(service)
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
