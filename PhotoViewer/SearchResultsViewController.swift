@@ -13,8 +13,11 @@ class SearchResultsViewController: UIViewController
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var searchTermLabel: UILabel!
     @IBOutlet weak var postsCountLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var searchTerm: String!
+    private var topPosts = [Post]()
+    private var mostRecent = [Post]()
     
     deinit
     {
@@ -26,6 +29,7 @@ class SearchResultsViewController: UIViewController
         super.viewDidLoad()
         searchTermLabel.text = ""
         postsCountLabel.text = ""
+        collectionView.dataSource = self
         callInstagramTagService()
     }
     
@@ -48,8 +52,11 @@ class SearchResultsViewController: UIViewController
                 let result = PostUtility.parseInstagramPostResponse(response)
                 self.searchTermLabel.text = "#\(result.name.lowercaseString)"
                 self.updatePostsCountLabel(result.count)
-                print("result.topPosts = \(result.topPosts)")
-                print("result.mostRecent = \(result.mostRecent)")
+                self.topPosts.removeAll()
+                self.topPosts.appendContentsOf(result.topPosts)
+                self.mostRecent.removeAll()
+                self.mostRecent.appendContentsOf(result.mostRecent)
+                self.collectionView.reloadData()
             }
         }) { (error) in
             Loader.dismiss()
@@ -86,5 +93,69 @@ class SearchResultsViewController: UIViewController
         
         boldAttributed.appendAttributedString(normalAttributed)
         postsCountLabel.attributedText = boldAttributed
+    }
+}
+
+extension SearchResultsViewController: UICollectionViewDataSource
+{
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
+    {
+        return 2
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        if section == 0
+        {
+            return topPosts.count
+        }
+        else
+        {
+            return mostRecent.count
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+    {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("searchResultCell", forIndexPath: indexPath) as! SearchResultsCollectionViewCell
+        
+        if indexPath.section == 0
+        {
+            Components.downloadImageFrom(topPosts[indexPath.row].smallImageSrc, suceedHandler: { (result) in
+                cell.imageView.image = result as? UIImage
+            }, failedHandler: { (error) in
+                print("error = \(error)")
+                // TODO handler error
+            })
+        }
+        else
+        {
+            Components.downloadImageFrom(mostRecent[indexPath.row].smallImageSrc, suceedHandler: { (result) in
+                cell.imageView.image = result as? UIImage
+            }, failedHandler: { (error) in
+                print("error = \(error)")
+                // TODO handler error
+            })
+        }
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
+    {
+        let collectionReusableView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "headerReusableView", forIndexPath: indexPath)
+        if collectionReusableView.subviews.count == 0
+        {
+            collectionReusableView.addSubview(UILabel(frame: CGRectMake(0, 0, collectionView.frame.size.width, 30)))
+        }
+        let label = collectionReusableView.subviews.first as! UILabel
+        if indexPath.section == 0
+        {
+            label.text = "Top posts"
+        }
+        else
+        {
+            label.text = "Most recent"
+        }
+        return collectionReusableView
     }
 }

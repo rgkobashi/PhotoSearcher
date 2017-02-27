@@ -127,16 +127,63 @@
                                     <constraint firstItem="KKd-0N-WcD" firstAttribute="leading" secondItem="iUk-GM-v7h" secondAttribute="leading" constant="8" id="zTR-od-P5H"/>
                                 </constraints>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eRb-jn-O4w">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gjU-lC-n8E">
+                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="searchResultCell" id="F2J-Sa-dkH" customClass="SearchResultsCollectionViewCell" customModule="PhotoViewer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="100" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tgP-7x-Mcw">
+                                                    <rect key="frame" x="10" y="10" width="80" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="ZtP-0P-6VX"/>
+                                                        <constraint firstAttribute="width" constant="80" id="soD-fi-x9z"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="tgP-7x-Mcw" firstAttribute="centerX" secondItem="F2J-Sa-dkH" secondAttribute="centerX" id="8QI-JQ-H4o"/>
+                                            <constraint firstItem="tgP-7x-Mcw" firstAttribute="centerY" secondItem="F2J-Sa-dkH" secondAttribute="centerY" id="DFA-3g-JIH"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="tgP-7x-Mcw" id="nDL-dC-Pvw"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="headerReusableView" id="fBl-3h-xTg">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </collectionReusableView>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="eRb-jn-O4w" firstAttribute="top" secondItem="iUk-GM-v7h" secondAttribute="bottom" id="7CS-cK-aze"/>
+                            <constraint firstItem="eRb-jn-O4w" firstAttribute="leading" secondItem="KcM-y9-KHD" secondAttribute="leading" id="HD4-Uq-pOL"/>
                             <constraint firstAttribute="trailing" secondItem="iUk-GM-v7h" secondAttribute="trailing" id="Tlu-q0-5cD"/>
                             <constraint firstItem="iUk-GM-v7h" firstAttribute="top" secondItem="8hL-vO-8sT" secondAttribute="bottom" id="bYU-aa-hu9"/>
+                            <constraint firstAttribute="trailing" secondItem="eRb-jn-O4w" secondAttribute="trailing" id="hfG-iU-jmq"/>
+                            <constraint firstItem="4E8-fY-W61" firstAttribute="top" secondItem="eRb-jn-O4w" secondAttribute="bottom" id="jZa-rk-BCb"/>
                             <constraint firstItem="iUk-GM-v7h" firstAttribute="leading" secondItem="KcM-y9-KHD" secondAttribute="leading" id="yD1-2l-xde"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="KKd-0N-WcD" id="erh-gQ-qLe"/>
+                        <outlet property="collectionView" destination="eRb-jn-O4w" id="mfq-Xf-OU2"/>
                         <outlet property="postsCountLabel" destination="0je-pN-GDM" id="hTo-p6-cZa"/>
                         <outlet property="searchTermLabel" destination="muV-aI-lhd" id="e3M-eL-fVa"/>
                     </connections>
