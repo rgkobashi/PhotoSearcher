@@ -11,6 +11,7 @@
 		E2D4BC361E64C26A003DEC8E /* CD_SearchHistoryItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC341E64C26A003DEC8E /* CD_SearchHistoryItem+CoreDataProperties.swift */; };
 		E2D4BC371E64C26A003DEC8E /* CD_SearchHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC351E64C26A003DEC8E /* CD_SearchHistoryItem.swift */; };
 		E2D4BC391E64CCFC003DEC8E /* ServiceTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC381E64CCFC003DEC8E /* ServiceTracker.swift */; };
+		E2D4BC3B1E64E6F4003DEC8E /* FlickrService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC3A1E64E6F4003DEC8E /* FlickrService.swift */; };
 		E2DE987C1E644049008B4D78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE987B1E644049008B4D78 /* AppDelegate.swift */; };
 		E2DE98841E644049008B4D78 /* PhotoViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98821E644049008B4D78 /* PhotoViewer.xcdatamodeld */; };
 		E2DE98861E644049008B4D78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2DE98851E644049008B4D78 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		E2D4BC341E64C26A003DEC8E /* CD_SearchHistoryItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CD_SearchHistoryItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E2D4BC351E64C26A003DEC8E /* CD_SearchHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CD_SearchHistoryItem.swift; sourceTree = "<group>"; };
 		E2D4BC381E64CCFC003DEC8E /* ServiceTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTracker.swift; sourceTree = "<group>"; };
+		E2D4BC3A1E64E6F4003DEC8E /* FlickrService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrService.swift; sourceTree = "<group>"; };
 		E2DE98781E644049008B4D78 /* PhotoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DE987B1E644049008B4D78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2DE98831E644049008B4D78 /* PhotoViewer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotoViewer.xcdatamodel; sourceTree = "<group>"; };
@@ -67,6 +69,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E2D4BC3C1E64E7E0003DEC8E /* Instagram */ = {
+			isa = PBXGroup;
+			children = (
+				E2DE98A11E645211008B4D78 /* InstagramService.swift */,
+			);
+			name = Instagram;
+			sourceTree = "<group>";
+		};
+		E2D4BC3D1E64E7E9003DEC8E /* Flickr */ = {
+			isa = PBXGroup;
+			children = (
+				E2D4BC3A1E64E6F4003DEC8E /* FlickrService.swift */,
+			);
+			name = Flickr;
+			sourceTree = "<group>";
+		};
 		E2DE986F1E644049008B4D78 = {
 			isa = PBXGroup;
 			children = (
@@ -137,7 +155,8 @@
 				E2DE98991E644F20008B4D78 /* SessionManager.swift */,
 				E2D4BC381E64CCFC003DEC8E /* ServiceTracker.swift */,
 				E2DE989D1E645005008B4D78 /* Service.swift */,
-				E2DE98A11E645211008B4D78 /* InstagramService.swift */,
+				E2D4BC3C1E64E7E0003DEC8E /* Instagram */,
+				E2D4BC3D1E64E7E9003DEC8E /* Flickr */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -263,6 +282,7 @@
 				E2D4BC361E64C26A003DEC8E /* CD_SearchHistoryItem+CoreDataProperties.swift in Sources */,
 				E2DE989A1E644F20008B4D78 /* SessionManager.swift in Sources */,
 				E2DE987C1E644049008B4D78 /* AppDelegate.swift in Sources */,
+				E2D4BC3B1E64E6F4003DEC8E /* FlickrService.swift in Sources */,
 				E2DE98A41E64523F008B4D78 /* Constants.swift in Sources */,
 				E2DE98AE1E6484F9008B4D78 /* PhotoViewController.swift in Sources */,
 			);
