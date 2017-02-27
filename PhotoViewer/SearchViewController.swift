@@ -8,28 +8,39 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
-
-    override func viewDidLoad() {
+class SearchViewController: UIViewController
+{
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        searchBar.delegate = self
+        tableView.delegate = self
+        tableView.tableFooterView = UIView(frame: CGRectZero)
     }
+}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+extension SearchViewController: UITableViewDelegate
+{
+    
+}
+
+extension SearchViewController: UISearchBarDelegate
+{
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar)
+    {
+        searchBar.showsCancelButton = true
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func searchBarTextDidEndEditing(searchBar: UISearchBar)
+    {
+        searchBar.showsCancelButton = false
     }
-    */
-
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar)
+    {
+        searchBar.endEditing(true)
+    }
 }
