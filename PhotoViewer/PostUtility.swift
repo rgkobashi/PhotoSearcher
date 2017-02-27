@@ -24,6 +24,7 @@ class Post
     var id: String!
     var commentsCount: Int!
     var commentsDisabled: Bool?
+    var smallImageSrc: String!
 }
 
 class PostUtility
@@ -101,6 +102,7 @@ class PostUtility
             if let displaySrc = node["display_src"] as? String
             {
                 post.displaySrc = displaySrc
+                post.smallImageSrc = createSmallImageSrc(displaySrc)
             }
             if let dimensions = node["dimensions"] as? [String : AnyObject]
             {
@@ -139,5 +141,12 @@ class PostUtility
             posts.append(post)
         }
         return posts
+    }
+    
+    private class func createSmallImageSrc(displaySrc: String) -> String
+    {
+        var words = displaySrc.componentsSeparatedByString("/")
+        words[4] = "s80x80"
+        return words.joinWithSeparator("/")
     }
 }
