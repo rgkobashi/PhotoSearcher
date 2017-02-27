@@ -15,7 +15,7 @@ class SearchResultsViewController: UIViewController
     @IBOutlet weak var postsCountLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var searchTerm: String!
+    var stringSearchTerm: String!
     private var topPosts = [Post]()
     private var mostRecent = [Post]()
     
@@ -44,7 +44,7 @@ class SearchResultsViewController: UIViewController
     
     private func callInstagramTagService()
     {
-        let service = InstagramSearchPostService(tag: searchTerm)
+        let service = InstagramSearchPostService(tag: stringSearchTerm)
         Loader.show()
         SessionManager.sharedInstance.start(service, suceedHandler: { [unowned self] (response) in
             Loader.dismiss()
