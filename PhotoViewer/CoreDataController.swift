@@ -25,7 +25,6 @@ class CoreDataController
         } catch {
             let fetchError = error as NSError
             print("error = \(fetchError)")
-            // TODO handler error
         }
         return nil
     }
@@ -41,7 +40,6 @@ class CoreDataController
         } catch {
             let saveError = error as NSError
             print("error = \(saveError)")
-            // TODO handler error
         }
         return searchHistoryItem
     }
@@ -54,7 +52,6 @@ class CoreDataController
         } catch {
             let saveError = error as NSError
             print("error = \(saveError)")
-            // TODO handler error
         }
     }
 }
