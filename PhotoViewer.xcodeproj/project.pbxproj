@@ -10,6 +10,7 @@
 		E2D4BC311E649DB2003DEC8E /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC301E649DB2003DEC8E /* CoreDataController.swift */; };
 		E2D4BC361E64C26A003DEC8E /* CD_SearchHistoryItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC341E64C26A003DEC8E /* CD_SearchHistoryItem+CoreDataProperties.swift */; };
 		E2D4BC371E64C26A003DEC8E /* CD_SearchHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC351E64C26A003DEC8E /* CD_SearchHistoryItem.swift */; };
+		E2D4BC391E64CCFC003DEC8E /* ServiceTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC381E64CCFC003DEC8E /* ServiceTracker.swift */; };
 		E2DE987C1E644049008B4D78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE987B1E644049008B4D78 /* AppDelegate.swift */; };
 		E2DE98841E644049008B4D78 /* PhotoViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98821E644049008B4D78 /* PhotoViewer.xcdatamodeld */; };
 		E2DE98861E644049008B4D78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2DE98851E644049008B4D78 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		E2D4BC301E649DB2003DEC8E /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		E2D4BC341E64C26A003DEC8E /* CD_SearchHistoryItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CD_SearchHistoryItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E2D4BC351E64C26A003DEC8E /* CD_SearchHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CD_SearchHistoryItem.swift; sourceTree = "<group>"; };
+		E2D4BC381E64CCFC003DEC8E /* ServiceTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceTracker.swift; sourceTree = "<group>"; };
 		E2DE98781E644049008B4D78 /* PhotoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DE987B1E644049008B4D78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2DE98831E644049008B4D78 /* PhotoViewer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotoViewer.xcdatamodel; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				E2DE98991E644F20008B4D78 /* SessionManager.swift */,
+				E2D4BC381E64CCFC003DEC8E /* ServiceTracker.swift */,
 				E2DE989D1E645005008B4D78 /* Service.swift */,
 				E2DE98A11E645211008B4D78 /* InstagramSearchPostService.swift */,
 			);
@@ -252,6 +255,7 @@
 				E2D4BC311E649DB2003DEC8E /* CoreDataController.swift in Sources */,
 				E2DE98B01E649B60008B4D78 /* NSDate.swift in Sources */,
 				E2DE98A61E645422008B4D78 /* Loader.swift in Sources */,
+				E2D4BC391E64CCFC003DEC8E /* ServiceTracker.swift in Sources */,
 				E2DE98A81E645573008B4D78 /* PostUtility.swift in Sources */,
 				E2DE98981E644875008B4D78 /* SearchResultsViewController.swift in Sources */,
 				E2DE98AB1E6481E9008B4D78 /* SearchResultsCollectionViewCell.swift in Sources */,
@@ -367,6 +371,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PhotoViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kobashidevs.PhotoViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -378,6 +383,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PhotoViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D PROD";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kobashidevs.PhotoViewer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
