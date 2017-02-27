@@ -111,6 +111,7 @@ class PhotoViewController: UIViewController
             hidden = false
             UIView.animateWithDuration(0.3, animations: { [unowned self] in
                 self.closeButton.alpha = 1
+                self.shareButton.alpha = 1
                 self.wrapperView.alpha = 1
             })
         }
@@ -119,6 +120,7 @@ class PhotoViewController: UIViewController
             hidden = true
             UIView.animateWithDuration(0.3, animations: { [unowned self] in
                 self.closeButton.alpha = 0
+                self.shareButton.alpha = 0
                 self.wrapperView.alpha = 0
             })
         }
