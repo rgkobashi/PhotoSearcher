@@ -15,6 +15,7 @@ class PhotoViewController: UIViewController
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var swipeGestureRecognizer: UISwipeGestureRecognizer!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     @IBOutlet weak var wrapperView: UIView!
     @IBOutlet weak var likesLabel: UILabel!
@@ -50,9 +51,11 @@ class PhotoViewController: UIViewController
         commentsLabel.text = "\(post.commentsCount) comments"
         
         Components.downloadImageFrom(post.displaySrc, suceedHandler: { [unowned self] (result) in
+            self.activityIndicatorView.stopAnimating()
             self.image = result as? UIImage
             self.updateScrollView()
         }, failedHandler: { (error) in
+            self.activityIndicatorView.stopAnimating()
             print("error = \(error)")
             // TODO handler error
         })

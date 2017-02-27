@@ -301,12 +301,21 @@
                                     <constraint firstAttribute="trailing" secondItem="GLq-c3-qkl" secondAttribute="trailing" constant="8" id="pMa-uW-bsB"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="WfB-nT-VEN">
+                                <rect key="frame" x="282" y="281" width="37" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="5Sw-m2-Uwi"/>
+                                    <constraint firstAttribute="width" constant="37" id="MUw-UD-3WM"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="WfB-nT-VEN" firstAttribute="centerY" secondItem="A4q-bp-WGf" secondAttribute="centerY" id="0rp-ee-4bI"/>
                             <constraint firstItem="7qE-A3-tlo" firstAttribute="leading" secondItem="A4q-bp-WGf" secondAttribute="leading" id="3lZ-bk-vpT"/>
                             <constraint firstItem="nms-uF-JHL" firstAttribute="leading" secondItem="A4q-bp-WGf" secondAttribute="leading" id="AZR-RV-ar3"/>
+                            <constraint firstItem="WfB-nT-VEN" firstAttribute="centerX" secondItem="A4q-bp-WGf" secondAttribute="centerX" id="BBZ-xW-tyk"/>
                             <constraint firstItem="Nx3-J6-HuV" firstAttribute="top" secondItem="A4q-bp-WGf" secondAttribute="top" id="BmJ-bg-0DG"/>
                             <constraint firstItem="dod-z4-iv1" firstAttribute="top" secondItem="yN7-un-QvE" secondAttribute="bottom" id="Fir-jI-0dQ"/>
                             <constraint firstItem="yN7-un-QvE" firstAttribute="leading" secondItem="A4q-bp-WGf" secondAttribute="leading" id="Mvc-am-uOk"/>
@@ -319,6 +328,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="WfB-nT-VEN" id="Z2a-x7-7H5"/>
                         <outlet property="camptionTextView" destination="rS4-Wr-oQf" id="jmd-lo-2pz"/>
                         <outlet property="closeButton" destination="Nx3-J6-HuV" id="9ky-SE-uuT"/>
                         <outlet property="commentsLabel" destination="f9u-Q1-hnO" id="hMR-Zt-uht"/>
