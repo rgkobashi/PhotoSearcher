@@ -16,6 +16,11 @@ class SearchResultsViewController: UIViewController
     
     var searchTerm: String!
     
+    deinit
+    {
+        print("deinit SearchResultsViewController")
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
