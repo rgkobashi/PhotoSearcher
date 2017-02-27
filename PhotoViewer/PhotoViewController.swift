@@ -10,8 +10,8 @@ import UIKit
 
 class PhotoViewController: UIViewController
 {
-    // TODO add share button
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var swipeGestureRecognizer: UISwipeGestureRecognizer!
@@ -25,6 +25,7 @@ class PhotoViewController: UIViewController
     var post: Post!
     
     private var hidden = false
+    private var image: UIImage?
     
     //TODO swipe change to the next image
     
@@ -49,7 +50,8 @@ class PhotoViewController: UIViewController
         commentsLabel.text = "\(post.commentsCount) comments"
         
         Components.downloadImageFrom(post.displaySrc, suceedHandler: { [unowned self] (result) in
-            self.addImageToScrollView(result as! UIImage)
+            self.image = result as? UIImage
+            self.updateScrollView()
         }, failedHandler: { (error) in
             print("error = \(error)")
             // TODO handler error
@@ -74,6 +76,8 @@ class PhotoViewController: UIViewController
         switch object {
         case closeButton:
             close()
+        case shareButton:
+            share()
         case swipeGestureRecognizer:
             close()
         case tapGestureRecognizer:
@@ -86,6 +90,15 @@ class PhotoViewController: UIViewController
     private func close()
     {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    private func share()
+    {
+        if let image = image
+        {
+            let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+            presentViewController(activityViewController, animated: true, completion: nil)
+        }
     }
     
     private func hideShowElements()
@@ -108,7 +121,7 @@ class PhotoViewController: UIViewController
         }
     }
     
-    private func addImageToScrollView(image: UIImage)
+    private func updateScrollView()
     {
         let imageView = UIImageView(frame: CGRectMake(0, 0, view.frame.size.width, view.frame.size.height))
         imageView.clipsToBounds = true

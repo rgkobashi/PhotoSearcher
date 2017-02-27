@@ -214,6 +214,17 @@
                                     <outletCollection property="gestureRecognizers" destination="JzD-Sp-L9d" appends="YES" id="glD-cN-35O"/>
                                 </connections>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nms-uF-JHL">
+                                <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="6ee-Ki-TDW"/>
+                                    <constraint firstAttribute="width" constant="36" id="8im-yU-iZp"/>
+                                </constraints>
+                                <state key="normal" image="Share"/>
+                                <connections>
+                                    <action selector="actions:" destination="USb-Hz-zFZ" eventType="touchUpInside" id="bed-fB-aB0"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nx3-J6-HuV">
                                 <rect key="frame" x="564" y="0.0" width="36" height="36"/>
                                 <constraints>
@@ -285,10 +296,12 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="7qE-A3-tlo" firstAttribute="leading" secondItem="A4q-bp-WGf" secondAttribute="leading" id="3lZ-bk-vpT"/>
+                            <constraint firstItem="nms-uF-JHL" firstAttribute="leading" secondItem="A4q-bp-WGf" secondAttribute="leading" id="AZR-RV-ar3"/>
                             <constraint firstItem="Nx3-J6-HuV" firstAttribute="top" secondItem="A4q-bp-WGf" secondAttribute="top" id="BmJ-bg-0DG"/>
                             <constraint firstItem="dod-z4-iv1" firstAttribute="top" secondItem="yN7-un-QvE" secondAttribute="bottom" id="Fir-jI-0dQ"/>
                             <constraint firstItem="yN7-un-QvE" firstAttribute="leading" secondItem="A4q-bp-WGf" secondAttribute="leading" id="Mvc-am-uOk"/>
                             <constraint firstItem="yN7-un-QvE" firstAttribute="top" secondItem="A4q-bp-WGf" secondAttribute="top" id="PXo-je-fKM"/>
+                            <constraint firstItem="nms-uF-JHL" firstAttribute="top" secondItem="A4q-bp-WGf" secondAttribute="top" id="amB-dP-Rt3"/>
                             <constraint firstAttribute="trailing" secondItem="Nx3-J6-HuV" secondAttribute="trailing" id="oPc-2W-d4K"/>
                             <constraint firstAttribute="trailing" secondItem="7qE-A3-tlo" secondAttribute="trailing" id="qOG-cn-5Xk"/>
                             <constraint firstItem="dod-z4-iv1" firstAttribute="top" secondItem="7qE-A3-tlo" secondAttribute="bottom" id="zke-6x-1oy"/>
@@ -302,6 +315,7 @@
                         <outlet property="dateLabel" destination="GLq-c3-qkl" id="7jb-i7-wrd"/>
                         <outlet property="likesLabel" destination="cGj-nz-CLj" id="1h8-xh-4rL"/>
                         <outlet property="scrollView" destination="yN7-un-QvE" id="2PJ-8K-Zfz"/>
+                        <outlet property="shareButton" destination="nms-uF-JHL" id="hNu-oN-bsA"/>
                         <outlet property="swipeGestureRecognizer" destination="nR9-eK-JOa" id="oTt-x0-P9m"/>
                         <outlet property="tapGestureRecognizer" destination="JzD-Sp-L9d" id="Mce-UP-1sN"/>
                         <outlet property="wrapperView" destination="7qE-A3-tlo" id="khg-3T-eFI"/>
@@ -344,5 +358,6 @@
     <resources>
         <image name="ArrowBack" width="24" height="24"/>
         <image name="Close" width="24" height="24"/>
+        <image name="Share" width="24" height="24"/>
     </resources>
 </document>
