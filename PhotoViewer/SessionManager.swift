@@ -80,7 +80,7 @@ class SessionManager
                                         {
                                             if let error = responseBody["error"]
                                             {
-                                                let error = NSError(domain: SessionManager.errorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: error])
+                                                let error = NSError(domain: kErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: error])
                                                 failedHandler(error)
                                             }
                                             else
@@ -96,7 +96,7 @@ class SessionManager
                                     }
                                     else
                                     {
-                                        let error = NSError(domain: SessionManager.errorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey:  "Invalid content type"])
+                                        let error = NSError(domain: kErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey:  "Invalid content type"])
                                         failedHandler(error)
                                     }
                                 }
@@ -116,13 +116,13 @@ class SessionManager
                                     }
                                     else
                                     {
-                                        let error = NSError(domain: SessionManager.errorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid content type"])
+                                        let error = NSError(domain: kErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid content type"])
                                         failedHandler(error)
                                     }
                                 }
                                 else
                                 {
-                                    let error = NSError(domain: SessionManager.errorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "Could not parse response"])
+                                    let error = NSError(domain: kErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "Could not parse response"])
                                     failedHandler(error)
                                 }
                             }
@@ -135,7 +135,7 @@ class SessionManager
                     }
                     else
                     {
-                        let error = NSError(domain: SessionManager.errorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "No data returned from the server"])
+                        let error = NSError(domain: kErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "No data returned from the server"])
                         failedHandler(error)
                     }
                 }
@@ -185,12 +185,12 @@ class SessionManager
         {
             if let error = response["error"] as? String, let description = response["error_description"] as? String
             {
-                err = NSError(domain: SessionManager.errorDomain, code: errorCode, userInfo: ["error": error, NSLocalizedDescriptionKey: description])
+                err = NSError(domain: kErrorDomain, code: errorCode, userInfo: ["error": error, NSLocalizedDescriptionKey: description])
                 return err
             }
         }
         
-        err = NSError(domain: SessionManager.errorDomain, code: errorCode, userInfo: [NSLocalizedDescriptionKey: "Could not parse error response"])
+        err = NSError(domain: kErrorDomain, code: errorCode, userInfo: [NSLocalizedDescriptionKey: "Could not parse error response"])
         
         return err
     }
