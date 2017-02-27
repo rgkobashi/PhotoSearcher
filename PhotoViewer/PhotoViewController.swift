@@ -10,6 +10,7 @@ import UIKit
 
 class PhotoViewController: UIViewController
 {
+    // TODO add share button
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
