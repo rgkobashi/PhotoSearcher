@@ -110,8 +110,8 @@ class SearchResultsViewController: UIViewController
             cell?.imageView.image = result as? UIImage
         }, failedHandler: { (error) in
             cell?.activityIndicatorView.stopAnimating()
+            cell?.imageView.image = UIImage(named: "BrokenImage")
             print("error = \(error)")
-            // TODO handler error
         })
     }
     

@@ -53,11 +53,12 @@ class PhotoViewController: UIViewController
         Components.downloadImageFrom(post.displaySrc, suceedHandler: { [weak self] (result) in
             self?.activityIndicatorView.stopAnimating()
             self?.image = result as? UIImage
-            self?.updateScrollView()
+            self?.successImageDownload()
         }, failedHandler: { [weak self] (error) in
             self?.activityIndicatorView.stopAnimating()
             print("error = \(error)")
-            // TODO handler error
+            self?.image = UIImage(named: "BrokenImage")
+            self?.failedImageDownload()
         })
     }
     
@@ -126,7 +127,7 @@ class PhotoViewController: UIViewController
         }
     }
     
-    private func updateScrollView()
+    private func successImageDownload()
     {
         let imageView = UIImageView(frame: CGRectMake(0, 0, view.frame.size.width, view.frame.size.height))
         imageView.clipsToBounds = true
@@ -135,6 +136,16 @@ class PhotoViewController: UIViewController
         imageView.tag = 1
         scrollView.contentSize = imageView.bounds.size
         scrollView.addSubview(imageView)
+    }
+    
+    private func failedImageDownload()
+    {
+        let imageView = UIImageView(frame: CGRectMake(0, 0, 30, 30))
+        imageView.image = image
+        imageView.center = scrollView.center
+        scrollView.addSubview(imageView)
+        scrollView.userInteractionEnabled = false
+        shareButton.userInteractionEnabled = false
     }
 }
 
