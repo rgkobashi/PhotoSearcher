@@ -96,6 +96,8 @@ class SearchResultsViewController: UIViewController
         postsCountLabel.attributedText = boldAttributed
     }
     
+    // MARK: - Navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if segue.identifier == "showPhoto"
@@ -108,6 +110,8 @@ class SearchResultsViewController: UIViewController
 
 extension SearchResultsViewController: UICollectionViewDataSource, UICollectionViewDelegate
 {
+    // MARK: - UICollectionViewDataSource
+    
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
     {
         return 2
@@ -168,6 +172,8 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
         }
         return collectionReusableView
     }
+    
+    // MARK: - UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {

@@ -27,15 +27,6 @@ class SearchViewController: UIViewController
         tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-    {
-        if segue.identifier == "showSearchResults"
-        {
-            let searchResultsVC = segue.destinationViewController as! SearchResultsViewController
-            searchResultsVC.searchTerm = sender as! String
-        }
-    }
-    
     private func formatSearchTerm(searchTerm: String) -> String
     {
         let words = searchTerm.componentsSeparatedByString(" ")
@@ -46,6 +37,17 @@ class SearchViewController: UIViewController
         else
         {
             return words.first!
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "showSearchResults"
+        {
+            let searchResultsVC = segue.destinationViewController as! SearchResultsViewController
+            searchResultsVC.searchTerm = sender as! String
         }
     }
 }
