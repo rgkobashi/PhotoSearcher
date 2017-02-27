@@ -95,16 +95,16 @@
                                             <action selector="buttonTapped:" destination="NQX-HI-Pl3" eventType="touchUpInside" id="AU9-9d-hGP"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titleLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muV-aI-lhd">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="searchTermLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muV-aI-lhd">
                                         <rect key="frame" x="56" y="1" width="488" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="fxh-iw-aT3"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="subtitleLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0je-pN-GDM">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="postsCountLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0je-pN-GDM">
                                         <rect key="frame" x="56" y="22" width="488" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="RWc-yI-nll"/>
@@ -137,8 +137,8 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="KKd-0N-WcD" id="erh-gQ-qLe"/>
-                        <outlet property="subtitleLabel" destination="0je-pN-GDM" id="ygb-oI-1Kd"/>
-                        <outlet property="titleLabel" destination="muV-aI-lhd" id="YVK-LK-UvZ"/>
+                        <outlet property="postsCountLabel" destination="0je-pN-GDM" id="hTo-p6-cZa"/>
+                        <outlet property="searchTermLabel" destination="muV-aI-lhd" id="e3M-eL-fVa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YP6-3N-29l" userLabel="First Responder" sceneMemberID="firstResponder"/>
