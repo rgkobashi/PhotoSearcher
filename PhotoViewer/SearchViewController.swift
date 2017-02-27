@@ -16,7 +16,7 @@ class SearchViewController: UIViewController
     
     private var keyboardHeight:CGFloat = 0.0
     
-    private var history = [CD_SearchTerm]()
+    private var searchHistory = [CD_SearchHistoryItem]()
     
     deinit
     {
@@ -36,9 +36,9 @@ class SearchViewController: UIViewController
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchViewController.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchViewController.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
         
-        if let fetchedHistory = CoreDataController.sharedInstance.fetchSearchHistory()
+        if let history = CoreDataController.sharedInstance.fetchSearchHistory()
         {
-            history.appendContentsOf(fetchedHistory)
+            searchHistory.appendContentsOf(history)
             tableView.reloadData()
         }
     }
@@ -76,22 +76,26 @@ class SearchViewController: UIViewController
         let words = searchTerm.componentsSeparatedByString(" ")
         if let encoded = words.first!.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
         {
-            return encoded
+            return encoded.lowercaseString
         }
         else
         {
-            return words.first!
+            return words.first!.lowercaseString
         }
     }
     
     // MARK: - Navigation
     
-    private func showSearchResults(searchTerm: CD_SearchTerm)
+    private func showSearchResultsForSearchTerm(searchTerm: String)
     {
-        searchBar.text = ""
-        searchBar.endEditing(true)
-        history.insert(searchTerm, atIndex: 0)
-        performSegueWithIdentifier("showSearchResults", sender: searchTerm)
+        if let searchHistoryItem = CoreDataController.sharedInstance.saveSearchHistoryItem(searchTerm, timeStamp: NSDate().timeIntervalSince1970)
+        {
+            searchBar.text = ""
+            searchBar.endEditing(true)
+            searchHistory.insert(searchHistoryItem, atIndex: 0)
+            performSegueWithIdentifier("showSearchResults", sender: searchHistoryItem.searchTerm)
+        }
+        // TODO do something for el else
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
@@ -99,7 +103,7 @@ class SearchViewController: UIViewController
         if segue.identifier == "showSearchResults"
         {
             let searchResultsVC = segue.destinationViewController as! SearchResultsViewController
-            searchResultsVC.stringSearchTerm = (sender as! CD_SearchTerm).term // TODO rename searchName on SearchResultsViewController
+            searchResultsVC.searchTerm = sender as! String
         }
     }
 }
@@ -110,13 +114,13 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return history.count
+        return searchHistory.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("historyCell", forIndexPath: indexPath)
-        cell.textLabel?.text = history[indexPath.row].term
+        cell.textLabel?.text = searchHistory[indexPath.row].searchTerm
         return cell
     }
     
@@ -124,16 +128,13 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        let searchTerm = history[indexPath.row]
-        let stringSearchTerm = searchTerm.term!
+        let searchHistoryItem = searchHistory[indexPath.row]
+        let searchTerm = searchHistoryItem.searchTerm!
         
-        CoreDataController.sharedInstance.deleteSearchTerm(searchTerm)
-        history.removeAtIndex(indexPath.row)
+        CoreDataController.sharedInstance.deleteSearchHistoryItem(searchHistoryItem)
+        searchHistory.removeAtIndex(indexPath.row)
         
-        if let newSearchTerm = CoreDataController.sharedInstance.saveSearchTerm(formatSearchTerm(stringSearchTerm), timeStamp: NSDate().timeIntervalSince1970) // TODO move here el termino en minusculas
-        {
-            showSearchResults(newSearchTerm)
-        }
+        showSearchResultsForSearchTerm(searchTerm)
     }
 }
 
@@ -158,11 +159,7 @@ extension SearchViewController: UISearchBarDelegate
     {
         if let text = searchBar.text where text != ""
         {
-            if let searchTerm = CoreDataController.sharedInstance.saveSearchTerm(formatSearchTerm(text), timeStamp: NSDate().timeIntervalSince1970) // TODO move here el termino en minusculas
-            {
-                showSearchResults(searchTerm)
-            }
-            // TODO do something for el else
+            showSearchResultsForSearchTerm(formatSearchTerm(text))
         }
     }
 }

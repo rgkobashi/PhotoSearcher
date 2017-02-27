@@ -10,20 +10,18 @@ import Foundation
 import CoreData
 
 class CoreDataController
-{
-    // TODO consider rename SearchTerm and CD_SearchTerm and its properties
-    
+{   
     static var sharedInstance = CoreDataController()
     
-    func fetchSearchHistory() -> [CD_SearchTerm]?
+    func fetchSearchHistory() -> [CD_SearchHistoryItem]?
     {
         let fetchRequest = NSFetchRequest()
-        let entity = NSEntityDescription.entityForName("CD_SearchTerm", inManagedObjectContext: appDelegate.managedObjectContext)
+        let entity = NSEntityDescription.entityForName("CD_SearchHistoryItem", inManagedObjectContext: appDelegate.managedObjectContext)
         fetchRequest.entity = entity
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timeStamp", ascending: false)]
         do {
             let results = try appDelegate.managedObjectContext.executeFetchRequest(fetchRequest)
-            return results as? [CD_SearchTerm]
+            return results as? [CD_SearchHistoryItem]
         } catch {
             let fetchError = error as NSError
             print("error = \(fetchError)")
@@ -32,16 +30,16 @@ class CoreDataController
         return nil
     }
     
-    func saveSearchTerm(term: String, timeStamp: NSTimeInterval) -> CD_SearchTerm?
+    func saveSearchHistoryItem(searchTerm: String, timeStamp: NSTimeInterval) -> CD_SearchHistoryItem?
     {
-        if let entity = NSEntityDescription.entityForName("CD_SearchTerm", inManagedObjectContext: appDelegate.managedObjectContext)
+        if let entity = NSEntityDescription.entityForName("CD_SearchHistoryItem", inManagedObjectContext: appDelegate.managedObjectContext)
         {
-            let searchTerm = CD_SearchTerm(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
-            searchTerm.term = term
-            searchTerm.timeStamp = timeStamp
+            let searchHistoryItem = CD_SearchHistoryItem(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
+            searchHistoryItem.searchTerm = searchTerm
+            searchHistoryItem.timeStamp = timeStamp
             do {
-                try searchTerm.managedObjectContext?.save()
-                return searchTerm
+                try searchHistoryItem.managedObjectContext?.save()
+                return searchHistoryItem
             } catch {
                 let saveError = error as NSError
                 print("error = \(saveError)")
@@ -51,9 +49,9 @@ class CoreDataController
         return nil
     }
     
-    func deleteSearchTerm(searchTerm: CD_SearchTerm)
+    func deleteSearchHistoryItem(searchHistoryItem: CD_SearchHistoryItem)
     {
-        appDelegate.managedObjectContext.deleteObject(searchTerm)
+        appDelegate.managedObjectContext.deleteObject(searchHistoryItem)
         do {
             try appDelegate.managedObjectContext.save()
         } catch {

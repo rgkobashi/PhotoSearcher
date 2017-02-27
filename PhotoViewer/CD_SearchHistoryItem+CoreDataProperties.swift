@@ -1,5 +1,5 @@
 //
-//  CD_SearchTerm+CoreDataProperties.swift
+//  CD_SearchHistoryItem+CoreDataProperties.swift
 //  PhotoViewer
 //
 //  Created by Rogelio Martinez Kobashi on 2/28/17.
@@ -12,9 +12,9 @@
 import Foundation
 import CoreData
 
-extension CD_SearchTerm {
+extension CD_SearchHistoryItem {
 
+    @NSManaged var searchTerm: String?
     @NSManaged var timeStamp: NSTimeInterval
-    @NSManaged var term: String?
 
 }

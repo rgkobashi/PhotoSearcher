@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G1004" minimumToolsVersion="Automatic">
-    <entity name="CD_SearchTerm" representedClassName=".CD_SearchTerm" syncable="YES">
-        <attribute name="term" attributeType="String" syncable="YES"/>
+    <entity name="CD_SearchHistoryItem" representedClassName=".CD_SearchHistoryItem" syncable="YES">
+        <attribute name="searchTerm" attributeType="String" syncable="YES"/>
         <attribute name="timeStamp" attributeType="Date" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CD_SearchTerm" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="CD_SearchHistoryItem" positionX="-54" positionY="9" width="128" height="75"/>
     </elements>
 </model>

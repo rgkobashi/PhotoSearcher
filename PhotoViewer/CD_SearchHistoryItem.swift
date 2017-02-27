@@ -1,5 +1,5 @@
 //
-//  CD_SearchTerm.swift
+//  CD_SearchHistoryItem.swift
 //  PhotoViewer
 //
 //  Created by Rogelio Martinez Kobashi on 2/28/17.
@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-class CD_SearchTerm: NSManagedObject {
+class CD_SearchHistoryItem: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 
