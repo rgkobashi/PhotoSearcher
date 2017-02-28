@@ -11,6 +11,9 @@ import UIKit
 
 class FlickrPhoto: Photo
 {
+    var text = ""
+    var thumbnailUrl = ""
+    var originalUrl = ""
     var secret = ""
     var id = ""
     var server = ""

@@ -11,6 +11,9 @@ import UIKit
 
 class InstagramPhoto: Photo
 {
+    var text = ""
+    var thumbnailUrl = ""
+    var originalUrl = ""
     var likesCount = 0
     var date = 0
     var commentsCount = 0
