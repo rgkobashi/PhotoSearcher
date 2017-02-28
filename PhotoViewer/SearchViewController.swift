@@ -121,6 +121,22 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate
         return cell
     }
     
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        if (editingStyle == UITableViewCellEditingStyle.Delete)
+        {
+            let searchHistoryItem = searchHistory[indexPath.row]
+            CoreDataController.sharedInstance.deleteSearchHistoryItem(searchHistoryItem)
+            searchHistory.removeAtIndex(indexPath.row)
+            tableView.reloadData()
+        }
+    }
+    
     // MARK: - UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
