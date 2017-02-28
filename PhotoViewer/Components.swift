@@ -66,4 +66,12 @@ class Components
         alert.addAction(action)
         UIApplication.sharedApplication().windows.first?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    class func openURLWithString(string: String)
+    {
+        if let url = NSURL(string: string)
+        {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
 }
