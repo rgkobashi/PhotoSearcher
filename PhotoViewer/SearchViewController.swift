@@ -10,6 +10,7 @@ import UIKit
 
 class SearchViewController: UIViewController
 {
+    @IBOutlet weak var welcomeView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -27,6 +28,18 @@ class SearchViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        if !Settings.hasShownWelcome
+        {
+            view.bringSubviewToFront(welcomeView)
+            welcomeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SearchViewController.hideWelcome)))
+        }
+        else
+        {
+            view.sendSubviewToBack(welcomeView)
+            welcomeView.hidden = true
+        }
+        
         navigationController?.navigationBarHidden = true
         automaticallyAdjustsScrollViewInsets = false
         (searchBar.valueForKey("searchField") as? UITextField)?.textColor = UIColor.whiteColor()
@@ -70,6 +83,17 @@ class SearchViewController: UIViewController
         {
             tableViewBottomConstraint.constant -= keyboardHeight
             keyboardHeight = 0.0
+        }
+    }
+    
+    @objc private func hideWelcome()
+    {
+        Settings.hasShownWelcome = true
+        UIView.animateWithDuration(0.3, animations: { [unowned self] in
+            self.welcomeView.alpha = 0
+        }) { [unowned self] (finished) in
+            self.view.sendSubviewToBack(self.welcomeView)
+            self.welcomeView.hidden = true
         }
     }
     
