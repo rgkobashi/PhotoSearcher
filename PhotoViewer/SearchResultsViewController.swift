@@ -144,18 +144,6 @@ class SearchResultsViewController: UIViewController
         photosCountLabel.attributedText = boldAttributed
     }
     
-    private func downloadImageURL(imageURL: String, forCell cell: SearchResultsCollectionViewCell?)
-    {
-        Components.downloadImageFrom(imageURL, suceedHandler: { (result) in
-            cell?.activityIndicatorView.stopAnimating()
-            cell?.imageView.image = result as? UIImage
-        }, failedHandler: { (error) in
-            cell?.activityIndicatorView.stopAnimating()
-            cell?.imageView.image = UIImage(named: "BrokenImage")
-            print("error = \(error)")
-        })
-    }
-    
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
@@ -209,14 +197,30 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("searchResultCell", forIndexPath: indexPath) as! SearchResultsCollectionViewCell
-        weak var weakCell = cell
+        var photo: Photo!
         if indexPath.section == 0
         {
-            downloadImageURL(top[indexPath.row].thumbnailUrl, forCell: weakCell)
+            photo = top[indexPath.row]
         }
         else
         {
-            downloadImageURL(mostRecent[indexPath.row].thumbnailUrl, forCell: weakCell)
+            photo = mostRecent[indexPath.row]
+        }
+        
+        if let image = photo.thumbnailImage
+        {
+            cell.activityIndicatorView.stopAnimating()
+            cell.imageView.image = image
+        }
+        else
+        {
+            photo.downloadThumbnailImage({ [weak cell] in
+                cell?.activityIndicatorView.stopAnimating()
+                cell?.imageView.image = photo.thumbnailImage
+            }, failedHandler: { [weak cell] (error) in
+                cell?.activityIndicatorView.stopAnimating()
+                cell?.imageView.image = UIImage(named: "BrokenImage")
+            })
         }
         return cell
     }
