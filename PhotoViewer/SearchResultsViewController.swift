@@ -65,7 +65,7 @@ class SearchResultsViewController: UIViewController
     
     fileprivate func back()
     {
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     fileprivate func updatePhotosCountLabel(_ count: Int)

@@ -17,7 +17,7 @@ class Utilities
 {
     class func downloadImageFrom(_ urlString: String, suceedHandler: @escaping SuceedCompletionHandler, failedHandler: @escaping ErrorCompletionHandler)
     {
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async { () -> Void in
+        DispatchQueue.global(qos: DispatchQoS.background.qosClass).async {
             let url = URL(string: urlString)
             if let url = url
             {
