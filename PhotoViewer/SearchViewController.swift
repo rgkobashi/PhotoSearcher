@@ -10,6 +10,7 @@ import UIKit
 
 class SearchViewController: UIViewController
 {
+    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
