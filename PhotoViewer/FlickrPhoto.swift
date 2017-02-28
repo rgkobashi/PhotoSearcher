@@ -19,7 +19,7 @@ class FlickrPhoto: Photo
 
 class FlickrUtility
 {
-    class func parseResponse(response: AnyObject) -> [FlickrPhoto]
+    class func parseResponse(_ response: AnyObject) -> [FlickrPhoto]
     {
         var resPhotos = [FlickrPhoto]()
         if let response = response as? [String : AnyObject]
@@ -61,13 +61,13 @@ class FlickrUtility
         return resPhotos
     }
     
-    private class func thumbnailUrlFromFlickrPhoto(flickrPhoto: FlickrPhoto) -> String
+    fileprivate class func thumbnailUrlFromFlickrPhoto(_ flickrPhoto: FlickrPhoto) -> String
     {
         let url = "https://farm\(flickrPhoto.farm).static.flickr.com/\(flickrPhoto.server)/\(flickrPhoto.id)_\(flickrPhoto.secret)_s.jpg"
         return url
     }
     
-    private class func originalUrlFromFlickrPhoto(flickrPhoto: FlickrPhoto) -> String
+    fileprivate class func originalUrlFromFlickrPhoto(_ flickrPhoto: FlickrPhoto) -> String
     {
         let url = "https://farm\(flickrPhoto.farm).static.flickr.com/\(flickrPhoto.server)/\(flickrPhoto.id)_\(flickrPhoto.secret)_b.jpg"
         return url

@@ -18,7 +18,7 @@ class InstagramPhoto: Photo
 
 class InstagramUtility
 {
-    class func parseResponse(response: AnyObject) -> (top: [InstagramPhoto], mostRecent: [InstagramPhoto])
+    class func parseResponse(_ response: AnyObject) -> (top: [InstagramPhoto], mostRecent: [InstagramPhoto])
     {
         var resTop = [InstagramPhoto]()
         var resMostRecent = [InstagramPhoto]()
@@ -30,14 +30,14 @@ class InstagramUtility
                 {
                     if let nodes = topPosts["nodes"] as? [AnyObject]
                     {
-                        resTop.appendContentsOf(parseSectionNodes(nodes))
+                        resTop.append(contentsOf: parseSectionNodes(nodes))
                     }
                 }
                 if let media = tag["media"] as? [String : AnyObject]
                 {
                     if let nodes = media["nodes"] as? [AnyObject]
                     {
-                        resMostRecent.appendContentsOf(parseSectionNodes(nodes))
+                        resMostRecent.append(contentsOf: parseSectionNodes(nodes))
                     }
                 }
             }
@@ -45,7 +45,7 @@ class InstagramUtility
         return (resTop, resMostRecent)
     }
     
-    private class func parseSectionNodes(nodes: [AnyObject]) -> [InstagramPhoto]
+    fileprivate class func parseSectionNodes(_ nodes: [AnyObject]) -> [InstagramPhoto]
     {
         var instagramPhotos = [InstagramPhoto]()
         for node in nodes
@@ -83,10 +83,10 @@ class InstagramUtility
         return instagramPhotos
     }
     
-    private class func thumbnailUrlFromInstagramPhoto(instagramPhoto: InstagramPhoto) -> String
+    fileprivate class func thumbnailUrlFromInstagramPhoto(_ instagramPhoto: InstagramPhoto) -> String
     {
-        var words = instagramPhoto.originalUrl.componentsSeparatedByString("/")
+        var words = instagramPhoto.originalUrl.components(separatedBy: "/")
         words[4] = "s" + kThumbnailImageSize
-        return words.joinWithSeparator("/")
+        return words.joined(separator: "/")
     }
 }

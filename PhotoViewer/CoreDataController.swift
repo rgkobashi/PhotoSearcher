@@ -15,12 +15,12 @@ class CoreDataController
     
     func fetchSearchHistory() -> [CD_SearchHistoryItem]?
     {
-        let fetchRequest = NSFetchRequest()
-        let entity = NSEntityDescription.entityForName("CD_SearchHistoryItem", inManagedObjectContext: appDelegate.managedObjectContext)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        let entity = NSEntityDescription.entity(forEntityName: "CD_SearchHistoryItem", in: appDelegate.managedObjectContext)
         fetchRequest.entity = entity
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timeStamp", ascending: false)]
         do {
-            let results = try appDelegate.managedObjectContext.executeFetchRequest(fetchRequest)
+            let results = try appDelegate.managedObjectContext.fetch(fetchRequest)
             return results as? [CD_SearchHistoryItem]
         } catch {
             let fetchError = error as NSError
@@ -29,10 +29,10 @@ class CoreDataController
         return nil
     }
     
-    func saveSearchHistoryItemWithSearchTerm(searchTerm: String, timeStamp: NSTimeInterval) -> CD_SearchHistoryItem
+    func saveSearchHistoryItemWithSearchTerm(_ searchTerm: String, timeStamp: TimeInterval) -> CD_SearchHistoryItem
     {
-        let entity = NSEntityDescription.entityForName("CD_SearchHistoryItem", inManagedObjectContext: appDelegate.managedObjectContext)!
-        let searchHistoryItem = CD_SearchHistoryItem(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
+        let entity = NSEntityDescription.entity(forEntityName: "CD_SearchHistoryItem", in: appDelegate.managedObjectContext)!
+        let searchHistoryItem = CD_SearchHistoryItem(entity: entity, insertInto: appDelegate.managedObjectContext)
         searchHistoryItem.searchTerm = searchTerm
         searchHistoryItem.timeStamp = timeStamp
         do {
@@ -44,9 +44,9 @@ class CoreDataController
         return searchHistoryItem
     }
     
-    func deleteSearchHistoryItem(searchHistoryItem: CD_SearchHistoryItem)
+    func deleteSearchHistoryItem(_ searchHistoryItem: CD_SearchHistoryItem)
     {
-        appDelegate.managedObjectContext.deleteObject(searchHistoryItem)
+        appDelegate.managedObjectContext.delete(searchHistoryItem)
         do {
             try appDelegate.managedObjectContext.save()
         } catch {

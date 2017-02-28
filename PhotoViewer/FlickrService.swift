@@ -13,7 +13,7 @@ class FlickrService: Service
     var requestType = RequestType.GET
     var contentType = ContentType.NONE
     var acceptType = AcceptType.JSON
-    var timeOut: NSTimeInterval = 30
+    var timeOut: TimeInterval = 30
     var requestURL = ""
     var requestParams: [String: AnyObject]?
     var additionalHeaders: [String: String]?

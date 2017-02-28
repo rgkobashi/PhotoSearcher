@@ -16,8 +16,8 @@ class SearchViewController: UIViewController
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
     
-    private var keyboardHeight:CGFloat = 0.0
-    private var searchHistory = [CD_SearchHistoryItem]()
+    fileprivate var keyboardHeight:CGFloat = 0.0
+    fileprivate var searchHistory = [CD_SearchHistoryItem]()
     
     deinit
     {
@@ -29,49 +29,49 @@ class SearchViewController: UIViewController
         super.viewDidLoad()
         if !Settings.hasShownWelcome
         {
-            view.bringSubviewToFront(welcomeView)
+            view.bringSubview(toFront: welcomeView)
             welcomeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SearchViewController.hideWelcome)))
         }
         else
         {
-            view.sendSubviewToBack(welcomeView)
-            welcomeView.hidden = true
+            view.sendSubview(toBack: welcomeView)
+            welcomeView.isHidden = true
         }
         topView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SearchViewController.showAbout)))
-        navigationController?.navigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
         automaticallyAdjustsScrollViewInsets = false
-        (searchBar.valueForKey("searchField") as? UITextField)?.textColor = UIColor.whiteColor()
+        (searchBar.value(forKey: "searchField") as? UITextField)?.textColor = UIColor.white
         searchBar.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchViewController.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchViewController.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SearchViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SearchViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         fecthSearchHistory()
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
     
-    @objc private func keyboardWillShow(notification: NSNotification)
+    @objc fileprivate func keyboardWillShow(_ notification: Notification)
     {
         if let userInfo = notification.userInfo
         {
             if let value = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue
             {
-                let keyboardRec = value.CGRectValue()
+                let keyboardRec = value.cgRectValue
                 keyboardHeight = keyboardRec.height
                 tableViewBottomConstraint.constant += keyboardHeight
             }
         }
     }
     
-    @objc private func keyboardWillHide(notification: NSNotification)
+    @objc fileprivate func keyboardWillHide(_ notification: Notification)
     {
         if keyboardHeight != 0.0
         {
@@ -80,83 +80,83 @@ class SearchViewController: UIViewController
         }
     }
     
-    @objc private func hideWelcome()
+    @objc fileprivate func hideWelcome()
     {
         Settings.hasShownWelcome = true
-        UIView.animateWithDuration(0.3, animations: { [unowned self] in
+        UIView.animate(withDuration: 0.3, animations: { [unowned self] in
             self.welcomeView.alpha = 0
-        }) { [unowned self] (finished) in
-            self.view.sendSubviewToBack(self.welcomeView)
-            self.welcomeView.hidden = true
-        }
+        }, completion: { [unowned self] (finished) in
+            self.view.sendSubview(toBack: self.welcomeView)
+            self.welcomeView.isHidden = true
+        }) 
     }
     
-    private func formatSearchTerm(searchTerm: String) -> String
+    fileprivate func formatSearchTerm(_ searchTerm: String) -> String
     {
-        let words = searchTerm.componentsSeparatedByString(" ")
-        if let encoded = words.first!.stringByAddingPercentEncodingWithAllowedCharacters(.URLQueryAllowedCharacterSet())
+        let words = searchTerm.components(separatedBy: " ")
+        if let encoded = words.first!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         {
-            return encoded.lowercaseString
+            return encoded.lowercased()
         }
         else
         {
-            return words.first!.lowercaseString
+            return words.first!.lowercased()
         }
     }
     
     // MARK: - CoreData/History operations
     
-    private func fecthSearchHistory()
+    fileprivate func fecthSearchHistory()
     {
         if let history = CoreDataController.sharedInstance.fetchSearchHistory()
         {
-            searchHistory.appendContentsOf(history)
+            searchHistory.append(contentsOf: history)
             tableView.reloadData()
         }
     }
     
-    private func deleteSearchHistoryItemForIndexPath(indexPath: NSIndexPath)
+    fileprivate func deleteSearchHistoryItemForIndexPath(_ indexPath: IndexPath)
     {
         Utilities.displayAlertWithTitle(nil, message: "Are you sure?", buttonTitle: "Cancel", buttonHandler: nil, destructiveTitle: "Delete", destructiveHandler: { [unowned self] in
             let searchHistoryItem = self.searchHistory[indexPath.row]
             CoreDataController.sharedInstance.deleteSearchHistoryItem(searchHistoryItem)
-            self.searchHistory.removeAtIndex(indexPath.row)
+            self.searchHistory.remove(at: indexPath.row)
             self.tableView.reloadData()
         })
     }
     
-    private func selectSearchHistoryItemForIndexPath(indexPath: NSIndexPath)
+    fileprivate func selectSearchHistoryItemForIndexPath(_ indexPath: IndexPath)
     {
         let searchHistoryItem = searchHistory[indexPath.row]
         let searchTerm = searchHistoryItem.searchTerm!
         
         CoreDataController.sharedInstance.deleteSearchHistoryItem(searchHistoryItem)
-        searchHistory.removeAtIndex(indexPath.row)
+        searchHistory.remove(at: indexPath.row)
         
         showSearchResultsForSearchTerm(searchTerm)
     }
     
     // MARK: - Navigation
     
-    private func showSearchResultsForSearchTerm(searchTerm: String)
+    fileprivate func showSearchResultsForSearchTerm(_ searchTerm: String)
     {
-        let searchHistoryItem = CoreDataController.sharedInstance.saveSearchHistoryItemWithSearchTerm(searchTerm, timeStamp: NSDate().timeIntervalSince1970)
+        let searchHistoryItem = CoreDataController.sharedInstance.saveSearchHistoryItemWithSearchTerm(searchTerm, timeStamp: Date().timeIntervalSince1970)
         searchBar.text = ""
         searchBar.endEditing(true)
-        searchHistory.insert(searchHistoryItem, atIndex: 0)
-        performSegueWithIdentifier("showSearchResults", sender: searchHistoryItem.searchTerm)
+        searchHistory.insert(searchHistoryItem, at: 0)
+        performSegue(withIdentifier: "showSearchResults", sender: searchHistoryItem.searchTerm)
     }
     
-    @objc private func showAbout()
+    @objc fileprivate func showAbout()
     {
-        performSegueWithIdentifier("showAbout", sender: nil)
+        performSegue(withIdentifier: "showAbout", sender: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "showSearchResults"
         {
-            let searchResultsVC = segue.destinationViewController as! SearchResultsViewController
+            let searchResultsVC = segue.destination as! SearchResultsViewController
             searchResultsVC.searchTerm = sender as! String
         }
     }
@@ -166,26 +166,26 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate
 {
     // MARK: - UITableViewDataSource
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return searchHistory.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("historyCell", forIndexPath: indexPath) as! HistoryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath) as! HistoryTableViewCell
         cell.label.text = searchHistory[indexPath.row].searchTerm
         return cell
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         return true
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
-        if (editingStyle == UITableViewCellEditingStyle.Delete)
+        if (editingStyle == UITableViewCellEditingStyle.delete)
         {
             deleteSearchHistoryItemForIndexPath(indexPath)
         }
@@ -193,7 +193,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate
     
     // MARK: - UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         selectSearchHistoryItemForIndexPath(indexPath)
     }
@@ -201,25 +201,25 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate
 
 extension SearchViewController: UISearchBarDelegate
 {
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar)
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar)
     {
         searchBar.showsCancelButton = true
     }
     
-    func searchBarTextDidEndEditing(searchBar: UISearchBar)
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar)
     {
         searchBar.showsCancelButton = false
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar)
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar)
     {
         searchBar.text = ""
         searchBar.endEditing(true)
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar)
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
     {
-        if let text = searchBar.text where text != ""
+        if let text = searchBar.text, text != ""
         {
             showSearchResultsForSearchTerm(formatSearchTerm(text))
         }

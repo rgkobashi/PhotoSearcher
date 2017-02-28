@@ -10,12 +10,12 @@ import Foundation
 
 class ServiceTracker
 {
-    private var content = ""
-    private let startTime = NSDate()
-    private var endTime: NSDate!
-    private var durationTime: String!
+    fileprivate var content = ""
+    fileprivate let startTime = Date()
+    fileprivate var endTime: Date!
+    fileprivate var durationTime: String!
     
-    init(service: Service, request: NSURLRequest)
+    init(service: Service, request: URLRequest)
     {
         printInfoForService(service)
         createLogForRequest(request)
@@ -23,10 +23,10 @@ class ServiceTracker
     
     // MARK: - Private methods
     
-    private func printInfoForService(service: Service)
+    fileprivate func printInfoForService(_ service: Service)
     {
         var result = "\n*************Service info*************\n"
-        result += "Service: \(String(service))\n"
+        result += "Service: \(String(describing: service))\n"
         result += "Resquest URL: \(service.requestURL)\n"
         result += "Resquest type: \(service.requestType)\n"
         result += "Content type: \(service.contentType)\n"
@@ -52,13 +52,13 @@ class ServiceTracker
         NSLog("%@", result)
     }
     
-    private func createLogForRequest(request: NSURLRequest)
+    fileprivate func createLogForRequest(_ request: URLRequest)
     {
-        content += "Resquest URL: \(request.URL!)\n"
+        content += "Resquest URL: \(request.url!)\n"
         content += "Resquest headers: \(request.allHTTPHeaderFields!)\n"
-        if let body = request.HTTPBody
+        if let body = request.httpBody
         {
-            if let string = String(data: body, encoding: NSUTF8StringEncoding)
+            if let string = String(data: body, encoding: String.Encoding.utf8)
             {
                 content += "Request body: \n\(string)\n"
             }
@@ -66,15 +66,15 @@ class ServiceTracker
         
     }
     
-    private func finishLog(response: NSHTTPURLResponse, body: AnyObject?)
+    fileprivate func finishLog(_ response: HTTPURLResponse, body: AnyObject?)
     {
         content += "Status code: \(response.statusCode)\n"
         content += "Response headers: \(response.allHeaderFields)\n"
         if let body = body
         {
             do {
-                let data = try NSJSONSerialization.dataWithJSONObject(body, options: .PrettyPrinted)
-                if let string = String(data: data, encoding: NSUTF8StringEncoding)
+                let data = try JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
+                if let string = String(data: data, encoding: String.Encoding.utf8)
                 {
                     content += "Response body: \n\(string)\n"
                 }
@@ -84,20 +84,20 @@ class ServiceTracker
         }
     }
     
-    private func addErrorToLog(error: NSError)
+    fileprivate func addErrorToLog(_ error: NSError)
     {
         content += "Error: \(error.localizedDescription)\n"
     }
     
-    private func printLog()
+    fileprivate func printLog()
     {
-        let format = NSDateFormatter()
+        let format = DateFormatter()
         format.dateFormat = "yyyy/MM/dd' 'HH:mm:ss.SSS"
         
-        var result = "\n*************START: \(format.stringFromDate(startTime))*************\n"
+        var result = "\n*************START: \(format.string(from: startTime))*************\n"
         result += "Time: \(durationTime)ms\n"
         result += content
-        result += "*************END: \(format.stringFromDate(endTime))*************\n"
+        result += "*************END: \(format.string(from: endTime))*************\n"
         
         NSLog("%@", result)
     }
@@ -106,31 +106,31 @@ class ServiceTracker
     
     func callFinished()
     {
-        endTime = NSDate()
-        let difference = endTime.timeIntervalSinceDate(startTime)
+        endTime = Date()
+        let difference = endTime.timeIntervalSince(startTime)
         durationTime = String(format: "%.0f", difference * 1000.0)
     }
     
-    func finishWithResponse(response: NSHTTPURLResponse)
+    func finishWithResponse(_ response: HTTPURLResponse)
     {
         finishLog(response, body: nil)
         printLog()
     }
     
-    func finishWithResponse(response: NSHTTPURLResponse, body: AnyObject)
+    func finishWithResponse(_ response: HTTPURLResponse, body: AnyObject)
     {
         finishLog(response, body: body)
         printLog()
     }
     
-    func finishWithError(error: NSError, response: NSHTTPURLResponse, body: AnyObject)
+    func finishWithError(_ error: NSError, response: HTTPURLResponse, body: AnyObject)
     {
         finishLog(response, body: body)
         addErrorToLog(error)
         printLog()
     }
     
-    func finishWithError(error: NSError)
+    func finishWithError(_ error: NSError)
     {
         addErrorToLog(error)
         printLog()

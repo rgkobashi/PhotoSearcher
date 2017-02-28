@@ -24,16 +24,16 @@ class AboutViewController: UIViewController
     {
         super.viewDidLoad()
         let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(AboutViewController.close))
-        swipeGestureRecognizer.direction = .Down
+        swipeGestureRecognizer.direction = .down
         swipeGestureRecognizer.numberOfTouchesRequired = 1
-        swipeGestureRecognizer.enabled = true
+        swipeGestureRecognizer.isEnabled = true
         swipeGestureRecognizer.cancelsTouchesInView = true
         swipeGestureRecognizer.delaysTouchesEnded = true
         view.addGestureRecognizer(swipeGestureRecognizer)
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(AboutViewController.close)))
     }
     
-    @IBAction func buttonTapped(sender: UIButton)
+    @IBAction func buttonTapped(_ sender: UIButton)
     {
         switch sender {
         case emailButton:
@@ -49,8 +49,8 @@ class AboutViewController: UIViewController
         }
     }
     
-    @objc private func close()
+    @objc fileprivate func close()
     {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }

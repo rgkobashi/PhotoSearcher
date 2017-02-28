@@ -23,8 +23,8 @@ class SearchResultsViewController: UIViewController
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var searchTerm: String!
-    private var top = [Photo]()
-    private var mostRecent = [Photo]()
+    fileprivate var top = [Photo]()
+    fileprivate var mostRecent = [Photo]()
     
     deinit
     {
@@ -38,12 +38,12 @@ class SearchResultsViewController: UIViewController
         photosCountLabel.text = ""
         collectionView.dataSource = self
         collectionView.delegate = self
-        segmentedControl.setTitle(ServiceType.Instagram.rawValue, forSegmentAtIndex: 0)
-        segmentedControl.setTitle(ServiceType.Flickr.rawValue, forSegmentAtIndex: 1)
+        segmentedControl.setTitle(ServiceType.Instagram.rawValue, forSegmentAt: 0)
+        segmentedControl.setTitle(ServiceType.Flickr.rawValue, forSegmentAt: 1)
         callServiceType(.Instagram)
     }
     
-    @IBAction func actions(sender: AnyObject)
+    @IBAction func actions(_ sender: AnyObject)
     {
         let object = sender as! NSObject
         switch object {
@@ -63,35 +63,35 @@ class SearchResultsViewController: UIViewController
         }
     }
     
-    private func back()
+    fileprivate func back()
     {
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
-    private func updatePhotosCountLabel(count: Int)
+    fileprivate func updatePhotosCountLabel(_ count: Int)
     {
-        let numberFormatter = NSNumberFormatter()
+        let numberFormatter = NumberFormatter()
         numberFormatter.groupingSeparator = ","
-        numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
         
         let boldAttributed: NSMutableAttributedString!
-        if let strCount = numberFormatter.stringFromNumber(count)
+        if let strCount = numberFormatter.string(from: NSNumber(count))
         {
-            boldAttributed = NSMutableAttributedString(string: strCount, attributes: [NSFontAttributeName: UIFont.boldSystemFontOfSize(photosCountLabel.font.pointSize)])
+            boldAttributed = NSMutableAttributedString(string: strCount, attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: photosCountLabel.font.pointSize)])
         }
         else
         {
-            boldAttributed = NSMutableAttributedString(string: "\(count)", attributes: [NSFontAttributeName: UIFont.boldSystemFontOfSize(photosCountLabel.font.pointSize)])
+            boldAttributed = NSMutableAttributedString(string: "\(count)", attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: photosCountLabel.font.pointSize)])
         }
         
         let normalAttributed = NSAttributedString(string: " photos")
-        boldAttributed.appendAttributedString(normalAttributed)
+        boldAttributed.append(normalAttributed)
         photosCountLabel.attributedText = boldAttributed
     }
     
     // MARK: - Methods for services calls
     
-    private func callServiceType(serviceType: ServiceType)
+    fileprivate func callServiceType(_ serviceType: ServiceType)
     {
         let service: Service!
         switch serviceType {
@@ -117,27 +117,27 @@ class SearchResultsViewController: UIViewController
         }
     }
     
-    private func serviceCallSucceedWithType(type: ServiceType, response: AnyObject)
+    fileprivate func serviceCallSucceedWithType(_ type: ServiceType, response: AnyObject)
     {
-        collectionView.setContentOffset(CGPointZero, animated: true)
+        collectionView.setContentOffset(CGPoint.zero, animated: true)
         searchTermLabel.text = "#\(self.searchTerm)"
         top.removeAll()
         mostRecent.removeAll()
         switch type {
         case .Instagram:
             let result = InstagramUtility.parseResponse(response)
-            top.appendContentsOf(result.top.map{$0 as Photo})
-            mostRecent.appendContentsOf(result.mostRecent.map{$0 as Photo})
+            top.append(contentsOf: result.top.map{$0 as Photo})
+            mostRecent.append(contentsOf: result.mostRecent.map{$0 as Photo})
             updatePhotosCountLabel(result.top.count + result.mostRecent.count)
         case .Flickr:
             let result = FlickrUtility.parseResponse(response)
-            top.appendContentsOf(result.map{$0 as Photo})
+            top.append(contentsOf: result.map{$0 as Photo})
             updatePhotosCountLabel(result.count)
         }
         collectionView.reloadData()
     }
     
-    private func serviceCallFailedWithError(error: NSError?)
+    fileprivate func serviceCallFailedWithError(_ error: NSError?)
     {
         Loader.dismiss()
         print("error = \(error)")
@@ -148,11 +148,11 @@ class SearchResultsViewController: UIViewController
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "showPhoto"
         {
-            let indexPath = sender as! NSIndexPath
+            let indexPath = sender as! IndexPath
             let photo: Photo!
             if indexPath.section == 0
             {
@@ -162,7 +162,7 @@ class SearchResultsViewController: UIViewController
             {
                 photo = mostRecent[indexPath.row]
             }
-            let photoVC = segue.destinationViewController as! PhotoViewController
+            let photoVC = segue.destination as! PhotoViewController
             photoVC.photo = photo
         }
     }
@@ -172,7 +172,7 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
 {
     // MARK: - UICollectionViewDataSource
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
+    func numberOfSections(in collectionView: UICollectionView) -> Int
     {
         if mostRecent.count > 0
         {
@@ -184,7 +184,7 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
         }
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         if section == 0
         {
@@ -196,9 +196,9 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
         }
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("searchResultCell", forIndexPath: indexPath) as! SearchResultsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchResultCell", for: indexPath) as! SearchResultsCollectionViewCell
         var photo: Photo!
         if indexPath.section == 0
         {
@@ -227,12 +227,12 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
     {
         var collectionReusableView: UICollectionReusableView!
         if kind == UICollectionElementKindSectionHeader
         {
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "headerReusableView", forIndexPath: indexPath) as! HeaderCollectionReusableView
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerReusableView", for: indexPath) as! HeaderCollectionReusableView
             if indexPath.section == 0
             {
                 headerView.label.text = "Top photos"
@@ -245,18 +245,18 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
         }
         else
         {
-            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter, withReuseIdentifier: "footerReusableView", forIndexPath: indexPath) as! FooterCollectionReusableView
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "footerReusableView", for: indexPath) as! FooterCollectionReusableView
             if mostRecent.count == 0 && indexPath.section == 0
             {
-                footerView.view.hidden = true
+                footerView.view.isHidden = true
             }
             else if mostRecent.count > 0 && indexPath.section == 1
             {
-                footerView.view.hidden = true
+                footerView.view.isHidden = true
             }
             else
             {
-                footerView.view.hidden = false
+                footerView.view.isHidden = false
             }
             collectionReusableView = footerView
         }
@@ -265,8 +265,8 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
     
     // MARK: - UICollectionViewDelegate
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        performSegueWithIdentifier("showPhoto", sender: indexPath)
+        performSegue(withIdentifier: "showPhoto", sender: indexPath)
     }
 }

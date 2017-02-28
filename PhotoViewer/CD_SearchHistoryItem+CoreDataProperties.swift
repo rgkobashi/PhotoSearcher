@@ -15,6 +15,6 @@ import CoreData
 extension CD_SearchHistoryItem {
 
     @NSManaged var searchTerm: String?
-    @NSManaged var timeStamp: NSTimeInterval
+    @NSManaged var timeStamp: TimeInterval
 
 }

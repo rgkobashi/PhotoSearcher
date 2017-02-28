@@ -40,7 +40,7 @@ protocol Service
     var requestType: RequestType { get set }
     var contentType: ContentType { get set }
     var acceptType: AcceptType { get set }
-    var timeOut: NSTimeInterval { get set }
+    var timeOut: TimeInterval { get set }
     var requestURL: String { get set }
     var requestParams: [String: AnyObject]? { get set }
     var additionalHeaders: [String: String]? { get set }

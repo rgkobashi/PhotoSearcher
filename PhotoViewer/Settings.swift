@@ -14,11 +14,11 @@ class Settings
 {
     static var hasShownWelcome: Bool{
         set{
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: kKeyHasShownWelcome)
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(newValue, forKey: kKeyHasShownWelcome)
+            UserDefaults.standard.synchronize()
         }
         get{
-            return NSUserDefaults.standardUserDefaults().boolForKey(kKeyHasShownWelcome)
+            return UserDefaults.standard.bool(forKey: kKeyHasShownWelcome)
         }
     }
 }

@@ -17,7 +17,7 @@ class Photo
     var thumbnailImage: UIImage?
     var originalImage: UIImage?
     
-    func downloadThumbnailImage(suceedHandler: VoidCompletionHandler, failedHandler: ErrorCompletionHandler)
+    func downloadThumbnailImage(_ suceedHandler: @escaping VoidCompletionHandler, failedHandler: @escaping ErrorCompletionHandler)
     {
         Utilities.downloadImageFrom(thumbnailUrl, suceedHandler: { [weak self] (result) in
             self?.thumbnailImage = result as? UIImage
@@ -27,7 +27,7 @@ class Photo
         })
     }
     
-    func downloadOriginalImage(suceedHandler: VoidCompletionHandler, failedHandler: ErrorCompletionHandler)
+    func downloadOriginalImage(_ suceedHandler: @escaping VoidCompletionHandler, failedHandler: @escaping ErrorCompletionHandler)
     {
         Utilities.downloadImageFrom(originalUrl, suceedHandler: { [weak self] (result) in
             self?.originalImage = result as? UIImage

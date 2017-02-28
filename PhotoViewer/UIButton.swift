@@ -15,9 +15,9 @@ extension UIButton
             return self.titleLabel?.font.fontName
         }
         set {
-            if let label = self.titleLabel, newValue = newValue
+            if let label = self.titleLabel, let newValue = newValue
             {
-                if label.font.fontName.containsString("Regular")
+                if label.font.fontName.contains("Regular")
                 {
                     label.font = UIFont(name: newValue, size: label.font.pointSize)
                 }
@@ -30,9 +30,9 @@ extension UIButton
             return self.titleLabel?.font.fontName
         }
         set {
-            if let label = self.titleLabel, newValue = newValue
+            if let label = self.titleLabel, let newValue = newValue
             {
-                if label.font.fontName.containsString("Bold")
+                if label.font.fontName.contains("Bold")
                 {
                     label.font = UIFont(name: newValue, size: label.font.pointSize)
                 }

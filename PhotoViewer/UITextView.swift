@@ -16,9 +16,9 @@ extension  UITextView
             return self.font?.fontName
         }
         set {
-            if let font = self.font, newValue = newValue
+            if let font = self.font, let newValue = newValue
             {
-                if font.fontName.containsString("Regular")
+                if font.fontName.contains("Regular")
                 {
                     self.font = UIFont(name: newValue, size: font.pointSize)
                 }
@@ -31,9 +31,9 @@ extension  UITextView
             return self.font?.fontName
         }
         set {
-            if let font = self.font, newValue = newValue
+            if let font = self.font, let newValue = newValue
             {
-                if font.fontName.containsString("Bold")
+                if font.fontName.contains("Bold")
                 {
                     self.font = UIFont(name: newValue, size: font.pointSize)
                 }

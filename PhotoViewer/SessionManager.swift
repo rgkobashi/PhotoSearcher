@@ -13,7 +13,7 @@ class SessionManager
 {
     static var sharedInstance = SessionManager()
     
-    private var session: NSURLSession!
+    fileprivate var session: URLSession!
     
     init()
     {
@@ -22,12 +22,12 @@ class SessionManager
     
     // MARK: - Setup methods
     
-    private func createSession()
+    fileprivate func createSession()
     {
-        let queue = NSOperationQueue()
+        let queue = OperationQueue()
         queue.name = "ServiceQueue"
         queue.maxConcurrentOperationCount = 4
-        session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: nil, delegateQueue: queue)
+        session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: queue)
     }
     
     // MARK: - Public methods
@@ -38,26 +38,26 @@ class SessionManager
         createSession()
     }
     
-    func start(service: Service, suceedHandler: SuceedCompletionHandler, failedHandler: ErrorCompletionHandler)
+    func start(_ service: Service, suceedHandler: @escaping SuceedCompletionHandler, failedHandler: @escaping ErrorCompletionHandler)
     {
         let request = createRequestForService(service)
         var serviceTracker: ServiceTracker?
         #if !PROD
             serviceTracker = ServiceTracker(service: service, request: request)
         #endif
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
-            dispatch_async(dispatch_get_main_queue(), {
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        session.dataTask(with: request, completionHandler: { (data, response, error) in
+            DispatchQueue.main.async(execute: {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 serviceTracker?.callFinished()
                 if let error = error
                 {
                     serviceTracker?.finishWithError(error)
-                    failedHandler(error)
+                    failedHandler(error as NSError)
                 }
                 else
                 {
-                    if let httpResponse = response as? NSHTTPURLResponse
+                    if let httpResponse = response as? HTTPURLResponse
                     {
                         if httpResponse.statusCode == 204
                         {
@@ -70,7 +70,7 @@ class SessionManager
                             let headers = httpResponse.allHeaderFields
                             if let contentTypeHeader = headers["Content-Type"] as? String
                             {
-                                let contentTypeArray = contentTypeHeader.componentsSeparatedByString(";")
+                                let contentTypeArray = contentTypeHeader.components(separatedBy: ";")
                                 if let first = contentTypeArray.first
                                 {
                                     contentType = first
@@ -78,7 +78,7 @@ class SessionManager
                             }
                             do
                             {
-                                if let responseBody = try NSJSONSerialization.JSONObjectWithData(responseData, options: .AllowFragments) as? [String: AnyObject]
+                                if let responseBody = try JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as? [String: AnyObject]
                                 {
                                     if service.acceptType.rawValue == contentType
                                     {
@@ -93,12 +93,12 @@ class SessionManager
                                             else
                                             {
                                                 serviceTracker?.finishWithResponse(httpResponse, body: responseBody)
-                                                suceedHandler(responseBody)
+                                                suceedHandler(responseBody as AnyObject?)
                                             }
                                         }
                                         else
                                         {
-                                            let error = self.parseErrorResponse(responseBody, errorCode: httpResponse.statusCode)
+                                            let error = self.parseErrorResponse(responseBody as AnyObject, errorCode: httpResponse.statusCode)
                                             serviceTracker?.finishWithError(error, response: httpResponse, body: responseBody)
                                             failedHandler(error)
                                         }
@@ -110,18 +110,18 @@ class SessionManager
                                         failedHandler(error)
                                     }
                                 }
-                                else if let responseBody = try NSJSONSerialization.JSONObjectWithData(responseData, options: .AllowFragments) as? [AnyObject]
+                                else if let responseBody = try JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as? [AnyObject]
                                 {
                                     if service.acceptType.rawValue == contentType
                                     {
                                         if httpResponse.statusCode == 200
                                         {
                                             serviceTracker?.finishWithResponse(httpResponse, body: responseBody)
-                                            suceedHandler(responseBody)
+                                            suceedHandler(responseBody as AnyObject?)
                                         }
                                         else
                                         {
-                                            let error = self.parseErrorResponse(responseBody, errorCode: httpResponse.statusCode)
+                                            let error = self.parseErrorResponse(responseBody as AnyObject, errorCode: httpResponse.statusCode)
                                             serviceTracker?.finishWithError(error, response: httpResponse, body: responseBody)
                                             failedHandler(error)
                                         }
@@ -161,12 +161,12 @@ class SessionManager
     
     // MARK: - Helper methods
     
-    private func createRequestForService(service: Service) -> NSURLRequest
+    fileprivate func createRequestForService(_ service: Service) -> URLRequest
     {
         let request = NSMutableURLRequest()
         
-        request.URL = NSURL(string: service.requestURL)
-        request.HTTPMethod = service.requestType.rawValue
+        request.url = URL(string: service.requestURL)
+        request.httpMethod = service.requestType.rawValue
         request.setValue(service.contentType.rawValue, forHTTPHeaderField: "Content-Type")
         request.setValue(service.acceptType.rawValue, forHTTPHeaderField: "Accept")
         request.timeoutInterval = service.timeOut
@@ -179,13 +179,13 @@ class SessionManager
             }
         }
         
-        if let requestParams = service.requestParams where requestParams.count > 0
+        if let requestParams = service.requestParams, requestParams.count > 0
         {
             switch service.contentType {
             case .JSON:
-                request.HTTPBody = createJSONBody(requestParams)
+                request.httpBody = createJSONBody(requestParams)
             case .FORM:
-                request.HTTPBody = createFormBody(requestParams)
+                request.httpBody = createFormBody(requestParams)
             case .XML:
                 break
             case .NONE:
@@ -193,10 +193,10 @@ class SessionManager
             }
         }
         
-        return request
+        return request as URLRequest
     }
     
-    private func parseErrorResponse(response: AnyObject, errorCode: Int) -> NSError
+    fileprivate func parseErrorResponse(_ response: AnyObject, errorCode: Int) -> NSError
     {
         var err: NSError!
         
@@ -216,11 +216,11 @@ class SessionManager
     
     // MARK: - HTTP body formatters
     
-    private func createJSONBody(params: [String: AnyObject]) -> NSData?
+    fileprivate func createJSONBody(_ params: [String: AnyObject]) -> Data?
     {
         do
         {
-            let json = try NSJSONSerialization.dataWithJSONObject(params, options: .PrettyPrinted)
+            let json = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
             return json
         }
         catch let error as NSError
@@ -230,7 +230,7 @@ class SessionManager
         }
     }
     
-    private func createFormBody(params: [String: AnyObject]) -> NSData?
+    fileprivate func createFormBody(_ params: [String: AnyObject]) -> Data?
     {
         var body = ""
         
@@ -241,12 +241,12 @@ class SessionManager
             body += encodeKey + "=" + encodeValue + "&"
         }
         
-        return body.dataUsingEncoding(NSUTF8StringEncoding)
+        return body.data(using: String.Encoding.utf8)
     }
     
-    private func encodeString(string: String) -> String
+    fileprivate func encodeString(_ string: String) -> String
     {
-        if let encoded = string.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())
+        if let encoded = string.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)
         {
             return encoded
         }

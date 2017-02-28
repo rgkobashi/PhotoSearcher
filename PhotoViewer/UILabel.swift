@@ -15,7 +15,7 @@ extension UILabel
             return self.font.fontName
         }
         set {
-            if self.font.fontName.containsString("Regular")
+            if self.font.fontName.contains("Regular")
             {
                 self.font = UIFont(name: newValue, size: self.font.pointSize)
             }
@@ -27,7 +27,7 @@ extension UILabel
             return self.font.fontName
         }
         set {
-            if self.font.fontName.containsString("Bold")
+            if self.font.fontName.contains("Bold")
             {
                 self.font = UIFont(name: newValue, size: self.font.pointSize)
             }

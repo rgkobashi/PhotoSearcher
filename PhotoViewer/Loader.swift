@@ -11,27 +11,27 @@ import UIKit
 
 class Loader
 {
-    private static let activityIndicator = UIActivityIndicatorView()
+    fileprivate static let activityIndicator = UIActivityIndicatorView()
     
     class func show()
     {
         let container = UIView()
-        container.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
+        container.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         container.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         
         let loadingView = UIView()
-        loadingView.frame = CGRectMake(0, 0, 80, 80)
+        loadingView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
         loadingView.center = container.center
         loadingView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         loadingView.layer.cornerRadius = 10
         
-        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.center = CGPointMake(loadingView.frame.size.width / 2, loadingView.frame.size.height / 2)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.center = CGPoint(x: loadingView.frame.size.width / 2, y: loadingView.frame.size.height / 2)
         
         loadingView.addSubview(activityIndicator)
         container.addSubview(loadingView)
-        UIApplication.sharedApplication().windows.first?.addSubview(container)
+        UIApplication.shared.windows.first?.addSubview(container)
         
         activityIndicator.startAnimating()
     }
