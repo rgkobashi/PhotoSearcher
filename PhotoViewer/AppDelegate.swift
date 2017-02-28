@@ -21,6 +21,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appDelegate = self
         UISearchBar.appearance().tintColor = UIColor(hex: "#F9B82B")
         UISegmentedControl.appearance().tintColor = UIColor(hex: "#F9B82B")
+        UIButton.appearance().substituteRegularFontName = kDefaultRegularFontName
+        UILabel.appearance().substituteRegularFontName = kDefaultRegularFontName
+        UITextField.appearance().substituteRegularFontName = kDefaultRegularFontName
+        UITextView.appearance().substituteRegularFontName = kDefaultRegularFontName
+        UIButton.appearance().substituteBoldFontName = kDefaultBoldFontName
+        UILabel.appearance().substituteBoldFontName = kDefaultBoldFontName
+        UITextField.appearance().substituteBoldFontName = kDefaultBoldFontName
+        UITextView.appearance().substituteBoldFontName = kDefaultBoldFontName
+        let attributes = [NSFontAttributeName: UIFont(name: kDefaultRegularFontName, size: 12)!]
+        UISegmentedControl.appearance().setTitleTextAttributes(attributes, forState: .Normal)
         return true
     }
 
