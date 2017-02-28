@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E24DC6A21E65BC4A00C230AB /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24DC6A11E65BC4A00C230AB /* WelcomeViewController.swift */; };
 		E24DC6A41E65BD0E00C230AB /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24DC6A31E65BD0E00C230AB /* UITextField.swift */; };
 		E24DC6A61E65BDA400C230AB /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24DC6A51E65BDA400C230AB /* UITextView.swift */; };
 		E24DC6A81E65BF6F00C230AB /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24DC6A71E65BF6F00C230AB /* UILabel.swift */; };
 		E24DC6AA1E65C06400C230AB /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24DC6A91E65C06400C230AB /* UIButton.swift */; };
+		E24DC6AC1E65C8AC00C230AB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24DC6AB1E65C8AC00C230AB /* Settings.swift */; };
 		E2B846AF1E6584AE00570522 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B846AE1E6584AE00570522 /* UIColor.swift */; };
 		E2B846B11E658CE700570522 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B846B01E658CE700570522 /* HeaderCollectionReusableView.swift */; };
 		E2B846B31E6590C400570522 /* FooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B846B21E6590C400570522 /* FooterCollectionReusableView.swift */; };
@@ -42,11 +42,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E24DC6A11E65BC4A00C230AB /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		E24DC6A31E65BD0E00C230AB /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		E24DC6A51E65BDA400C230AB /* UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		E24DC6A71E65BF6F00C230AB /* UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		E24DC6A91E65C06400C230AB /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		E24DC6AB1E65C8AC00C230AB /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		E2B846AE1E6584AE00570522 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		E2B846B01E658CE700570522 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		E2B846B21E6590C400570522 /* FooterCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCollectionReusableView.swift; sourceTree = "<group>"; };
@@ -142,7 +142,6 @@
 			children = (
 				E2DE98871E644049008B4D78 /* LaunchScreen.storyboard */,
 				E2DE98901E6443F3008B4D78 /* Main.storyboard */,
-				E24DC6A11E65BC4A00C230AB /* WelcomeViewController.swift */,
 				E2DE98921E6443FE008B4D78 /* SearchViewController.swift */,
 				E2DE98971E644875008B4D78 /* SearchResultsViewController.swift */,
 				E2DE98AD1E6484F9008B4D78 /* PhotoViewController.swift */,
@@ -188,6 +187,7 @@
 				E2DE98A31E64523F008B4D78 /* Constants.swift */,
 				E2DE989B1E644FB7008B4D78 /* Components.swift */,
 				E2DE98A51E645422008B4D78 /* Loader.swift */,
+				E24DC6AB1E65C8AC00C230AB /* Settings.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -306,7 +306,6 @@
 				E24DC6A41E65BD0E00C230AB /* UITextField.swift in Sources */,
 				E2DE98931E6443FE008B4D78 /* SearchViewController.swift in Sources */,
 				E24DC6AA1E65C06400C230AB /* UIButton.swift in Sources */,
-				E24DC6A21E65BC4A00C230AB /* WelcomeViewController.swift in Sources */,
 				E2DE989C1E644FB7008B4D78 /* Components.swift in Sources */,
 				E2D4BC311E649DB2003DEC8E /* CoreDataController.swift in Sources */,
 				E2DE98A61E645422008B4D78 /* Loader.swift in Sources */,
@@ -320,6 +319,7 @@
 				E2D4BC411E64EB96003DEC8E /* Photo.swift in Sources */,
 				E2D4BC361E64C26A003DEC8E /* CD_SearchHistoryItem+CoreDataProperties.swift in Sources */,
 				E2B846B51E65998800570522 /* HistoryTableViewCell.swift in Sources */,
+				E24DC6AC1E65C8AC00C230AB /* Settings.swift in Sources */,
 				E2DE989A1E644F20008B4D78 /* SessionManager.swift in Sources */,
 				E2DE987C1E644049008B4D78 /* AppDelegate.swift in Sources */,
 				E2D4BC3B1E64E6F4003DEC8E /* FlickrService.swift in Sources */,
