@@ -197,6 +197,18 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate
     {
         selectSearchHistoryItemForIndexPath(indexPath)
     }
+    
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath)
+    {
+        let cell  = tableView.cellForRow(at: indexPath)
+        cell!.contentView.backgroundColor = UIColor(hex: kColorYellow)
+    }
+    
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath)
+    {
+        let cell  = tableView.cellForRow(at: indexPath)
+        cell!.contentView.backgroundColor = UIColor.clear
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate

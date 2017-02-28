@@ -103,7 +103,7 @@ You are just on a single tap to dive into Instagram and Flickr photos!</string>
                                 <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" id="vKa-zK-Pqm" customClass="HistoryTableViewCell" customModule="PhotoViewer" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="historyCell" id="vKa-zK-Pqm" customClass="HistoryTableViewCell" customModule="PhotoViewer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vKa-zK-Pqm" id="0Eq-zj-2og">
@@ -374,7 +374,7 @@ You are just on a single tap to dive into Instagram and Flickr photos!</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dD6-3E-gI4">
-                                            <rect key="frame" x="8" y="8" width="1008" height="21"/>
+                                            <rect key="frame" x="8" y="8" width="359" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="UnC-lK-qJC"/>
                                             </constraints>
@@ -398,7 +398,7 @@ You are just on a single tap to dive into Instagram and Flickr photos!</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d7j-v4-0gH">
-                                            <rect key="frame" x="8" y="0.0" width="1008" height="1"/>
+                                            <rect key="frame" x="8" y="0.0" width="359" height="1"/>
                                             <color key="backgroundColor" red="0.97647058819999999" green="0.72156862749999995" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
                                     </subviews>
