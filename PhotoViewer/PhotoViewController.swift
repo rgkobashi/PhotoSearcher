@@ -57,16 +57,26 @@ class PhotoViewController: UIViewController
         }
         
         camptionTextView.text = photo.text
-        Components.downloadImageFrom(photo.originalUrl, suceedHandler: { [weak self] (result) in
-            self?.activityIndicatorView.stopAnimating()
-            self?.image = result as? UIImage
-            self?.successImageDownload()
-        }, failedHandler: { [weak self] (error) in
-            self?.activityIndicatorView.stopAnimating()
-            print("error = \(error)")
-            self?.image = UIImage(named: "BrokenImage")
-            self?.failedImageDownload()
-        })
+        
+        if let originalImage = photo.originalImage
+        {
+            activityIndicatorView.stopAnimating()
+            image = originalImage
+            successImageDownload()
+        }
+        else
+        {
+            photo.downloadOriginalImage({ [weak self] in
+                self?.activityIndicatorView.stopAnimating()
+                self?.image = self?.photo.originalImage
+                self?.successImageDownload()
+            }, failedHandler: { [weak self] (error) in
+                self?.activityIndicatorView.stopAnimating()
+                print("error = \(error)")
+                self?.image = UIImage(named: "BrokenImage")
+                self?.failedImageDownload()
+            })
+        }
     }
     
     override func viewWillAppear(animated: Bool)
