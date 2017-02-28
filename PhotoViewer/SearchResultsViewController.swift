@@ -75,7 +75,7 @@ class SearchResultsViewController: UIViewController
         numberFormatter.numberStyle = NumberFormatter.Style.decimal
         
         let boldAttributed: NSMutableAttributedString!
-        if let strCount = numberFormatter.string(from: NSNumber(count))
+        if let strCount = numberFormatter.string(from: count as NSNumber)
         {
             boldAttributed = NSMutableAttributedString(string: strCount, attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: photosCountLabel.font.pointSize)])
         }
@@ -137,7 +137,7 @@ class SearchResultsViewController: UIViewController
         collectionView.reloadData()
     }
     
-    fileprivate func serviceCallFailedWithError(_ error: NSError?)
+    fileprivate func serviceCallFailedWithError(_ error: Error?)
     {
         Loader.dismiss()
         print("error = \(error)")

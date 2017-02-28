@@ -66,7 +66,7 @@ class ServiceTracker
         
     }
     
-    fileprivate func finishLog(_ response: HTTPURLResponse, body: AnyObject?)
+    fileprivate func finishLog(_ response: HTTPURLResponse, body: Any?)
     {
         content += "Status code: \(response.statusCode)\n"
         content += "Response headers: \(response.allHeaderFields)\n"
@@ -84,7 +84,7 @@ class ServiceTracker
         }
     }
     
-    fileprivate func addErrorToLog(_ error: NSError)
+    fileprivate func addErrorToLog(_ error: Error)
     {
         content += "Error: \(error.localizedDescription)\n"
     }
@@ -117,20 +117,20 @@ class ServiceTracker
         printLog()
     }
     
-    func finishWithResponse(_ response: HTTPURLResponse, body: AnyObject)
+    func finishWithResponse(_ response: HTTPURLResponse, body: Any)
     {
         finishLog(response, body: body)
         printLog()
     }
     
-    func finishWithError(_ error: NSError, response: HTTPURLResponse, body: AnyObject)
+    func finishWithError(_ error: Error, response: HTTPURLResponse, body: Any)
     {
         finishLog(response, body: body)
         addErrorToLog(error)
         printLog()
     }
     
-    func finishWithError(_ error: NSError)
+    func finishWithError(_ error: Error)
     {
         addErrorToLog(error)
         printLog()
