@@ -7,13 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 class InstagramPhoto: Photo
 {
-    var text = ""
-    var thumbnailUrl = ""
-    var originalUrl = ""
-    
     var likesCount: Int!
     var date: Int!
     var commentsCount: Int!

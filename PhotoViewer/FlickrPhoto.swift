@@ -7,13 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 class FlickrPhoto: Photo
 {
-    var text = ""
-    var thumbnailUrl = ""
-    var originalUrl = ""
-    
     var secret: String!
     var id: String!
     var server: String!
