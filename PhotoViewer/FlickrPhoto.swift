@@ -11,10 +11,10 @@ import UIKit
 
 class FlickrPhoto: Photo
 {
-    var secret: String!
-    var id: String!
-    var server: String!
-    var farm: Int!
+    var secret = ""
+    var id = ""
+    var server = ""
+    var farm = 0
 }
 
 class FlickrUtility

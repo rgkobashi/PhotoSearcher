@@ -11,9 +11,9 @@ import UIKit
 
 class InstagramPhoto: Photo
 {
-    var likesCount: Int!
-    var date: Int!
-    var commentsCount: Int!
+    var likesCount = 0
+    var date = 0
+    var commentsCount = 0
 }
 
 class InstagramUtility

@@ -22,7 +22,7 @@ class SearchResultsViewController: UIViewController
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    var searchTerm: String!
+    var searchTerm = ""
     fileprivate var top = [Photo]()
     fileprivate var mostRecent = [Photo]()
     
