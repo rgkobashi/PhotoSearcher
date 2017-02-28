@@ -18,6 +18,7 @@ class SearchViewController: UIViewController
     @IBOutlet weak var instagramButton: UIButton!
     @IBOutlet weak var flickrButton: UIButton!
     
+    fileprivate var constraintValue:CGFloat = 0.0
     fileprivate var keyboardHeight:CGFloat = 0.0
     fileprivate var searchHistory = [CD_SearchHistoryItem]()
     
@@ -80,7 +81,8 @@ class SearchViewController: UIViewController
             {
                 let keyboardRec = value.cgRectValue
                 keyboardHeight = keyboardRec.height
-                tableViewBottomConstraint.constant += keyboardHeight
+                constraintValue = tableViewBottomConstraint.constant
+                tableViewBottomConstraint.constant = keyboardHeight
             }
         }
     }
@@ -89,8 +91,9 @@ class SearchViewController: UIViewController
     {
         if keyboardHeight != 0.0
         {
-            tableViewBottomConstraint.constant -= keyboardHeight
+            tableViewBottomConstraint.constant = constraintValue
             keyboardHeight = 0.0
+            constraintValue = 0.0
         }
     }
     

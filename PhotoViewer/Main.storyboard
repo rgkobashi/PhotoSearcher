@@ -277,11 +277,11 @@ You are just on a single tap to dive into Instagram and Flickr photos!</string>
                             <constraint firstItem="huA-W7-czc" firstAttribute="top" secondItem="JRl-4S-Sno" secondAttribute="bottom" id="BQh-E6-d0v"/>
                             <constraint firstItem="hvC-M5-3hW" firstAttribute="leading" secondItem="Yq1-H5-Zqk" secondAttribute="leading" id="Jpi-aP-DP7"/>
                             <constraint firstItem="ezL-ch-G3A" firstAttribute="leading" secondItem="Yq1-H5-Zqk" secondAttribute="leading" id="LAM-KP-gnH"/>
-                            <constraint firstItem="0im-dJ-GEe" firstAttribute="top" secondItem="hvC-M5-3hW" secondAttribute="bottom" id="ZkB-s6-xU7"/>
                             <constraint firstAttribute="trailing" secondItem="ezL-ch-G3A" secondAttribute="trailing" id="aOV-S6-UBv"/>
                             <constraint firstItem="oCb-Ud-YLV" firstAttribute="top" secondItem="ezL-ch-G3A" secondAttribute="bottom" id="aV8-gF-dEf"/>
                             <constraint firstItem="JRl-4S-Sno" firstAttribute="top" secondItem="DNv-aX-bW4" secondAttribute="bottom" id="bK4-f3-Squ"/>
                             <constraint firstItem="ezL-ch-G3A" firstAttribute="top" secondItem="Yq1-H5-Zqk" secondAttribute="top" id="dSO-Cl-QnH"/>
+                            <constraint firstItem="oCb-Ud-YLV" firstAttribute="top" secondItem="hvC-M5-3hW" secondAttribute="bottom" constant="56" id="f9o-tH-CS9"/>
                             <constraint firstAttribute="trailing" secondItem="hvC-M5-3hW" secondAttribute="trailing" id="g2Q-IQ-dDo"/>
                             <constraint firstAttribute="trailing" secondItem="huA-W7-czc" secondAttribute="trailing" id="lMz-lH-AdP"/>
                             <constraint firstItem="huA-W7-czc" firstAttribute="top" secondItem="DNv-aX-bW4" secondAttribute="bottom" id="oK4-Su-yCu"/>
@@ -302,7 +302,7 @@ You are just on a single tap to dive into Instagram and Flickr photos!</string>
                         <outlet property="instagramButton" destination="Pw5-2x-Yyo" id="6hT-jj-t2o"/>
                         <outlet property="searchBar" destination="huA-W7-czc" id="RQ2-DY-Vyb"/>
                         <outlet property="tableView" destination="hvC-M5-3hW" id="ZCQ-CH-J9Z"/>
-                        <outlet property="tableViewBottomConstraint" destination="ZkB-s6-xU7" id="b1L-jc-vxM"/>
+                        <outlet property="tableViewBottomConstraint" destination="f9o-tH-CS9" id="1x0-gq-CT2"/>
                         <outlet property="topView" destination="qbs-9n-bmS" id="uue-UI-b34"/>
                         <outlet property="welcomeView" destination="ezL-ch-G3A" id="gJG-gK-xv1"/>
                         <segue destination="NQX-HI-Pl3" kind="show" identifier="showSearchResults" id="m52-0N-nPl"/>
