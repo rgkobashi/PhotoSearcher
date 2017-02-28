@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         appDelegate = self
-        UISearchBar.appearance().tintColor = UIColor(hex: "#F9B82B")
-        UISegmentedControl.appearance().tintColor = UIColor(hex: "#F9B82B")
+        UISearchBar.appearance().tintColor = UIColor(hex: kColorYellow)
+        UISegmentedControl.appearance().tintColor = UIColor(hex: kColorYellow)
         UIButton.appearance().substituteRegularFontName = kDefaultRegularFontName
         UILabel.appearance().substituteRegularFontName = kDefaultRegularFontName
         UITextField.appearance().substituteRegularFontName = kDefaultRegularFontName

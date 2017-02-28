@@ -18,3 +18,5 @@ let kEmail = "mailto:kobashiroger@gmail.com"
 let kURLWebsite = "https://rgkobashi.github.io"
 let kURLLinkedIn = "https://www.linkedin.com/in/rogerkobashi"
 let kURLGithub = "https://github.com/rgkobashi"
+
+let kColorYellow = "#F9B82B"
