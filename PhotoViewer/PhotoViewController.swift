@@ -168,7 +168,7 @@ class PhotoViewController: UIViewController
         imageView.image = image
         imageView.center = scrollView.center
         scrollView.addSubview(imageView)
-        scrollView.userInteractionEnabled = false
+        scrollView.scrollEnabled = false
         shareButton.userInteractionEnabled = false
     }
 }
