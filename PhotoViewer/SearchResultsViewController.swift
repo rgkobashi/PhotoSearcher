@@ -227,19 +227,36 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
     {
-        let collectionReusableView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "headerReusableView", forIndexPath: indexPath)
-        if collectionReusableView.subviews.count == 0
+        var collectionReusableView: UICollectionReusableView!
+        if kind == UICollectionElementKindSectionHeader
         {
-            collectionReusableView.addSubview(UILabel(frame: CGRectMake(0, 0, collectionView.frame.size.width, 30)))
-        }
-        let label = collectionReusableView.subviews.first as! UILabel
-        if indexPath.section == 0
-        {
-            label.text = "Top photos"
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "headerReusableView", forIndexPath: indexPath) as! HeaderCollectionReusableView
+            if indexPath.section == 0
+            {
+                headerView.label.text = "Top photos"
+            }
+            else
+            {
+                headerView.label.text = "Most recent"
+            }
+            collectionReusableView = headerView
         }
         else
         {
-            label.text = "Most recent"
+            let footerView = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter, withReuseIdentifier: "footerReusableView", forIndexPath: indexPath) as! FooterCollectionReusableView
+            if mostRecent.count == 0 && indexPath.section == 0
+            {
+                footerView.view.hidden = true
+            }
+            else if mostRecent.count > 0 && indexPath.section == 1
+            {
+                footerView.view.hidden = true
+            }
+            else
+            {
+                footerView.view.hidden = false
+            }
+            collectionReusableView = footerView
         }
         return collectionReusableView
     }
