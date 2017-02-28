@@ -86,7 +86,7 @@ class InstagramUtility
     private class func createThumbnailUrl(instagramPhoto: InstagramPhoto) -> String
     {
         var words = instagramPhoto.originalUrl.componentsSeparatedByString("/")
-        words[4] = "s" + kSmallImageSize
+        words[4] = "s" + kThumbnailImageSize
         return words.joinWithSeparator("/")
     }
 }
