@@ -10,7 +10,6 @@ import UIKit
 
 extension UIButton
 {
-    // TODO see if a parent class or protocol can be created for all the extensions
     var substituteRegularFontName: String? {
         get {
             return self.titleLabel?.font.fontName
