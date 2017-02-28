@@ -462,17 +462,118 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="p0t-Rk-c6g" kind="relationship" relationship="rootViewController" id="pHm-F5-Cil"/>
+                        <segue destination="qWl-hN-tsd" kind="relationship" relationship="rootViewController" id="8a6-TJ-6FO"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oht-rc-fqt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="651" y="319"/>
+            <point key="canvasLocation" x="67" y="319"/>
+        </scene>
+        <!--Welcome View Controller-->
+        <scene sceneID="y7y-7n-Nun">
+            <objects>
+                <viewController id="qWl-hN-tsd" customClass="WelcomeViewController" customModule="PhotoViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hoB-wa-Y8M"/>
+                        <viewControllerLayoutGuide type="bottom" id="9pY-zT-nFo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eOi-fA-S4x">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="G4r-2J-kaT">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="reR-KY-NyC">
+                                <rect key="frame" x="140" y="412" width="320" height="146"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="DcE-gC-dje"/>
+                                    <constraint firstAttribute="height" constant="146" id="yob-ea-yDK"/>
+                                </constraints>
+                                <string key="text">Thanks for downloading to PhotoSearcher! With PhotoSearcher you will be able to search photos on Instagram and Flickr and share them on your social networks.
+
+
+You are just on a single tap to dive into Instagram and Flickr photos!</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zL8-OG-Jqs">
+                                <rect key="frame" x="200" y="223" width="200" height="154"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searcher" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksC-LM-hl9">
+                                        <rect key="frame" x="85" y="96" width="114" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="114" id="f7j-lb-rO2"/>
+                                            <constraint firstAttribute="height" constant="50" id="jkj-jW-wkB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                        <color key="textColor" red="0.1764705882" green="0.53725490200000003" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEP-Km-Sa5">
+                                        <rect key="frame" x="9" y="96" width="74" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="74" id="ao2-oH-m53"/>
+                                            <constraint firstAttribute="height" constant="50" id="sr5-yb-RGQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                        <color key="textColor" red="0.97647058819999999" green="0.72156862749999995" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="5Hg-yT-zg1">
+                                        <rect key="frame" x="62" y="8" width="100" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="4Kf-Cc-fr3"/>
+                                            <constraint firstAttribute="width" constant="100" id="DIn-96-HyN"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="3Le-cf-X7i"/>
+                                    <constraint firstItem="5Hg-yT-zg1" firstAttribute="leading" secondItem="zL8-OG-Jqs" secondAttribute="leading" constant="62" id="Hu4-iB-meQ"/>
+                                    <constraint firstItem="5Hg-yT-zg1" firstAttribute="top" secondItem="zL8-OG-Jqs" secondAttribute="top" constant="8" id="Jmn-oJ-wkn"/>
+                                    <constraint firstItem="ksC-LM-hl9" firstAttribute="leading" secondItem="gEP-Km-Sa5" secondAttribute="trailing" constant="2" id="OFr-ta-ovg"/>
+                                    <constraint firstAttribute="bottom" secondItem="ksC-LM-hl9" secondAttribute="bottom" constant="8" id="OeG-gT-C8c"/>
+                                    <constraint firstAttribute="height" constant="154" id="bya-fR-nn1"/>
+                                    <constraint firstAttribute="bottom" secondItem="gEP-Km-Sa5" secondAttribute="bottom" constant="8" id="ubP-mp-mPn"/>
+                                    <constraint firstItem="gEP-Km-Sa5" firstAttribute="leading" secondItem="zL8-OG-Jqs" secondAttribute="leading" constant="9" id="yB6-wf-c4d"/>
+                                    <constraint firstAttribute="trailing" secondItem="5Hg-yT-zg1" secondAttribute="trailing" constant="38" id="yuh-fI-RhX"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9pY-zT-nFo" firstAttribute="top" secondItem="G4r-2J-kaT" secondAttribute="bottom" id="063-P6-FEt"/>
+                            <constraint firstItem="9pY-zT-nFo" firstAttribute="top" secondItem="reR-KY-NyC" secondAttribute="bottom" constant="42" id="DBX-wZ-llN"/>
+                            <constraint firstItem="G4r-2J-kaT" firstAttribute="leading" secondItem="eOi-fA-S4x" secondAttribute="leading" id="Sv1-Vt-7QV"/>
+                            <constraint firstItem="zL8-OG-Jqs" firstAttribute="centerX" secondItem="eOi-fA-S4x" secondAttribute="centerX" id="f0H-Cr-IiC"/>
+                            <constraint firstItem="G4r-2J-kaT" firstAttribute="top" secondItem="eOi-fA-S4x" secondAttribute="top" id="fnp-ku-AOf"/>
+                            <constraint firstItem="zL8-OG-Jqs" firstAttribute="centerY" secondItem="eOi-fA-S4x" secondAttribute="centerY" id="hAe-op-EeG"/>
+                            <constraint firstItem="reR-KY-NyC" firstAttribute="centerX" secondItem="eOi-fA-S4x" secondAttribute="centerX" id="lCD-tx-jsA"/>
+                            <constraint firstAttribute="trailing" secondItem="G4r-2J-kaT" secondAttribute="trailing" id="lod-SB-O6i"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="jmO-v4-qAa"/>
+                    <connections>
+                        <outlet property="photoLabel" destination="gEP-Km-Sa5" id="gR0-Ld-Mrg"/>
+                        <outlet property="searcherLabel" destination="ksC-LM-hl9" id="asx-mY-Xqy"/>
+                        <outlet property="textView" destination="reR-KY-NyC" id="jdD-TW-zgh"/>
+                        <segue destination="p0t-Rk-c6g" kind="show" identifier="showSearch" id="tMa-hk-Wcq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lzj-bd-WqY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="801" y="319"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Background" width="640" height="960"/>
         <image name="DownArrow" width="23" height="14"/>
         <image name="LeftArrow" width="14" height="23"/>
+        <image name="Logo" width="100" height="80"/>
         <image name="RightArrow" width="14" height="23"/>
         <image name="Share" width="24" height="24"/>
     </resources>

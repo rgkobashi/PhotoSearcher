@@ -6,8 +6,22 @@
 //  Copyright © 2017 Rogelio Martinez Kobashi. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: UIViewController
+{
+    
+    @IBOutlet weak var photoLabel: UILabel!
+    @IBOutlet weak var searcherLabel: UILabel!
+    @IBOutlet weak var textView: UITextView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(WelcomeViewController.showSearch)))
+    }
 
+    func showSearch()
+    {
+        performSegueWithIdentifier("showSearch", sender: nil)
+    }
 }
