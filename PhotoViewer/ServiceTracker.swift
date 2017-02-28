@@ -21,6 +21,8 @@ class ServiceTracker
         createLogForRequest(request)
     }
     
+    // MARK: - Private methods
+    
     private func printInfoForService(service: Service)
     {
         var result = "\n*************Service info*************\n"
@@ -99,6 +101,8 @@ class ServiceTracker
         
         NSLog("%@", result)
     }
+    
+    // MARK: - Public methods
     
     func callFinished()
     {
