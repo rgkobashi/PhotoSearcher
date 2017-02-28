@@ -11,3 +11,5 @@ let kURLFlickr = "https://api.flickr.com/services/rest/?method=flickr.photos.sea
 let kErrorDomain = "com.photoviewer.errordomain"
 let kThumbnailImageSize = "180x180"
 let kKeyFlickr = "beee19ea6c3aed0f0b44c169876233c5"
+let kDefaultRegularFontName = "TrebuchetMS"
+let kDefaultBoldFontName = "TrebuchetMS-Bold"
