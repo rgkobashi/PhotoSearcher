@@ -42,6 +42,7 @@ class PhotoViewController: UIViewController
         scrollView.zoomScale = 1
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
+        camptionTextView.selectable = false
         
         if let instagramPhoto = photo as? InstagramPhoto
         {

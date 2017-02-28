@@ -281,18 +281,20 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yN7-un-QvE">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="nR9-eK-JOa" appends="YES" id="M4J-d4-Lzm"/>
                                     <outletCollection property="gestureRecognizers" destination="JzD-Sp-L9d" appends="YES" id="glD-cN-35O"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nms-uF-JHL">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nms-uF-JHL">
                                 <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="6ee-Ki-TDW"/>
                                     <constraint firstAttribute="width" constant="36" id="8im-yU-iZp"/>
                                 </constraints>
+                                <color key="tintColor" red="0.97647058819999999" green="0.72156862749999995" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="Share"/>
                                 <connections>
                                     <action selector="actions:" destination="USb-Hz-zFZ" eventType="touchUpInside" id="bed-fB-aB0"/>
@@ -304,7 +306,7 @@
                                     <constraint firstAttribute="width" constant="36" id="6wh-Bz-ydR"/>
                                     <constraint firstAttribute="height" constant="36" id="eBD-d8-Zvu"/>
                                 </constraints>
-                                <state key="normal" image="Close"/>
+                                <state key="normal" image="DownArrow"/>
                                 <connections>
                                     <action selector="actions:" destination="USb-Hz-zFZ" eventType="touchUpInside" id="64M-LC-Ovm"/>
                                 </connections>
@@ -318,14 +320,15 @@
                                             <constraint firstAttribute="height" constant="21" id="g6n-TE-VTn"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rS4-Wr-oQf">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rS4-Wr-oQf">
                                         <rect key="frame" x="8" y="29" width="584" height="42"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="commentsLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9u-Q1-hnO">
@@ -334,7 +337,7 @@
                                             <constraint firstAttribute="height" constant="21" id="bVn-PH-WPO"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="likesLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGj-nz-CLj">
@@ -343,11 +346,11 @@
                                             <constraint firstAttribute="height" constant="21" id="nXq-mG-qd6"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="f9u-Q1-hnO" secondAttribute="trailing" constant="8" id="1Lf-gV-fsh"/>
                                     <constraint firstAttribute="trailing" secondItem="rS4-Wr-oQf" secondAttribute="trailing" constant="8" id="4ZK-gD-zsL"/>
@@ -372,7 +375,7 @@
                                 </constraints>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="WfB-nT-VEN" firstAttribute="centerY" secondItem="A4q-bp-WGf" secondAttribute="centerY" id="0rp-ee-4bI"/>
@@ -439,7 +442,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Close" width="24" height="24"/>
+        <image name="DownArrow" width="23" height="14"/>
         <image name="LeftArrow" width="14" height="23"/>
         <image name="Share" width="24" height="24"/>
     </resources>
