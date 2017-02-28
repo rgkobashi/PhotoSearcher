@@ -17,7 +17,6 @@ class SearchViewController: UIViewController
     @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
     
     private var keyboardHeight:CGFloat = 0.0
-    
     private var searchHistory = [CD_SearchHistoryItem]()
     
     deinit
@@ -50,11 +49,7 @@ class SearchViewController: UIViewController
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchViewController.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchViewController.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
         
-        if let history = CoreDataController.sharedInstance.fetchSearchHistory()
-        {
-            searchHistory.appendContentsOf(history)
-            tableView.reloadData()
-        }
+        fecthSearchHistory()
     }
     
     override func viewWillAppear(animated: Bool)
@@ -109,6 +104,38 @@ class SearchViewController: UIViewController
         }
     }
     
+    // MARK: - CoreData/History operations
+    
+    private func fecthSearchHistory()
+    {
+        if let history = CoreDataController.sharedInstance.fetchSearchHistory()
+        {
+            searchHistory.appendContentsOf(history)
+            tableView.reloadData()
+        }
+    }
+    
+    private func deleteSearchHistoryItemForIndexPath(indexPath: NSIndexPath)
+    {
+        Components.displayAlertWithTitle(nil, message: "Are you sure?", buttonTitle: "Cancel", buttonHandler: nil, destructiveTitle: "Delete", destructiveHandler: { [unowned self] in
+            let searchHistoryItem = self.searchHistory[indexPath.row]
+            CoreDataController.sharedInstance.deleteSearchHistoryItem(searchHistoryItem)
+            self.searchHistory.removeAtIndex(indexPath.row)
+            self.tableView.reloadData()
+        })
+    }
+    
+    private func selectSearchHistoryItemForIndexPath(indexPath: NSIndexPath)
+    {
+        let searchHistoryItem = searchHistory[indexPath.row]
+        let searchTerm = searchHistoryItem.searchTerm!
+        
+        CoreDataController.sharedInstance.deleteSearchHistoryItem(searchHistoryItem)
+        searchHistory.removeAtIndex(indexPath.row)
+        
+        showSearchResultsForSearchTerm(searchTerm)
+    }
+    
     // MARK: - Navigation
     
     private func showSearchResultsForSearchTerm(searchTerm: String)
@@ -160,10 +187,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate
     {
         if (editingStyle == UITableViewCellEditingStyle.Delete)
         {
-            let searchHistoryItem = searchHistory[indexPath.row]
-            CoreDataController.sharedInstance.deleteSearchHistoryItem(searchHistoryItem)
-            searchHistory.removeAtIndex(indexPath.row)
-            tableView.reloadData()
+            deleteSearchHistoryItemForIndexPath(indexPath)
         }
     }
     
@@ -171,13 +195,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        let searchHistoryItem = searchHistory[indexPath.row]
-        let searchTerm = searchHistoryItem.searchTerm!
-        
-        CoreDataController.sharedInstance.deleteSearchHistoryItem(searchHistoryItem)
-        searchHistory.removeAtIndex(indexPath.row)
-        
-        showSearchResultsForSearchTerm(searchTerm)
+        selectSearchHistoryItemForIndexPath(indexPath)
     }
 }
 
