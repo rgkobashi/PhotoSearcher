@@ -105,7 +105,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="postsCountLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0je-pN-GDM">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="photosCountLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0je-pN-GDM">
                                         <rect key="frame" x="56" y="22" width="488" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="RWc-yI-nll"/>
@@ -211,7 +211,7 @@
                     <connections>
                         <outlet property="backButton" destination="KKd-0N-WcD" id="erh-gQ-qLe"/>
                         <outlet property="collectionView" destination="eRb-jn-O4w" id="mfq-Xf-OU2"/>
-                        <outlet property="postsCountLabel" destination="0je-pN-GDM" id="hTo-p6-cZa"/>
+                        <outlet property="photosCountLabel" destination="0je-pN-GDM" id="PFF-jQ-1Dn"/>
                         <outlet property="searchTermLabel" destination="muV-aI-lhd" id="e3M-eL-fVa"/>
                         <outlet property="segmentedControl" destination="X5q-nW-I9m" id="nFY-7V-ghT"/>
                         <segue destination="USb-Hz-zFZ" kind="presentation" identifier="showPhoto" id="QtG-NW-cJo"/>

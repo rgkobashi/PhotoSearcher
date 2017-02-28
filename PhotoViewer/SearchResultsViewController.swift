@@ -18,7 +18,7 @@ class SearchResultsViewController: UIViewController
 {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var searchTermLabel: UILabel!
-    @IBOutlet weak var postsCountLabel: UILabel!
+    @IBOutlet weak var photosCountLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
@@ -35,7 +35,7 @@ class SearchResultsViewController: UIViewController
     {
         super.viewDidLoad()
         searchTermLabel.text = ""
-        postsCountLabel.text = ""
+        photosCountLabel.text = ""
         collectionView.dataSource = self
         collectionView.delegate = self
         segmentedControl.setTitle(ServiceCalled.Instagram.rawValue, forSegmentAtIndex: 0)
@@ -105,11 +105,11 @@ class SearchResultsViewController: UIViewController
             let result = InstagramUtility.parseResponse(response)
             top.appendContentsOf(result.top.map{$0 as Photo})
             mostRecent.appendContentsOf(result.mostRecent.map{$0 as Photo})
-            updatePostsCountLabel(result.total) // TODO remove these lines
+            updatePhotosCountLabel(result.total) // TODO remove these lines
         case .Flickr:
             let result = FlickrUtility.parseResponse(response)
             top.appendContentsOf(result.photos.map{$0 as Photo})
-            updatePostsCountLabel(result.total)
+            updatePhotosCountLabel(result.total)
         }
         collectionView.reloadData()
     }
@@ -123,7 +123,7 @@ class SearchResultsViewController: UIViewController
         })
     }
     
-    private func updatePostsCountLabel(count: Int)
+    private func updatePhotosCountLabel(count: Int)
     {
         let numberFormatter = NSNumberFormatter()
         numberFormatter.groupingSeparator = ","
@@ -132,25 +132,16 @@ class SearchResultsViewController: UIViewController
         let boldAttributed: NSMutableAttributedString!
         if let strCount = numberFormatter.stringFromNumber(count)
         {
-            boldAttributed = NSMutableAttributedString(string: strCount, attributes: [NSFontAttributeName: UIFont.boldSystemFontOfSize(postsCountLabel.font.pointSize)])
+            boldAttributed = NSMutableAttributedString(string: strCount, attributes: [NSFontAttributeName: UIFont.boldSystemFontOfSize(photosCountLabel.font.pointSize)])
         }
         else
         {
-            boldAttributed = NSMutableAttributedString(string: "\(count)", attributes: [NSFontAttributeName: UIFont.boldSystemFontOfSize(postsCountLabel.font.pointSize)])
+            boldAttributed = NSMutableAttributedString(string: "\(count)", attributes: [NSFontAttributeName: UIFont.boldSystemFontOfSize(photosCountLabel.font.pointSize)])
         }
         
-        let normalAttributed: NSAttributedString!
-        if count == 1
-        {
-            normalAttributed = NSAttributedString(string: " post")
-        }
-        else
-        {
-            normalAttributed = NSAttributedString(string: " posts")
-        }
-        
+        let normalAttributed = NSAttributedString(string: " photos")
         boldAttributed.appendAttributedString(normalAttributed)
-        postsCountLabel.attributedText = boldAttributed
+        photosCountLabel.attributedText = boldAttributed
     }
     
     private func downloadImageURL(imageURL: String, forCell cell: SearchResultsCollectionViewCell?)
@@ -240,7 +231,7 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
         let label = collectionReusableView.subviews.first as! UILabel
         if indexPath.section == 0
         {
-            label.text = "Top posts"
+            label.text = "Top photos"
         }
         else
         {
