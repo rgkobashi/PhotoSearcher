@@ -23,7 +23,7 @@ class PhotoViewController: UIViewController
     @IBOutlet weak var camptionTextView: UITextView!
     @IBOutlet weak var commentsLabel: UILabel!
     
-    var instagramPhoto: InstagramPhoto!
+    var photo: Photo!
     
     private var hidden = false
     private var image: UIImage?
@@ -43,12 +43,21 @@ class PhotoViewController: UIViewController
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         
-        likesLabel.text = "\(instagramPhoto.likesCount) likes"
-        dateLabel.text = NSDate(timeIntervalSince1970: NSTimeInterval(NSNumber(integer: instagramPhoto.date))).stringUTC()
-        camptionTextView.text = instagramPhoto.text
-        commentsLabel.text = "\(instagramPhoto.commentsCount) comments"
+        if let instagramPhoto = photo as? InstagramPhoto
+        {
+            likesLabel.text = "\(instagramPhoto.likesCount) likes"
+            dateLabel.text = NSDate(timeIntervalSince1970: NSTimeInterval(NSNumber(integer: instagramPhoto.date))).stringUTC()
+            commentsLabel.text = "\(instagramPhoto.commentsCount) comments"
+        }
+        else
+        {
+            likesLabel.text = ""
+            dateLabel.text = ""
+            commentsLabel.text = ""
+        }
         
-        Components.downloadImageFrom(instagramPhoto.originalUrl, suceedHandler: { [weak self] (result) in
+        camptionTextView.text = photo.text
+        Components.downloadImageFrom(photo.originalUrl, suceedHandler: { [weak self] (result) in
             self?.activityIndicatorView.stopAnimating()
             self?.image = result as? UIImage
             self?.successImageDownload()

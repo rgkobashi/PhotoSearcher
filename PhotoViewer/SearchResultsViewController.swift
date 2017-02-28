@@ -16,8 +16,8 @@ class SearchResultsViewController: UIViewController
     @IBOutlet weak var collectionView: UICollectionView!
     
     var searchTerm: String!
-    private var top = [InstagramPhoto]()
-    private var mostRecent = [InstagramPhoto]()
+    private var top = [Photo]()
+    private var mostRecent = [Photo]()
     
     deinit
     {
@@ -59,9 +59,9 @@ class SearchResultsViewController: UIViewController
                 self.searchTermLabel.text = "#\(self.searchTerm)"
                 self.updatePostsCountLabel(result.total)
                 self.top.removeAll()
-                self.top.appendContentsOf(result.top)
+                self.top.appendContentsOf(result.top.map{$0 as Photo})
                 self.mostRecent.removeAll()
-                self.mostRecent.appendContentsOf(result.mostRecent)
+                self.mostRecent.appendContentsOf(result.mostRecent.map{$0 as Photo})
                 self.collectionView.reloadData()
             }
         }) { [weak self] (error) in
@@ -121,8 +121,18 @@ class SearchResultsViewController: UIViewController
     {
         if segue.identifier == "showPhoto"
         {
+            let indexPath = sender as! NSIndexPath
+            let photo: Photo!
+            if indexPath.section == 0
+            {
+                photo = top[indexPath.row]
+            }
+            else
+            {
+                photo = mostRecent[indexPath.row]
+            }
             let photoVC = segue.destinationViewController as! PhotoViewController
-            photoVC.instagramPhoto = sender as! InstagramPhoto
+            photoVC.photo = photo
         }
     }
 }
@@ -186,15 +196,6 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        if indexPath.section == 0
-        {
-            let post = top[indexPath.row]
-            performSegueWithIdentifier("showPhoto", sender: post)
-        }
-        else
-        {
-            let post = mostRecent[indexPath.row]
-            performSegueWithIdentifier("showPhoto", sender: post)
-        }
+        performSegueWithIdentifier("showPhoto", sender: indexPath)
     }
 }
