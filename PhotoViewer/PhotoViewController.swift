@@ -23,7 +23,7 @@ class PhotoViewController: UIViewController
     @IBOutlet weak var camptionTextView: UITextView!
     @IBOutlet weak var commentsLabel: UILabel!
     
-    var photo: Photo!
+    var photoViewModel: PhotoViewModel!
     
     fileprivate var hidden = false
     fileprivate var image: UIImage?
@@ -44,11 +44,11 @@ class PhotoViewController: UIViewController
         scrollView.showsVerticalScrollIndicator = false
         camptionTextView.isSelectable = false
         
-        if let instagramPhoto = photo as? InstagramPhoto
+        if let likesCount = photoViewModel.likesCount, let date = photoViewModel.date, let commentsCount = photoViewModel.commentsCount
         {
-            likesLabel.text = "\(instagramPhoto.likesCount) likes"
-            dateLabel.text = Utilities.stringDifferenceFromTimeStamp(instagramPhoto.date)
-            commentsLabel.text = "\(instagramPhoto.commentsCount) comments"
+            likesLabel.text = "\(likesCount) likes"
+            dateLabel.text = Utilities.stringDifferenceFromTimeStamp(date)
+            commentsLabel.text = "\(commentsCount) comments"
         }
         else
         {
@@ -57,7 +57,7 @@ class PhotoViewController: UIViewController
             commentsLabel.text = ""
         }
         
-        camptionTextView.text = photo.text
+        camptionTextView.text = photoViewModel.text
         downloadImage()
     }
     
@@ -130,7 +130,7 @@ class PhotoViewController: UIViewController
     
     fileprivate func downloadImage()
     {
-        if let originalImage = photo.originalImage
+        if let originalImage = photoViewModel.originalImage
         {
             activityIndicatorView.stopAnimating()
             image = originalImage
@@ -138,9 +138,9 @@ class PhotoViewController: UIViewController
         }
         else
         {
-            photo.downloadOriginalImage({ [weak self] in
+            photoViewModel.downloadOriginalImage({ [weak self] in
                 self?.activityIndicatorView.stopAnimating()
-                self?.image = self?.photo.originalImage
+                self?.image = self?.photoViewModel.originalImage
                 self?.imageDownloadSucceed()
             }, failedHandler: { [weak self] (error) in
                 self?.activityIndicatorView.stopAnimating()

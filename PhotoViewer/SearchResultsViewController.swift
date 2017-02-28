@@ -23,8 +23,8 @@ class SearchResultsViewController: UIViewController
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var searchTerm = ""
-    fileprivate var top = [Photo]()
-    fileprivate var mostRecent = [Photo]()
+    fileprivate var top = [PhotoViewModel]()
+    fileprivate var mostRecent = [PhotoViewModel]()
     
     deinit
     {
@@ -126,12 +126,24 @@ class SearchResultsViewController: UIViewController
         switch type {
         case .Instagram:
             let result = InstagramUtility.parseResponse(response)
-            top.append(contentsOf: result.top.map{$0 as Photo})
-            mostRecent.append(contentsOf: result.mostRecent.map{$0 as Photo})
+            for photo in result.top
+            {
+                let photoViewModel = PhotoViewModel(photo: photo)
+                top.append(photoViewModel)
+            }
+            for photo in result.mostRecent
+            {
+                let photoViewModel = PhotoViewModel(photo: photo)
+                mostRecent.append(photoViewModel)
+            }
             updatePhotosCountLabel(result.top.count + result.mostRecent.count)
         case .Flickr:
             let result = FlickrUtility.parseResponse(response)
-            top.append(contentsOf: result.map{$0 as Photo})
+            for photo in result
+            {
+                let photoViewModel = PhotoViewModel(photo: photo)
+                top.append(photoViewModel)
+            }
             updatePhotosCountLabel(result.count)
         }
         collectionView.reloadData()
@@ -153,17 +165,17 @@ class SearchResultsViewController: UIViewController
         if segue.identifier == "showPhoto"
         {
             let indexPath = sender as! IndexPath
-            let photo: Photo!
+            let photoViewModel: PhotoViewModel!
             if indexPath.section == 0
             {
-                photo = top[indexPath.row]
+                photoViewModel = top[indexPath.row]
             }
             else
             {
-                photo = mostRecent[indexPath.row]
+                photoViewModel = mostRecent[indexPath.row]
             }
             let photoVC = segue.destination as! PhotoViewController
-            photoVC.photo = photo
+            photoVC.photoViewModel = photoViewModel
         }
     }
 }
@@ -199,26 +211,26 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchResultCell", for: indexPath) as! SearchResultsCollectionViewCell
-        var photo: Photo!
+        var photoViewModel: PhotoViewModel!
         if indexPath.section == 0
         {
-            photo = top[indexPath.row]
+            photoViewModel = top[indexPath.row]
         }
         else
         {
-            photo = mostRecent[indexPath.row]
+            photoViewModel = mostRecent[indexPath.row]
         }
         
-        if let image = photo.thumbnailImage
+        if let image = photoViewModel.thumbnailImage
         {
             cell.activityIndicatorView.stopAnimating()
             cell.imageView.image = image
         }
         else
         {
-            photo.downloadThumbnailImage({ [weak cell] in
+            photoViewModel.downloadThumbnailImage({ [weak cell] in
                 cell?.activityIndicatorView.stopAnimating()
-                cell?.imageView.image = photo.thumbnailImage
+                cell?.imageView.image = photoViewModel.thumbnailImage
             }, failedHandler: { [weak cell] (error) in
                 cell?.activityIndicatorView.stopAnimating()
                 cell?.imageView.image = UIImage(named: "ImageError")
