@@ -143,10 +143,10 @@ class PhotoViewController: UIViewController
                 self?.image = self?.photo.originalImage
                 self?.imageDownloadSucceed()
             }, failedHandler: { [weak self] (error) in
-                    self?.activityIndicatorView.stopAnimating()
-                    print("error = \(error)")
-                    self?.image = UIImage(named: "BrokenImage")
-                    self?.imageDownloadFailed()
+                self?.activityIndicatorView.stopAnimating()
+                print("error = \(error)")
+                self?.image = UIImage(named: "ImageError")
+                self?.imageDownloadFailed()
             })
         }
     }

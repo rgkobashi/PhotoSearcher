@@ -221,7 +221,7 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
                 cell?.imageView.image = photo.thumbnailImage
             }, failedHandler: { [weak cell] (error) in
                 cell?.activityIndicatorView.stopAnimating()
-                cell?.imageView.image = UIImage(named: "BrokenImage")
+                cell?.imageView.image = UIImage(named: "ImageError")
             })
         }
         return cell
