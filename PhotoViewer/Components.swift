@@ -88,4 +88,44 @@ class Components
             UIApplication.sharedApplication().openURL(url)
         }
     }
+    
+    class func stringDifferenceFromTimeStamp(timeStamp: Int) -> String
+    {
+        let before = NSDate(timeIntervalSince1970: NSTimeInterval(NSNumber(integer: timeStamp)))
+        let today = NSDate()
+        let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
+        let dateComponents = NSCalendar.currentCalendar().components(unitFlags, fromDate: before, toDate: today, options: [])
+        if dateComponents.year > 0
+        {
+            return "\(dateComponents.year) years ago"
+        }
+        else if dateComponents.month > 0
+        {
+            return "\(dateComponents.month) months ago"
+        }
+        else
+        {
+            let days = dateComponents.day
+            if days > 7
+            {
+                let weeks = days / 7
+                if weeks > 0
+                {
+                    return "\(weeks) weeks ago"
+                }
+                else
+                {
+                    return "\(days) days ago"
+                }
+            }
+            else if days == 0
+            {
+                return "Today"
+            }
+            else
+            {
+                return "\(days) days ago"
+            }
+        }
+    }
 }

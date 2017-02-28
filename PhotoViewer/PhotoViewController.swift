@@ -47,7 +47,7 @@ class PhotoViewController: UIViewController
         if let instagramPhoto = photo as? InstagramPhoto
         {
             likesLabel.text = "\(instagramPhoto.likesCount) likes"
-            dateLabel.text = stringFromTimeStamp(instagramPhoto.date)
+            dateLabel.text = Components.stringDifferenceFromTimeStamp(instagramPhoto.date)
             commentsLabel.text = "\(instagramPhoto.commentsCount) comments"
         }
         else
@@ -58,26 +58,7 @@ class PhotoViewController: UIViewController
         }
         
         camptionTextView.text = photo.text
-        
-        if let originalImage = photo.originalImage
-        {
-            activityIndicatorView.stopAnimating()
-            image = originalImage
-            successImageDownload()
-        }
-        else
-        {
-            photo.downloadOriginalImage({ [weak self] in
-                self?.activityIndicatorView.stopAnimating()
-                self?.image = self?.photo.originalImage
-                self?.successImageDownload()
-            }, failedHandler: { [weak self] (error) in
-                self?.activityIndicatorView.stopAnimating()
-                print("error = \(error)")
-                self?.image = UIImage(named: "BrokenImage")
-                self?.failedImageDownload()
-            })
-        }
+        downloadImage()
     }
     
     override func viewWillAppear(animated: Bool)
@@ -123,46 +104,6 @@ class PhotoViewController: UIViewController
         }
     }
     
-    private func stringFromTimeStamp(timeStamp: Int) -> String
-    {
-        let before = NSDate(timeIntervalSince1970: NSTimeInterval(NSNumber(integer: timeStamp)))
-        let today = NSDate()
-        let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
-        let dateComponents = NSCalendar.currentCalendar().components(unitFlags, fromDate: before, toDate: today, options: [])
-        if dateComponents.year > 0
-        {
-            return "\(dateComponents.year) years ago"
-        }
-        else if dateComponents.month > 0
-        {
-            return "\(dateComponents.month) months ago"
-        }
-        else
-        {
-            let days = dateComponents.day
-            if days > 7
-            {
-                let weeks = days / 7
-                if weeks > 0
-                {
-                    return "\(weeks) weeks ago"
-                }
-                else
-                {
-                    return "\(days) days ago"
-                }
-            }
-            else if days == 0
-            {
-                return "Today"
-            }
-            else
-            {
-                return "\(days) days ago"
-            }
-        }
-    }
-    
     private func hideShowElements()
     {
         if hidden
@@ -185,7 +126,32 @@ class PhotoViewController: UIViewController
         }
     }
     
-    private func successImageDownload()
+    // MARK: - Methods for services calls
+    
+    private func downloadImage()
+    {
+        if let originalImage = photo.originalImage
+        {
+            activityIndicatorView.stopAnimating()
+            image = originalImage
+            imageDownloadSucceed()
+        }
+        else
+        {
+            photo.downloadOriginalImage({ [weak self] in
+                self?.activityIndicatorView.stopAnimating()
+                self?.image = self?.photo.originalImage
+                self?.imageDownloadSucceed()
+            }, failedHandler: { [weak self] (error) in
+                    self?.activityIndicatorView.stopAnimating()
+                    print("error = \(error)")
+                    self?.image = UIImage(named: "BrokenImage")
+                    self?.imageDownloadFailed()
+            })
+        }
+    }
+    
+    private func imageDownloadSucceed()
     {
         let imageView = UIImageView(frame: CGRectMake(0, 0, view.frame.size.width, view.frame.size.height))
         imageView.clipsToBounds = true
@@ -196,7 +162,7 @@ class PhotoViewController: UIViewController
         scrollView.addSubview(imageView)
     }
     
-    private func failedImageDownload()
+    private func imageDownloadFailed()
     {
         let imageView = UIImageView(frame: CGRectMake(0, 0, 30, 30))
         imageView.image = image
