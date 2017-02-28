@@ -67,6 +67,20 @@ class Components
         UIApplication.sharedApplication().windows.first?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
     }
     
+    class func displayAlertWithTitle(title: String?, message: String?, buttonTitle: String, buttonHandler: VoidCompletionHandler?, destructiveTitle: String, destructiveHandler: VoidCompletionHandler)
+    {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let destructiveAction = UIAlertAction(title: destructiveTitle, style: .Destructive) { (alertAction) in
+            destructiveHandler()
+        }
+        alert.addAction(destructiveAction)
+        let action = UIAlertAction(title: buttonTitle, style: .Default) { (alertAction) in
+            buttonHandler?()
+        }
+        alert.addAction(action)
+        UIApplication.sharedApplication().windows.first?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     class func openURLWithString(string: String)
     {
         if let url = NSURL(string: string)
