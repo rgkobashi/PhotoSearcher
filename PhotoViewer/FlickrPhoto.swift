@@ -22,20 +22,13 @@ class FlickrPhoto: Photo
 
 class FlickrUtility
 {
-    // TODO check if can create Utility parent class or protocol
-    
-    class func parseResponse(response: AnyObject) -> (total: Int, photos: [FlickrPhoto])
+    class func parseResponse(response: AnyObject) -> [FlickrPhoto]
     {
-        var resTotal = 0
         var resPhotos = [FlickrPhoto]()
         if let response = response as? [String : AnyObject]
         {
             if let photos = response["photos"] as? [String : AnyObject]
             {
-                if let total = photos["total"] as? String
-                {
-                    resTotal = Int(total)!
-                }
                 if let photo = photos["photo"] as? [AnyObject]
                 {
                     for aPhoto in photo
@@ -68,7 +61,7 @@ class FlickrUtility
                 }
             }
         }
-        return (resTotal, resPhotos)
+        return resPhotos
     }
     
     private class func createThumbnailUrl(flickrPhoto: FlickrPhoto) -> String

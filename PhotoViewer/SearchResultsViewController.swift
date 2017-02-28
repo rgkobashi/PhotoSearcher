@@ -105,11 +105,11 @@ class SearchResultsViewController: UIViewController
             let result = InstagramUtility.parseResponse(response)
             top.appendContentsOf(result.top.map{$0 as Photo})
             mostRecent.appendContentsOf(result.mostRecent.map{$0 as Photo})
-            updatePhotosCountLabel(result.total) // TODO remove these lines
+            updatePhotosCountLabel(result.top.count + result.mostRecent.count)
         case .Flickr:
             let result = FlickrUtility.parseResponse(response)
-            top.appendContentsOf(result.photos.map{$0 as Photo})
-            updatePhotosCountLabel(result.total)
+            top.appendContentsOf(result.map{$0 as Photo})
+            updatePhotosCountLabel(result.count)
         }
         collectionView.reloadData()
     }

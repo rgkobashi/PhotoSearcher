@@ -21,9 +21,8 @@ class InstagramPhoto: Photo
 
 class InstagramUtility
 {
-    class func parseResponse(response: AnyObject) -> (total: Int, top: [InstagramPhoto], mostRecent: [InstagramPhoto])
+    class func parseResponse(response: AnyObject) -> (top: [InstagramPhoto], mostRecent: [InstagramPhoto])
     {
-        var resTotal = 0
         var resTop = [InstagramPhoto]()
         var resMostRecent = [InstagramPhoto]()
         if let response = response as? [String : AnyObject]
@@ -39,10 +38,6 @@ class InstagramUtility
                 }
                 if let media = tag["media"] as? [String : AnyObject]
                 {
-                    if let count = media["count"] as? Int
-                    {
-                        resTotal = count
-                    }
                     if let nodes = media["nodes"] as? [AnyObject]
                     {
                         resMostRecent.appendContentsOf(parseNodesSection(nodes))
@@ -50,7 +45,7 @@ class InstagramUtility
                 }
             }
         }
-        return (resTotal, resTop, resMostRecent)
+        return (resTop, resMostRecent)
     }
     
     private class func parseNodesSection(nodes: [AnyObject]) -> [InstagramPhoto]
