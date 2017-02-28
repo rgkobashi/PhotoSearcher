@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum ServiceCalled: String
+enum ServiceType: String
 {
     case Instagram = "Instagram"
     case Flickr = "Flickr"
@@ -38,9 +38,9 @@ class SearchResultsViewController: UIViewController
         photosCountLabel.text = ""
         collectionView.dataSource = self
         collectionView.delegate = self
-        segmentedControl.setTitle(ServiceCalled.Instagram.rawValue, forSegmentAtIndex: 0)
-        segmentedControl.setTitle(ServiceCalled.Flickr.rawValue, forSegmentAtIndex: 1)
-        callService(.Instagram)
+        segmentedControl.setTitle(ServiceType.Instagram.rawValue, forSegmentAtIndex: 0)
+        segmentedControl.setTitle(ServiceType.Flickr.rawValue, forSegmentAtIndex: 1)
+        callServiceType(.Instagram)
     }
     
     @IBAction func actions(sender: AnyObject)
@@ -52,11 +52,11 @@ class SearchResultsViewController: UIViewController
         case segmentedControl:
             if segmentedControl.selectedSegmentIndex == 0
             {
-                callService(.Instagram)
+                callServiceType(.Instagram)
             }
             else
             {
-                callService(.Flickr)
+                callServiceType(.Flickr)
             }
         default:
             break
@@ -68,67 +68,12 @@ class SearchResultsViewController: UIViewController
         navigationController?.popViewControllerAnimated(true)
     }
     
-    private func callService(serviceCalled: ServiceCalled)
-    {
-        let service: Service!
-        switch serviceCalled {
-        case .Instagram:
-            service = InstagramService(tag: searchTerm)
-        case .Flickr:
-            service = FlickrService(tag: searchTerm)
-        }
-        Loader.show()
-        SessionManager.sharedInstance.start(service, suceedHandler: { [weak self] (response) in
-            Loader.dismiss()
-            if let response = response
-            {
-                self?.successServiceCalled(serviceCalled, response: response)
-            }
-            else
-            {
-                self?.failedServiceCalled(nil)
-            }
-        }) { [weak self] (error) in
-            Loader.dismiss()
-            self?.failedServiceCalled(error)
-        }
-    }
-    
-    private func successServiceCalled(serviceCalled: ServiceCalled, response: AnyObject)
-    {
-        collectionView.setContentOffset(CGPointZero, animated: true)
-        searchTermLabel.text = "#\(self.searchTerm)"
-        top.removeAll()
-        mostRecent.removeAll()
-        switch serviceCalled {
-        case .Instagram:
-            let result = InstagramUtility.parseResponse(response)
-            top.appendContentsOf(result.top.map{$0 as Photo})
-            mostRecent.appendContentsOf(result.mostRecent.map{$0 as Photo})
-            updatePhotosCountLabel(result.top.count + result.mostRecent.count)
-        case .Flickr:
-            let result = FlickrUtility.parseResponse(response)
-            top.appendContentsOf(result.map{$0 as Photo})
-            updatePhotosCountLabel(result.count)
-        }
-        collectionView.reloadData()
-    }
-    
-    private func failedServiceCalled(error: NSError?)
-    {
-        Loader.dismiss()
-        print("error = \(error)")
-        Components.displayAlertWithTitle("Error", message: "Error searching for photos, please try again.", buttonTitle: "Accept", buttonHandler: { [weak self] in
-            self?.back()
-        })
-    }
-    
     private func updatePhotosCountLabel(count: Int)
     {
         let numberFormatter = NSNumberFormatter()
         numberFormatter.groupingSeparator = ","
         numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
-
+        
         let boldAttributed: NSMutableAttributedString!
         if let strCount = numberFormatter.stringFromNumber(count)
         {
@@ -142,6 +87,63 @@ class SearchResultsViewController: UIViewController
         let normalAttributed = NSAttributedString(string: " photos")
         boldAttributed.appendAttributedString(normalAttributed)
         photosCountLabel.attributedText = boldAttributed
+    }
+    
+    // MARK: - Methods for services calls
+    
+    private func callServiceType(serviceType: ServiceType)
+    {
+        let service: Service!
+        switch serviceType {
+        case .Instagram:
+            service = InstagramService(tag: searchTerm)
+        case .Flickr:
+            service = FlickrService(tag: searchTerm)
+        }
+        Loader.show()
+        SessionManager.sharedInstance.start(service, suceedHandler: { [weak self] (response) in
+            Loader.dismiss()
+            if let response = response
+            {
+                self?.serviceCallSucceed(serviceType, response: response)
+            }
+            else
+            {
+                self?.serviceCallFailedWithError(nil)
+            }
+        }) { [weak self] (error) in
+            Loader.dismiss()
+            self?.serviceCallFailedWithError(error)
+        }
+    }
+    
+    private func serviceCallSucceedWithType(type: ServiceType, response: AnyObject)
+    {
+        collectionView.setContentOffset(CGPointZero, animated: true)
+        searchTermLabel.text = "#\(self.searchTerm)"
+        top.removeAll()
+        mostRecent.removeAll()
+        switch type {
+        case .Instagram:
+            let result = InstagramUtility.parseResponse(response)
+            top.appendContentsOf(result.top.map{$0 as Photo})
+            mostRecent.appendContentsOf(result.mostRecent.map{$0 as Photo})
+            updatePhotosCountLabel(result.top.count + result.mostRecent.count)
+        case .Flickr:
+            let result = FlickrUtility.parseResponse(response)
+            top.appendContentsOf(result.map{$0 as Photo})
+            updatePhotosCountLabel(result.count)
+        }
+        collectionView.reloadData()
+    }
+    
+    private func serviceCallFailedWithError(error: NSError?)
+    {
+        Loader.dismiss()
+        print("error = \(error)")
+        Components.displayAlertWithTitle("Error", message: "Error searching for photos, please try again.", buttonTitle: "Accept", buttonHandler: { [weak self] in
+            self?.back()
+        })
     }
     
     // MARK: - Navigation
