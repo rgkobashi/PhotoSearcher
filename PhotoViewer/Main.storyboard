@@ -250,6 +250,7 @@ You are just on a single tap to dive into Instagram and Flickr photos!</string>
                         <outlet property="topView" destination="qbs-9n-bmS" id="uue-UI-b34"/>
                         <outlet property="welcomeView" destination="ezL-ch-G3A" id="gJG-gK-xv1"/>
                         <segue destination="NQX-HI-Pl3" kind="show" identifier="showSearchResults" id="m52-0N-nPl"/>
+                        <segue destination="8Ho-Zn-E76" kind="presentation" identifier="showAbout" id="anX-8A-Wox"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CaL-rv-aec" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -450,6 +451,167 @@ You are just on a single tap to dive into Instagram and Flickr photos!</string>
             </objects>
             <point key="canvasLocation" x="2135" y="319"/>
         </scene>
+        <!--About View Controller-->
+        <scene sceneID="IOj-8v-sOZ">
+            <objects>
+                <viewController id="8Ho-Zn-E76" customClass="AboutViewController" customModule="PhotoViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jfh-99-NZb"/>
+                        <viewControllerLayoutGuide type="bottom" id="nqn-ez-3pM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gBG-hb-hQV">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X9G-cp-v4o">
+                                <rect key="frame" x="200" y="28" width="200" height="154"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searcher" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovq-bO-Tc0">
+                                        <rect key="frame" x="85" y="96" width="114" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="X8j-Bn-69N"/>
+                                            <constraint firstAttribute="width" constant="114" id="q3O-wg-jz6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                        <color key="textColor" red="0.1764705882" green="0.53725490200000003" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xaw-gf-Exg">
+                                        <rect key="frame" x="9" y="96" width="74" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="HWQ-5K-Ljr"/>
+                                            <constraint firstAttribute="width" constant="74" id="X5K-vm-8MD"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                        <color key="textColor" red="0.97647058819999999" green="0.72156862749999995" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="mRK-br-qdo">
+                                        <rect key="frame" x="62" y="8" width="100" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="E8S-ud-UJQ"/>
+                                            <constraint firstAttribute="width" constant="100" id="scA-UC-Kst"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Xaw-gf-Exg" secondAttribute="bottom" constant="8" id="BUe-BB-vXO"/>
+                                    <constraint firstAttribute="height" constant="154" id="G9l-cm-LVm"/>
+                                    <constraint firstItem="Xaw-gf-Exg" firstAttribute="leading" secondItem="X9G-cp-v4o" secondAttribute="leading" constant="9" id="Gmz-4p-gLK"/>
+                                    <constraint firstAttribute="height" constant="154" id="RWy-2e-XVo"/>
+                                    <constraint firstItem="mRK-br-qdo" firstAttribute="leading" secondItem="X9G-cp-v4o" secondAttribute="leading" constant="62" id="TXH-JA-tHR"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ovq-bO-Tc0" secondAttribute="bottom" constant="8" id="YWv-Xs-HlG"/>
+                                    <constraint firstItem="Ovq-bO-Tc0" firstAttribute="leading" secondItem="Xaw-gf-Exg" secondAttribute="trailing" constant="2" id="b5T-tm-ble"/>
+                                    <constraint firstItem="mRK-br-qdo" firstAttribute="top" secondItem="X9G-cp-v4o" secondAttribute="top" constant="8" id="kfm-Ff-oq4"/>
+                                    <constraint firstAttribute="width" constant="200" id="oIx-XZ-dCp"/>
+                                    <constraint firstAttribute="width" constant="200" id="pkN-47-R5n"/>
+                                    <constraint firstAttribute="trailing" secondItem="mRK-br-qdo" secondAttribute="trailing" constant="38" id="sy6-IJ-BxS"/>
+                                </constraints>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dfU-bj-wrv">
+                                <rect key="frame" x="155" y="224" width="290" height="152"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="290" id="DjP-Bs-nXc"/>
+                                    <constraint firstAttribute="height" constant="152" id="f4E-pI-O2w"/>
+                                </constraints>
+                                <string key="text">MIT License
+
+Copyright (c) 2017 Roger Kobashi
+
+kobashiroger@gmail.com
+https://github.com/rgkobashi
+LinkedIn: rogerkobashi
+Git Hub: rgkobashi</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ky-gy-xIx">
+                                <rect key="frame" x="200" y="524" width="200" height="56"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTo-Wj-4tb">
+                                        <rect key="frame" x="8" y="8" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Lv6-mE-mJx"/>
+                                            <constraint firstAttribute="width" constant="40" id="Yqc-dD-cUo"/>
+                                        </constraints>
+                                        <state key="normal" image="Mail"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="8Ho-Zn-E76" eventType="touchUpInside" id="TV6-Qf-zo4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYy-fp-tmY">
+                                        <rect key="frame" x="56" y="8" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="6Ap-XH-Mg1"/>
+                                            <constraint firstAttribute="width" constant="40" id="OoZ-sR-HzC"/>
+                                        </constraints>
+                                        <state key="normal" image="Web"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="8Ho-Zn-E76" eventType="touchUpInside" id="cR1-3c-Noh"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X65-D2-uRM">
+                                        <rect key="frame" x="104" y="8" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="Vcq-d0-0SM"/>
+                                            <constraint firstAttribute="height" constant="40" id="cod-m7-SRf"/>
+                                        </constraints>
+                                        <state key="normal" image="LinkedIn"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="8Ho-Zn-E76" eventType="touchUpInside" id="RZq-UJ-Jav"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bjp-Gm-KFC">
+                                        <rect key="frame" x="152" y="8" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ALX-qv-Ez8"/>
+                                            <constraint firstAttribute="width" constant="40" id="nua-Gb-gjV"/>
+                                        </constraints>
+                                        <state key="normal" image="Github"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="8Ho-Zn-E76" eventType="touchUpInside" id="hGb-8T-X5A"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="X65-D2-uRM" firstAttribute="top" secondItem="4ky-gy-xIx" secondAttribute="top" constant="8" id="0wA-In-PFk"/>
+                                    <constraint firstAttribute="height" constant="56" id="8T0-qY-c93"/>
+                                    <constraint firstItem="Bjp-Gm-KFC" firstAttribute="leading" secondItem="X65-D2-uRM" secondAttribute="trailing" constant="8" id="FnR-r1-zRt"/>
+                                    <constraint firstItem="FYy-fp-tmY" firstAttribute="leading" secondItem="pTo-Wj-4tb" secondAttribute="trailing" constant="8" id="JoO-dV-soh"/>
+                                    <constraint firstAttribute="width" constant="200" id="KgJ-0R-sBb"/>
+                                    <constraint firstItem="Bjp-Gm-KFC" firstAttribute="top" secondItem="4ky-gy-xIx" secondAttribute="top" constant="8" id="Vgv-Hp-j0o"/>
+                                    <constraint firstItem="FYy-fp-tmY" firstAttribute="top" secondItem="4ky-gy-xIx" secondAttribute="top" constant="8" id="Xcx-KT-2iW"/>
+                                    <constraint firstItem="X65-D2-uRM" firstAttribute="leading" secondItem="FYy-fp-tmY" secondAttribute="trailing" constant="8" id="aFt-7x-kZU"/>
+                                    <constraint firstItem="pTo-Wj-4tb" firstAttribute="leading" secondItem="4ky-gy-xIx" secondAttribute="leading" constant="8" id="h6m-70-Vp7"/>
+                                    <constraint firstItem="pTo-Wj-4tb" firstAttribute="top" secondItem="4ky-gy-xIx" secondAttribute="top" constant="8" id="nPh-uL-WNk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.062745098040000002" green="0.23529411759999999" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="4ky-gy-xIx" firstAttribute="centerX" secondItem="gBG-hb-hQV" secondAttribute="centerX" id="Nvy-me-L2I"/>
+                            <constraint firstItem="X9G-cp-v4o" firstAttribute="centerX" secondItem="gBG-hb-hQV" secondAttribute="centerX" id="UdR-bQ-RVe"/>
+                            <constraint firstItem="nqn-ez-3pM" firstAttribute="top" secondItem="4ky-gy-xIx" secondAttribute="bottom" constant="20" id="Ycz-rx-8yd"/>
+                            <constraint firstItem="dfU-bj-wrv" firstAttribute="centerX" secondItem="gBG-hb-hQV" secondAttribute="centerX" id="eDL-CW-dL5"/>
+                            <constraint firstItem="dfU-bj-wrv" firstAttribute="centerY" secondItem="gBG-hb-hQV" secondAttribute="centerY" id="qaB-qX-xUP"/>
+                            <constraint firstItem="X9G-cp-v4o" firstAttribute="top" secondItem="jfh-99-NZb" secondAttribute="bottom" constant="8" id="yf3-S1-6wj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailButton" destination="pTo-Wj-4tb" id="Jfp-4M-6Ex"/>
+                        <outlet property="githubButton" destination="Bjp-Gm-KFC" id="8dn-hm-M5q"/>
+                        <outlet property="linkedInButton" destination="X65-D2-uRM" id="AsT-vy-2BK"/>
+                        <outlet property="webButton" destination="FYy-fp-tmY" id="AeS-XR-khv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yYD-2c-ev7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1455" y="1052"/>
+        </scene>
         <!--Photo View Controller-->
         <scene sceneID="ctf-zs-A1A">
             <objects>
@@ -627,9 +789,13 @@ You are just on a single tap to dive into Instagram and Flickr photos!</string>
     <resources>
         <image name="Background" width="640" height="960"/>
         <image name="DownArrow" width="23" height="14"/>
+        <image name="Github" width="32" height="32"/>
         <image name="LeftArrow" width="14" height="23"/>
+        <image name="LinkedIn" width="32" height="32"/>
         <image name="Logo" width="100" height="80"/>
+        <image name="Mail" width="32" height="32"/>
         <image name="RightArrow" width="14" height="23"/>
         <image name="Share" width="24" height="24"/>
+        <image name="Web" width="32" height="32"/>
     </resources>
 </document>
