@@ -10,9 +10,9 @@ import Foundation
 
 class FlickrService: Service
 {
-    var requestType = REQUEST_TYPE.GET
-    var contentType = CONTENT_TYPE.NONE
-    var acceptType = ACCEPT_TYPE.JSON
+    var requestType = RequestType.GET
+    var contentType = ContentType.NONE
+    var acceptType = AcceptType.JSON
     var timeOut: NSTimeInterval = 30
     var requestURL = ""
     var requestParams: [String: AnyObject]?

@@ -10,10 +10,10 @@ import Foundation
 
 class ServiceTracker
 {
-    var content = ""
-    let startTime = NSDate()
-    var endTime: NSDate!
-    var durationTime: String!
+    private var content = ""
+    private let startTime = NSDate()
+    private var endTime: NSDate!
+    private var durationTime: String!
     
     init(service: Service, request: NSURLRequest)
     {

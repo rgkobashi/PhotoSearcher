@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum REQUEST_TYPE: String
+enum RequestType: String
 {
     case GET = "GET"
     case POST = "POST"
@@ -17,7 +17,7 @@ enum REQUEST_TYPE: String
     case HEAD = "HEAD"
 }
 
-enum CONTENT_TYPE: String
+enum ContentType: String
 {
     case XML = "application/xml"
     case JSON = "application/json"
@@ -25,7 +25,7 @@ enum CONTENT_TYPE: String
     case NONE = ""
 }
 
-enum ACCEPT_TYPE: String
+enum AcceptType: String
 {
     case XML = "application/xml"
     case JSON = "application/json"
@@ -37,9 +37,9 @@ enum ACCEPT_TYPE: String
 
 protocol Service
 {
-    var requestType: REQUEST_TYPE { get set }
-    var contentType: CONTENT_TYPE { get set }
-    var acceptType: ACCEPT_TYPE { get set }
+    var requestType: RequestType { get set }
+    var contentType: ContentType { get set }
+    var acceptType: AcceptType { get set }
     var timeOut: NSTimeInterval { get set }
     var requestURL: String { get set }
     var requestParams: [String: AnyObject]? { get set }
