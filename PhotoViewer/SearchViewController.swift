@@ -140,7 +140,7 @@ class SearchViewController: UIViewController
     
     private func showSearchResultsForSearchTerm(searchTerm: String)
     {
-        let searchHistoryItem = CoreDataController.sharedInstance.saveSearchHistoryItem(searchTerm, timeStamp: NSDate().timeIntervalSince1970)
+        let searchHistoryItem = CoreDataController.sharedInstance.saveSearchHistoryItemWithSearchTerm(searchTerm, timeStamp: NSDate().timeIntervalSince1970)
         searchBar.text = ""
         searchBar.endEditing(true)
         searchHistory.insert(searchHistoryItem, atIndex: 0)

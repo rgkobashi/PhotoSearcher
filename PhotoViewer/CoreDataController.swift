@@ -29,7 +29,7 @@ class CoreDataController
         return nil
     }
     
-    func saveSearchHistoryItem(searchTerm: String, timeStamp: NSTimeInterval) -> CD_SearchHistoryItem
+    func saveSearchHistoryItemWithSearchTerm(searchTerm: String, timeStamp: NSTimeInterval) -> CD_SearchHistoryItem
     {
         let entity = NSEntityDescription.entityForName("CD_SearchHistoryItem", inManagedObjectContext: appDelegate.managedObjectContext)!
         let searchHistoryItem = CD_SearchHistoryItem(entity: entity, insertIntoManagedObjectContext: appDelegate.managedObjectContext)
