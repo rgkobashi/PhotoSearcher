@@ -13,3 +13,8 @@ let kThumbnailImageSize = "180x180"
 let kKeyFlickr = "beee19ea6c3aed0f0b44c169876233c5"
 let kDefaultRegularFontName = "TrebuchetMS"
 let kDefaultBoldFontName = "TrebuchetMS-Bold"
+
+let kEmail = "mailto:kobashiroger@gmail.com"
+let kURLWebsite = "https://rgkobashi.github.io"
+let kURLLinkedIn = "https://www.linkedin.com/in/rogerkobashi"
+let kURLGithub = "https://github.com/rgkobashi"
