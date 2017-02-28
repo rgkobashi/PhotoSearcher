@@ -51,8 +51,8 @@ class FlickrUtility
                         {
                             flickrPhoto.text = title
                         }
-                        flickrPhoto.thumbnailUrl = createThumbnailUrl(flickrPhoto)
-                        flickrPhoto.originalUrl = createOriginalUrl(flickrPhoto)
+                        flickrPhoto.thumbnailUrl = thumbnailUrlFromFlickrPhoto(flickrPhoto)
+                        flickrPhoto.originalUrl = originalUrlFromFlickrPhoto(flickrPhoto)
                         resPhotos.append(flickrPhoto)
                     }
                 }
@@ -61,13 +61,13 @@ class FlickrUtility
         return resPhotos
     }
     
-    private class func createThumbnailUrl(flickrPhoto: FlickrPhoto) -> String
+    private class func thumbnailUrlFromFlickrPhoto(flickrPhoto: FlickrPhoto) -> String
     {
         let url = "https://farm\(flickrPhoto.farm).static.flickr.com/\(flickrPhoto.server)/\(flickrPhoto.id)_\(flickrPhoto.secret)_s.jpg"
         return url
     }
     
-    private class func createOriginalUrl(flickrPhoto: FlickrPhoto) -> String
+    private class func originalUrlFromFlickrPhoto(flickrPhoto: FlickrPhoto) -> String
     {
         let url = "https://farm\(flickrPhoto.farm).static.flickr.com/\(flickrPhoto.server)/\(flickrPhoto.id)_\(flickrPhoto.secret)_b.jpg"
         return url

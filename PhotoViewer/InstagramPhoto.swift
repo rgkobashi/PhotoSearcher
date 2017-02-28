@@ -30,14 +30,14 @@ class InstagramUtility
                 {
                     if let nodes = topPosts["nodes"] as? [AnyObject]
                     {
-                        resTop.appendContentsOf(parseNodesSection(nodes))
+                        resTop.appendContentsOf(parseSectionNodes(nodes))
                     }
                 }
                 if let media = tag["media"] as? [String : AnyObject]
                 {
                     if let nodes = media["nodes"] as? [AnyObject]
                     {
-                        resMostRecent.appendContentsOf(parseNodesSection(nodes))
+                        resMostRecent.appendContentsOf(parseSectionNodes(nodes))
                     }
                 }
             }
@@ -45,7 +45,7 @@ class InstagramUtility
         return (resTop, resMostRecent)
     }
     
-    private class func parseNodesSection(nodes: [AnyObject]) -> [InstagramPhoto]
+    private class func parseSectionNodes(nodes: [AnyObject]) -> [InstagramPhoto]
     {
         var instagramPhotos = [InstagramPhoto]()
         for node in nodes
@@ -69,7 +69,7 @@ class InstagramUtility
             if let displaySrc = node["display_src"] as? String
             {
                 instagramPhoto.originalUrl = displaySrc
-                instagramPhoto.thumbnailUrl = createThumbnailUrl(instagramPhoto)
+                instagramPhoto.thumbnailUrl = thumbnailUrlFromInstagramPhoto(instagramPhoto)
             }
             if let comments = node["comments"] as? [String : AnyObject]
             {
@@ -83,7 +83,7 @@ class InstagramUtility
         return instagramPhotos
     }
     
-    private class func createThumbnailUrl(instagramPhoto: InstagramPhoto) -> String
+    private class func thumbnailUrlFromInstagramPhoto(instagramPhoto: InstagramPhoto) -> String
     {
         var words = instagramPhoto.originalUrl.componentsSeparatedByString("/")
         words[4] = "s" + kThumbnailImageSize
