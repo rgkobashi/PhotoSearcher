@@ -2,8 +2,18 @@
 
 PhotoSearcher is an iOS application that will search photos calling the public API from Instagram and Flickr. It doesn't requiere any kind of authentication.
 
-* Save history search using core data with the capabilitie to delete itme
-* Share the images on social networks or save it on the camera roll
+The most interesting files of PhotoSearcher are SessionManager and Service. With the help of these two classes and protocol oriented programming performing web service class is very easy.
+The Service file is a protocol, this way any class which implements it can be considered as a web service.
+The SessionManager file is a class which will request the web service call using URLSession and it wil use instances of objects which implementes Service protocol.
+Also it has the ServiceTracker file which is a class that will print all the logs of the requests.
+More detailed information can be found on the header comments of these classes.
+
+The naming convention follows the Apple guidelines so it is very easy to understand what does all the methods and classes of PhotoSearcher.
+
+## Features
+
+* Search history using core data, including CRUD operations
+* Images can be saved or shared
 
 ## Screenshots
 
