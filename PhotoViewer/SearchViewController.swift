@@ -28,7 +28,6 @@ class SearchViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
         if !Settings.hasShownWelcome
         {
             view.bringSubviewToFront(welcomeView)
@@ -39,7 +38,7 @@ class SearchViewController: UIViewController
             view.sendSubviewToBack(welcomeView)
             welcomeView.hidden = true
         }
-        
+        topView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SearchViewController.showAbout)))
         navigationController?.navigationBarHidden = true
         automaticallyAdjustsScrollViewInsets = false
         (searchBar.valueForKey("searchField") as? UITextField)?.textColor = UIColor.whiteColor()
@@ -119,6 +118,11 @@ class SearchViewController: UIViewController
         searchBar.endEditing(true)
         searchHistory.insert(searchHistoryItem, atIndex: 0)
         performSegueWithIdentifier("showSearchResults", sender: searchHistoryItem.searchTerm)
+    }
+    
+    @objc private func showAbout()
+    {
+        performSegueWithIdentifier("showAbout", sender: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
