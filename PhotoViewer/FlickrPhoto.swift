@@ -1,0 +1,85 @@
+//
+//  FlickrPhoto.swift
+//  PhotoViewer
+//
+//  Created by Rogelio Martinez Kobashi on 2/28/17.
+//  Copyright © 2017 Rogelio Martinez Kobashi. All rights reserved.
+//
+
+import Foundation
+
+class FlickrPhoto: Photo
+{
+    var text = ""
+    var thumbnailUrl = ""
+    var originalUrl = ""
+    
+    var secret: String!
+    var id: String!
+    var server: String!
+    var farm: Int!
+}
+
+class FlickrUtility
+{
+    // TODO check if can create Utility parent class or protocol
+    
+    class func parseResponse(response: AnyObject) -> (total: Int, photos: [FlickrPhoto])
+    {
+        var resTotal = 0
+        var resPhotos = [FlickrPhoto]()
+        if let response = response as? [String : AnyObject]
+        {
+            if let photos = response["photos"] as? [String : AnyObject]
+            {
+                if let total = photos["total"] as? String
+                {
+                    resTotal = Int(total)!
+                }
+                if let photo = photos["photo"] as? [AnyObject]
+                {
+                    for aPhoto in photo
+                    {
+                        let flickrPhoto = FlickrPhoto()
+                        if let secret = aPhoto["secret"] as? String
+                        {
+                            flickrPhoto.secret = secret
+                        }
+                        if let id = aPhoto["id"] as? String
+                        {
+                            flickrPhoto.id = id
+                        }
+                        if let server = aPhoto["server"] as? String
+                        {
+                            flickrPhoto.server = server
+                        }
+                        if let farm = aPhoto["farm"] as? Int
+                        {
+                            flickrPhoto.farm = farm
+                        }
+                        if let title = aPhoto["title"] as? String
+                        {
+                            flickrPhoto.text = title
+                        }
+                        flickrPhoto.thumbnailUrl = createThumbnailUrl(flickrPhoto)
+                        flickrPhoto.originalUrl = createOriginalUrl(flickrPhoto)
+                        resPhotos.append(flickrPhoto)
+                    }
+                }
+            }
+        }
+        return (resTotal, resPhotos)
+    }
+    
+    private class func createThumbnailUrl(flickrPhoto: FlickrPhoto) -> String
+    {
+        let url = "https://farm\(flickrPhoto.farm).static.flickr.com/\(flickrPhoto.server)/\(flickrPhoto.id)_\(flickrPhoto.secret)_s.jpg"
+        return url
+    }
+    
+    private class func createOriginalUrl(flickrPhoto: FlickrPhoto) -> String
+    {
+        let url = "https://farm\(flickrPhoto.farm).static.flickr.com/\(flickrPhoto.server)/\(flickrPhoto.id)_\(flickrPhoto.secret)_b.jpg"
+        return url
+    }
+}
