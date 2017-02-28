@@ -28,6 +28,7 @@ class SearchViewController: UIViewController
         super.viewDidLoad()
         navigationController?.navigationBarHidden = true
         automaticallyAdjustsScrollViewInsets = false
+        (searchBar.valueForKey("searchField") as? UITextField)?.textColor = UIColor.whiteColor()
         searchBar.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
@@ -116,8 +117,8 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("historyCell", forIndexPath: indexPath)
-        cell.textLabel?.text = searchHistory[indexPath.row].searchTerm
+        let cell = tableView.dequeueReusableCellWithIdentifier("historyCell", forIndexPath: indexPath) as! HistoryTableViewCell
+        cell.label.text = searchHistory[indexPath.row].searchTerm
         return cell
     }
     

@@ -10,6 +10,7 @@
 		E2B846AF1E6584AE00570522 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B846AE1E6584AE00570522 /* UIColor.swift */; };
 		E2B846B11E658CE700570522 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B846B01E658CE700570522 /* HeaderCollectionReusableView.swift */; };
 		E2B846B31E6590C400570522 /* FooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B846B21E6590C400570522 /* FooterCollectionReusableView.swift */; };
+		E2B846B51E65998800570522 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B846B41E65998800570522 /* HistoryTableViewCell.swift */; };
 		E2D4BC311E649DB2003DEC8E /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC301E649DB2003DEC8E /* CoreDataController.swift */; };
 		E2D4BC361E64C26A003DEC8E /* CD_SearchHistoryItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC341E64C26A003DEC8E /* CD_SearchHistoryItem+CoreDataProperties.swift */; };
 		E2D4BC371E64C26A003DEC8E /* CD_SearchHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4BC351E64C26A003DEC8E /* CD_SearchHistoryItem.swift */; };
@@ -39,6 +40,7 @@
 		E2B846AE1E6584AE00570522 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		E2B846B01E658CE700570522 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		E2B846B21E6590C400570522 /* FooterCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCollectionReusableView.swift; sourceTree = "<group>"; };
+		E2B846B41E65998800570522 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		E2D4BC301E649DB2003DEC8E /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		E2D4BC341E64C26A003DEC8E /* CD_SearchHistoryItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CD_SearchHistoryItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E2D4BC351E64C26A003DEC8E /* CD_SearchHistoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CD_SearchHistoryItem.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				E2DE98AA1E6481E9008B4D78 /* SearchResultsCollectionViewCell.swift */,
 				E2B846B01E658CE700570522 /* HeaderCollectionReusableView.swift */,
 				E2B846B21E6590C400570522 /* FooterCollectionReusableView.swift */,
+				E2B846B41E65998800570522 /* HistoryTableViewCell.swift */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				E2DE98841E644049008B4D78 /* PhotoViewer.xcdatamodeld in Sources */,
 				E2D4BC411E64EB96003DEC8E /* Photo.swift in Sources */,
 				E2D4BC361E64C26A003DEC8E /* CD_SearchHistoryItem+CoreDataProperties.swift in Sources */,
+				E2B846B51E65998800570522 /* HistoryTableViewCell.swift in Sources */,
 				E2DE989A1E644F20008B4D78 /* SessionManager.swift in Sources */,
 				E2DE987C1E644049008B4D78 /* AppDelegate.swift in Sources */,
 				E2D4BC3B1E64E6F4003DEC8E /* FlickrService.swift in Sources */,

@@ -17,27 +17,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hvC-M5-3hW">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hvC-M5-3hW">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="historyCell" textLabel="GVR-jO-aVf" style="IBUITableViewCellStyleDefault" id="vKa-zK-Pqm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="historyCell" id="vKa-zK-Pqm" customClass="HistoryTableViewCell" customModule="PhotoViewer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vKa-zK-Pqm" id="0Eq-zj-2og">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GVR-jO-aVf">
-                                                    <rect key="frame" x="15" y="0.0" width="550" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="igk-aq-xvD">
+                                                    <rect key="frame" x="8" y="43" width="584" height="1"/>
+                                                    <color key="backgroundColor" red="0.97647058819999999" green="0.72156862749999995" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="OVg-FX-KHK"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uc-Km-fhj">
+                                                    <rect key="frame" x="8" y="11" width="562" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="eBv-AC-Dwm"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="cAN-C0-7cr">
+                                                    <rect key="frame" x="583" y="14" width="9" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="9" id="sc2-XV-e3f"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="igk-aq-xvD" firstAttribute="top" secondItem="cAN-C0-7cr" secondAttribute="bottom" constant="14" id="3iB-50-kC5"/>
+                                                <constraint firstAttribute="trailing" secondItem="cAN-C0-7cr" secondAttribute="trailing" constant="8" id="59s-Qa-6Tx"/>
+                                                <constraint firstAttribute="trailing" secondItem="0uc-Km-fhj" secondAttribute="trailing" constant="30" id="A7V-xI-g0c"/>
+                                                <constraint firstItem="igk-aq-xvD" firstAttribute="leading" secondItem="0Eq-zj-2og" secondAttribute="leading" constant="8" id="H2d-hT-8cZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="igk-aq-xvD" secondAttribute="bottom" id="SE0-yp-VyC"/>
+                                                <constraint firstItem="0uc-Km-fhj" firstAttribute="top" secondItem="0Eq-zj-2og" secondAttribute="top" constant="11" id="cLk-8f-MMg"/>
+                                                <constraint firstAttribute="trailing" secondItem="igk-aq-xvD" secondAttribute="trailing" constant="8" id="daD-xi-eX2"/>
+                                                <constraint firstItem="0uc-Km-fhj" firstAttribute="leading" secondItem="0Eq-zj-2og" secondAttribute="leading" constant="8" id="sWu-nB-EOf"/>
+                                                <constraint firstItem="cAN-C0-7cr" firstAttribute="top" secondItem="0Eq-zj-2og" secondAttribute="top" constant="14" id="u0G-oN-SDH"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="label" destination="0uc-Km-fhj" id="Vhg-4r-b4M"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -444,6 +473,7 @@
     <resources>
         <image name="DownArrow" width="23" height="14"/>
         <image name="LeftArrow" width="14" height="23"/>
+        <image name="RightArrow" width="14" height="23"/>
         <image name="Share" width="24" height="24"/>
     </resources>
 </document>
