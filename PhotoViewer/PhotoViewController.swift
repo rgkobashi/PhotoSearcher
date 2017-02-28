@@ -46,7 +46,7 @@ class PhotoViewController: UIViewController
         if let instagramPhoto = photo as? InstagramPhoto
         {
             likesLabel.text = "\(instagramPhoto.likesCount) likes"
-            dateLabel.text = NSDate(timeIntervalSince1970: NSTimeInterval(NSNumber(integer: instagramPhoto.date))).stringUTC()
+            dateLabel.text = stringFromTimeStamp(instagramPhoto.date)
             commentsLabel.text = "\(instagramPhoto.commentsCount) comments"
         }
         else
@@ -109,6 +109,46 @@ class PhotoViewController: UIViewController
         {
             let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
             presentViewController(activityViewController, animated: true, completion: nil)
+        }
+    }
+    
+    private func stringFromTimeStamp(timeStamp: Int) -> String
+    {
+        let before = NSDate(timeIntervalSince1970: NSTimeInterval(NSNumber(integer: timeStamp)))
+        let today = NSDate()
+        let unitFlags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
+        let dateComponents = NSCalendar.currentCalendar().components(unitFlags, fromDate: before, toDate: today, options: [])
+        if dateComponents.year > 0
+        {
+            return "\(dateComponents.year) years ago"
+        }
+        else if dateComponents.month > 0
+        {
+            return "\(dateComponents.month) months ago"
+        }
+        else
+        {
+            let days = dateComponents.day
+            if days > 7
+            {
+                let weeks = days / 7
+                if weeks > 0
+                {
+                    return "\(weeks) weeks ago"
+                }
+                else
+                {
+                    return "\(days) days ago"
+                }
+            }
+            else if days == 0
+            {
+                return "Today"
+            }
+            else
+            {
+                return "\(days) days ago"
+            }
         }
     }
     
