@@ -1,5 +1,5 @@
 //
-//  Components.swift
+//  Utilities.swift
 //  PhotoViewer
 //
 //  Created by Rogelio Martinez Kobashi on 2/27/17.
@@ -13,7 +13,7 @@ typealias VoidCompletionHandler = () -> ()
 typealias SuceedCompletionHandler = (AnyObject?) -> ()
 typealias ErrorCompletionHandler = (NSError) -> ()
 
-class Components
+class Utilities
 {
     class func downloadImageFrom(urlString: String, suceedHandler: SuceedCompletionHandler, failedHandler: ErrorCompletionHandler)
     {

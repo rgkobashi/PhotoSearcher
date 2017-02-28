@@ -117,7 +117,7 @@ class SearchViewController: UIViewController
     
     private func deleteSearchHistoryItemForIndexPath(indexPath: NSIndexPath)
     {
-        Components.displayAlertWithTitle(nil, message: "Are you sure?", buttonTitle: "Cancel", buttonHandler: nil, destructiveTitle: "Delete", destructiveHandler: { [unowned self] in
+        Utilities.displayAlertWithTitle(nil, message: "Are you sure?", buttonTitle: "Cancel", buttonHandler: nil, destructiveTitle: "Delete", destructiveHandler: { [unowned self] in
             let searchHistoryItem = self.searchHistory[indexPath.row]
             CoreDataController.sharedInstance.deleteSearchHistoryItem(searchHistoryItem)
             self.searchHistory.removeAtIndex(indexPath.row)

@@ -105,7 +105,7 @@ class SearchResultsViewController: UIViewController
             Loader.dismiss()
             if let response = response
             {
-                self?.serviceCallSucceed(serviceType, response: response)
+                self?.serviceCallSucceedWithType(serviceType, response: response)
             }
             else
             {
@@ -141,7 +141,7 @@ class SearchResultsViewController: UIViewController
     {
         Loader.dismiss()
         print("error = \(error)")
-        Components.displayAlertWithTitle("Error", message: "Error searching for photos, please try again.", buttonTitle: "Accept", buttonHandler: { [weak self] in
+        Utilities.displayAlertWithTitle("Error", message: "Error searching for photos, please try again.", buttonTitle: "Accept", buttonHandler: { [weak self] in
             self?.back()
         })
     }

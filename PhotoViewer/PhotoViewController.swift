@@ -47,7 +47,7 @@ class PhotoViewController: UIViewController
         if let instagramPhoto = photo as? InstagramPhoto
         {
             likesLabel.text = "\(instagramPhoto.likesCount) likes"
-            dateLabel.text = Components.stringDifferenceFromTimeStamp(instagramPhoto.date)
+            dateLabel.text = Utilities.stringDifferenceFromTimeStamp(instagramPhoto.date)
             commentsLabel.text = "\(instagramPhoto.commentsCount) comments"
         }
         else

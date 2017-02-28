@@ -32,7 +32,7 @@
 		E2DE98931E6443FE008B4D78 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98921E6443FE008B4D78 /* SearchViewController.swift */; };
 		E2DE98981E644875008B4D78 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98971E644875008B4D78 /* SearchResultsViewController.swift */; };
 		E2DE989A1E644F20008B4D78 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98991E644F20008B4D78 /* SessionManager.swift */; };
-		E2DE989C1E644FB7008B4D78 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE989B1E644FB7008B4D78 /* Components.swift */; };
+		E2DE989C1E644FB7008B4D78 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE989B1E644FB7008B4D78 /* Utilities.swift */; };
 		E2DE989E1E645005008B4D78 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE989D1E645005008B4D78 /* Service.swift */; };
 		E2DE98A21E645211008B4D78 /* InstagramService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98A11E645211008B4D78 /* InstagramService.swift */; };
 		E2DE98A41E64523F008B4D78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE98A31E64523F008B4D78 /* Constants.swift */; };
@@ -70,7 +70,7 @@
 		E2DE98921E6443FE008B4D78 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		E2DE98971E644875008B4D78 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		E2DE98991E644F20008B4D78 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
-		E2DE989B1E644FB7008B4D78 /* Components.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		E2DE989B1E644FB7008B4D78 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		E2DE989D1E645005008B4D78 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		E2DE98A11E645211008B4D78 /* InstagramService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramService.swift; sourceTree = "<group>"; };
 		E2DE98A31E64523F008B4D78 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 			children = (
 				E2DE987B1E644049008B4D78 /* AppDelegate.swift */,
 				E2DE989F1E6451CC008B4D78 /* API */,
-				E2DE98A91E64557D008B4D78 /* Utilities */,
+				E2DE98A91E64557D008B4D78 /* Model */,
 				E2DE98A01E6451DC008B4D78 /* Common */,
 				E2DE98B11E649B66008B4D78 /* Categories */,
 				E2DE98941E6444DD008B4D78 /* UI */,
@@ -188,21 +188,21 @@
 			isa = PBXGroup;
 			children = (
 				E2DE98A31E64523F008B4D78 /* Constants.swift */,
-				E2DE989B1E644FB7008B4D78 /* Components.swift */,
+				E2DE989B1E644FB7008B4D78 /* Utilities.swift */,
 				E2DE98A51E645422008B4D78 /* Loader.swift */,
 				E24DC6AB1E65C8AC00C230AB /* Settings.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
 		};
-		E2DE98A91E64557D008B4D78 /* Utilities */ = {
+		E2DE98A91E64557D008B4D78 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				E2D4BC401E64EB96003DEC8E /* Photo.swift */,
 				E2DE98A71E645573008B4D78 /* InstagramPhoto.swift */,
 				E2D4BC3E1E64E9FF003DEC8E /* FlickrPhoto.swift */,
 			);
-			name = Utilities;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		E2DE98AC1E6481EF008B4D78 /* Custom */ = {
@@ -309,7 +309,7 @@
 				E24DC6A41E65BD0E00C230AB /* UITextField.swift in Sources */,
 				E2DE98931E6443FE008B4D78 /* SearchViewController.swift in Sources */,
 				E24DC6AA1E65C06400C230AB /* UIButton.swift in Sources */,
-				E2DE989C1E644FB7008B4D78 /* Components.swift in Sources */,
+				E2DE989C1E644FB7008B4D78 /* Utilities.swift in Sources */,
 				E2D4BC311E649DB2003DEC8E /* CoreDataController.swift in Sources */,
 				E2DE98A61E645422008B4D78 /* Loader.swift in Sources */,
 				E2D4BC391E64CCFC003DEC8E /* ServiceTracker.swift in Sources */,

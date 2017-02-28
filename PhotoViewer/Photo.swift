@@ -19,7 +19,7 @@ class Photo
     
     func downloadThumbnailImage(suceedHandler: VoidCompletionHandler, failedHandler: ErrorCompletionHandler)
     {
-        Components.downloadImageFrom(thumbnailUrl, suceedHandler: { [weak self] (result) in
+        Utilities.downloadImageFrom(thumbnailUrl, suceedHandler: { [weak self] (result) in
             self?.thumbnailImage = result as? UIImage
             suceedHandler()
         }, failedHandler: { (error) in
@@ -29,7 +29,7 @@ class Photo
     
     func downloadOriginalImage(suceedHandler: VoidCompletionHandler, failedHandler: ErrorCompletionHandler)
     {
-        Components.downloadImageFrom(originalUrl, suceedHandler: { [weak self] (result) in
+        Utilities.downloadImageFrom(originalUrl, suceedHandler: { [weak self] (result) in
             self?.originalImage = result as? UIImage
             suceedHandler()
         }, failedHandler: { (error) in

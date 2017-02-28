@@ -37,13 +37,13 @@ class AboutViewController: UIViewController
     {
         switch sender {
         case emailButton:
-            Components.openURLWithString(kEmail)
+            Utilities.openURLWithString(kEmail)
         case webButton:
-            Components.openURLWithString(kURLWebsite)
+            Utilities.openURLWithString(kURLWebsite)
         case linkedInButton:
-            Components.openURLWithString(kURLLinkedIn)
+            Utilities.openURLWithString(kURLLinkedIn)
         case githubButton:
-            Components.openURLWithString(kURLGithub)
+            Utilities.openURLWithString(kURLGithub)
         default:
             break
         }
