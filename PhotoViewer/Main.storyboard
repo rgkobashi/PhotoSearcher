@@ -100,7 +100,7 @@ You are just on a single tap to dive into Instagram and Flickr photos!</string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hvC-M5-3hW">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="503"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="historyCell" id="vKa-zK-Pqm" customClass="HistoryTableViewCell" customModule="PhotoViewer" customModuleProvider="target">
@@ -221,14 +221,63 @@ You are just on a single tap to dive into Instagram and Flickr photos!</string>
                                     <constraint firstItem="qbs-9n-bmS" firstAttribute="top" secondItem="JRl-4S-Sno" secondAttribute="top" constant="8" id="WCh-l3-uqf"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0im-dJ-GEe">
+                                <rect key="frame" x="0.0" y="611" width="375" height="56"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htd-IH-rjQ">
+                                        <rect key="frame" x="135" y="0.0" width="104" height="56"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pw5-2x-Yyo">
+                                                <rect key="frame" x="8" y="12" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="C0L-z4-s8C"/>
+                                                    <constraint firstAttribute="height" constant="32" id="Dvr-7m-68L"/>
+                                                </constraints>
+                                                <state key="normal" image="Instagram"/>
+                                                <connections>
+                                                    <action selector="buttonTapped:" destination="p0t-Rk-c6g" eventType="touchUpInside" id="qwO-zM-pZA"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldu-lz-wOg">
+                                                <rect key="frame" x="64" y="12" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="CeY-g3-WI0"/>
+                                                    <constraint firstAttribute="width" constant="32" id="GaX-CH-hOo"/>
+                                                </constraints>
+                                                <state key="normal" image="Flickr"/>
+                                                <connections>
+                                                    <action selector="buttonTapped:" destination="p0t-Rk-c6g" eventType="touchUpInside" id="8RL-vd-mFj"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Pw5-2x-Yyo" secondAttribute="bottom" constant="12" id="5lJ-pM-u8I"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ldu-lz-wOg" secondAttribute="trailing" constant="8" id="Uen-4F-f6N"/>
+                                            <constraint firstAttribute="width" constant="104" id="oSZ-v1-1dK"/>
+                                            <constraint firstItem="Pw5-2x-Yyo" firstAttribute="leading" secondItem="htd-IH-rjQ" secondAttribute="leading" constant="8" id="tXR-xC-hxa"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ldu-lz-wOg" secondAttribute="bottom" constant="12" id="yQw-gE-pwK"/>
+                                            <constraint firstAttribute="height" constant="56" id="zkP-mx-yDx"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="htd-IH-rjQ" firstAttribute="centerX" secondItem="0im-dJ-GEe" secondAttribute="centerX" id="Ay3-ge-XRc"/>
+                                    <constraint firstAttribute="height" constant="56" id="Q9T-oD-Njv"/>
+                                    <constraint firstItem="htd-IH-rjQ" firstAttribute="centerY" secondItem="0im-dJ-GEe" secondAttribute="centerY" id="Vhn-pf-Gqx"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.062745098039215685" green="0.23529411764705882" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="oCb-Ud-YLV" firstAttribute="top" secondItem="hvC-M5-3hW" secondAttribute="bottom" id="1XT-A9-yio"/>
+                            <constraint firstAttribute="trailing" secondItem="0im-dJ-GEe" secondAttribute="trailing" id="2it-gQ-beg"/>
+                            <constraint firstItem="0im-dJ-GEe" firstAttribute="leading" secondItem="Yq1-H5-Zqk" secondAttribute="leading" id="5t6-E5-dmW"/>
                             <constraint firstItem="hvC-M5-3hW" firstAttribute="top" secondItem="huA-W7-czc" secondAttribute="bottom" id="9df-w1-hng"/>
                             <constraint firstItem="huA-W7-czc" firstAttribute="top" secondItem="JRl-4S-Sno" secondAttribute="bottom" id="BQh-E6-d0v"/>
                             <constraint firstItem="hvC-M5-3hW" firstAttribute="leading" secondItem="Yq1-H5-Zqk" secondAttribute="leading" id="Jpi-aP-DP7"/>
                             <constraint firstItem="ezL-ch-G3A" firstAttribute="leading" secondItem="Yq1-H5-Zqk" secondAttribute="leading" id="LAM-KP-gnH"/>
+                            <constraint firstItem="0im-dJ-GEe" firstAttribute="top" secondItem="hvC-M5-3hW" secondAttribute="bottom" id="ZkB-s6-xU7"/>
                             <constraint firstAttribute="trailing" secondItem="ezL-ch-G3A" secondAttribute="trailing" id="aOV-S6-UBv"/>
                             <constraint firstItem="oCb-Ud-YLV" firstAttribute="top" secondItem="ezL-ch-G3A" secondAttribute="bottom" id="aV8-gF-dEf"/>
                             <constraint firstItem="JRl-4S-Sno" firstAttribute="top" secondItem="DNv-aX-bW4" secondAttribute="bottom" id="bK4-f3-Squ"/>
@@ -239,6 +288,7 @@ You are just on a single tap to dive into Instagram and Flickr photos!</string>
                             <constraint firstAttribute="trailing" secondItem="JRl-4S-Sno" secondAttribute="trailing" id="qhl-52-umS"/>
                             <constraint firstItem="JRl-4S-Sno" firstAttribute="leading" secondItem="Yq1-H5-Zqk" secondAttribute="leading" id="rLF-ss-fJo"/>
                             <constraint firstItem="huA-W7-czc" firstAttribute="leading" secondItem="Yq1-H5-Zqk" secondAttribute="leading" id="t0s-5j-2LD"/>
+                            <constraint firstItem="oCb-Ud-YLV" firstAttribute="top" secondItem="0im-dJ-GEe" secondAttribute="bottom" id="yiU-qm-GVn"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -248,9 +298,11 @@ You are just on a single tap to dive into Instagram and Flickr photos!</string>
                     </view>
                     <navigationItem key="navigationItem" id="iz7-SS-mcb"/>
                     <connections>
+                        <outlet property="flickrButton" destination="Ldu-lz-wOg" id="lsQ-RG-RYV"/>
+                        <outlet property="instagramButton" destination="Pw5-2x-Yyo" id="6hT-jj-t2o"/>
                         <outlet property="searchBar" destination="huA-W7-czc" id="RQ2-DY-Vyb"/>
                         <outlet property="tableView" destination="hvC-M5-3hW" id="ZCQ-CH-J9Z"/>
-                        <outlet property="tableViewBottomConstraint" destination="1XT-A9-yio" id="Lfq-Gp-sp0"/>
+                        <outlet property="tableViewBottomConstraint" destination="ZkB-s6-xU7" id="b1L-jc-vxM"/>
                         <outlet property="topView" destination="qbs-9n-bmS" id="uue-UI-b34"/>
                         <outlet property="welcomeView" destination="ezL-ch-G3A" id="gJG-gK-xv1"/>
                         <segue destination="NQX-HI-Pl3" kind="show" identifier="showSearchResults" id="m52-0N-nPl"/>
@@ -259,7 +311,7 @@ You are just on a single tap to dive into Instagram and Flickr photos!</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CaL-rv-aec" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1455" y="319"/>
+            <point key="canvasLocation" x="1453.5999999999999" y="318.89055472263868"/>
         </scene>
         <!--Search Results View Controller-->
         <scene sceneID="C4f-bh-sXR">
@@ -792,7 +844,9 @@ Git Hub: rgkobashi</string>
     <resources>
         <image name="Background" width="375" height="666"/>
         <image name="DownArrow" width="23" height="14"/>
+        <image name="Flickr" width="32" height="32"/>
         <image name="Github" width="32" height="32"/>
+        <image name="Instagram" width="32" height="32"/>
         <image name="LeftArrow" width="14" height="23"/>
         <image name="LinkedIn" width="32" height="32"/>
         <image name="Logo" width="100" height="79"/>

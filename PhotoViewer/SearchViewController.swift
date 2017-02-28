@@ -15,6 +15,8 @@ class SearchViewController: UIViewController
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var instagramButton: UIButton!
+    @IBOutlet weak var flickrButton: UIButton!
     
     fileprivate var keyboardHeight:CGFloat = 0.0
     fileprivate var searchHistory = [CD_SearchHistoryItem]()
@@ -56,6 +58,18 @@ class SearchViewController: UIViewController
     {
         super.viewWillAppear(animated)
         tableView.reloadData()
+    }
+    
+    @IBAction func buttonTapped(_ sender: UIButton)
+    {
+        if sender == instagramButton
+        {
+            Utilities.openURLWithString(kAppURLInstagram)
+        }
+        else if sender == flickrButton
+        {
+            Utilities.openURLWithString(kAppURLFlickr)
+        }
     }
     
     @objc fileprivate func keyboardWillShow(_ notification: Notification)
