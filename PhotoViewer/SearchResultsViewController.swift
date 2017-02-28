@@ -8,12 +8,19 @@
 
 import UIKit
 
+enum ServiceCalled: String
+{
+    case Instagram = "Instagram"
+    case Flickr = "Flickr"
+}
+
 class SearchResultsViewController: UIViewController
 {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var searchTermLabel: UILabel!
     @IBOutlet weak var postsCountLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var searchTerm: String!
     private var top = [Photo]()
@@ -31,14 +38,28 @@ class SearchResultsViewController: UIViewController
         postsCountLabel.text = ""
         collectionView.dataSource = self
         collectionView.delegate = self
-        callInstagramService()
+        segmentedControl.setTitle(ServiceCalled.Instagram.rawValue, forSegmentAtIndex: 0)
+        segmentedControl.setTitle(ServiceCalled.Flickr.rawValue, forSegmentAtIndex: 1)
+        callService(.Instagram)
     }
     
-    @IBAction func buttonTapped(sender: UIButton)
+    @IBAction func actions(sender: AnyObject)
     {
-        if sender ==  backButton
-        {
+        let object = sender as! NSObject
+        switch object {
+        case backButton:
             back()
+        case segmentedControl:
+            if segmentedControl.selectedSegmentIndex == 0
+            {
+                callService(.Instagram)
+            }
+            else
+            {
+                callService(.Flickr)
+            }
+        default:
+            break
         }
     }
     
@@ -47,30 +68,59 @@ class SearchResultsViewController: UIViewController
         navigationController?.popViewControllerAnimated(true)
     }
     
-    private func callInstagramService()
+    private func callService(serviceCalled: ServiceCalled)
     {
-        let service = InstagramService(tag: searchTerm)
+        let service: Service!
+        switch serviceCalled {
+        case .Instagram:
+            service = InstagramService(tag: searchTerm)
+        case .Flickr:
+            service = FlickrService(tag: searchTerm)
+        }
         Loader.show()
-        SessionManager.sharedInstance.start(service, suceedHandler: { [unowned self] (response) in
+        SessionManager.sharedInstance.start(service, suceedHandler: { [weak self] (response) in
             Loader.dismiss()
             if let response = response
             {
-                let result = InstagramUtility.parseResponse(response)
-                self.searchTermLabel.text = "#\(self.searchTerm)"
-                self.updatePostsCountLabel(result.total)
-                self.top.removeAll()
-                self.top.appendContentsOf(result.top.map{$0 as Photo})
-                self.mostRecent.removeAll()
-                self.mostRecent.appendContentsOf(result.mostRecent.map{$0 as Photo})
-                self.collectionView.reloadData()
+                self?.successServiceCalled(serviceCalled, response: response)
+            }
+            else
+            {
+                self?.failedServiceCalled(nil)
             }
         }) { [weak self] (error) in
             Loader.dismiss()
-            print("error = \(error)")
-            Components.displayAlertWithTitle("Error", message: "Error searching for photos, please try again.", buttonTitle: "Accept", buttonHandler: {
-                self?.back()
-            })
+            self?.failedServiceCalled(error)
         }
+    }
+    
+    private func successServiceCalled(serviceCalled: ServiceCalled, response: AnyObject)
+    {
+        collectionView.setContentOffset(CGPointZero, animated: true)
+        searchTermLabel.text = "#\(self.searchTerm)"
+        top.removeAll()
+        mostRecent.removeAll()
+        switch serviceCalled {
+        case .Instagram:
+            let result = InstagramUtility.parseResponse(response)
+            top.appendContentsOf(result.top.map{$0 as Photo})
+            mostRecent.appendContentsOf(result.mostRecent.map{$0 as Photo})
+            updatePostsCountLabel(result.total) // TODO remove these lines
+        case .Flickr:
+            let result = FlickrUtility.parseResponse(response)
+            top.appendContentsOf(result.photos.map{$0 as Photo})
+            updatePostsCountLabel(result.total)
+        }
+        collectionView.reloadData()
+    }
+    
+    private func failedServiceCalled(error: NSError?)
+    {
+        Loader.dismiss()
+        print("error = \(error)")
+        Components.displayAlertWithTitle("Error", message: "Error searching for photos, please try again.", buttonTitle: "Accept", buttonHandler: { [weak self] in
+            self?.back()
+        })
     }
     
     private func updatePostsCountLabel(count: Int)
@@ -143,7 +193,14 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
     {
-        return 2
+        if mostRecent.count > 0
+        {
+            return 2
+        }
+        else
+        {
+            return 1
+        }
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
