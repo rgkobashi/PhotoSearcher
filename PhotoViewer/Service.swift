@@ -35,6 +35,8 @@ enum AcceptType: String
     case NONE = ""
 }
 
+/// The classes which implement Service protocol can be used on SessionManager class.
+/// Every class which implements Service protocol can be considered as a Web Service. This the instanse can be sent to start method from SessionManager class.
 protocol Service
 {
     var requestType: RequestType { get set }

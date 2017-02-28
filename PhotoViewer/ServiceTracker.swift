@@ -8,6 +8,14 @@
 
 import Foundation
 
+// TODO fix prints
+
+/// ServiceTracker was designed to track every service call made from SessionManager. It will print all the following logs:
+///
+///  - The information of the service when has been requested
+///  - The information when the request has been finished regardless if it failed or if it succeed
+///
+/// NOTE: Since Swift 3 update ServiceTracker fails when it tries to print the body of the request
 class ServiceTracker
 {
     fileprivate var content = ""

@@ -9,13 +9,22 @@
 import Foundation
 import UIKit
 
+/// SessionManager is class to make web services calls with URLSession using instances of classes which implementes Service protocol.
+/// This class has three public members:
+///
+///  - sharedInstance: Single instance of SessionManager
+///  - start: Method to start the request using objects which implements Service protocol
+///  - resetSession: Method to reset the URLSession
+///
+/// If a Swift Compiler Flag has been added on the project settings. SessionManager will create an instance of ServiceTracker which will
+/// print all the logs of SessionManager including failed and succeed calls.
 class SessionManager
 {
     static var sharedInstance = SessionManager()
     
     fileprivate var session: URLSession!
     
-    init()
+    fileprivate init()
     {
         createSession()
     }
@@ -42,7 +51,7 @@ class SessionManager
     {
         let request = createRequestForService(service)
         var serviceTracker: ServiceTracker?
-        #if !PROD
+        #if DEBUG
             serviceTracker = ServiceTracker(service: service, request: request)
         #endif
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
