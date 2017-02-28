@@ -8,9 +8,9 @@
 
 import Foundation
 
-class Photo
+protocol Photo
 {
-    var text: String!
-    var thumbnailUrl: String!
-    var originalUrl: String!
+    var text: String { get set }
+    var thumbnailUrl: String { get set }
+    var originalUrl: String { get set }
 }
